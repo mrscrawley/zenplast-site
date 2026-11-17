@@ -8,7 +8,7 @@
   const tabs = document.getElementById('tabs'), chips = document.getElementById('chips'), grid = document.getElementById('grid');
   const meta = document.getElementById('range-meta'), q = document.getElementById('cat-q');
   const DESC = {
-    iml: ['Контейнеры, крышки и стаканы с этикеткой, вплавленной в стенку при литье.', 'Containers, lids and cups with the label fused into the wall during moulding.'],
+    iml: ['Контейнеры, стаканы и крышки с этикеткой, вплавленной в стенку при литье.', 'Containers, cups and lids with the label fused into the wall during moulding.'],
     thermo: ['Лотки, стаканы и укупорочные крышки из собственной плёнки.', 'Trays, cups and closure lids made from our own film.'],
     small: ['Упаковка для яиц, лотки под запайку и прозрачные ПЭТ-контейнеры.', 'Egg packs, sealable trays and clear PET containers.'],
     crates: ['Ящики для молочной продукции, хлеба и овощей.', 'Crates for dairy, bread and vegetables.'],
