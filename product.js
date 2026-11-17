@@ -16,12 +16,13 @@
     const sl = s.match(/(?:^|-)f-?(\d{2,3})(?:-|$)/); if (sl) k.add('d:' + sl[1]);
     return k;
   }
-  function matches(it) {
+  // серия (КЛ-1, КУ-7) — точное совпадение; диаметр — только внутри одной технологии
+  function matches(it, gid) {
     const mine = keys(it); if (!mine.size) return [];
     const want = !isLid(it), out = [];
     for (const g of C) for (const s of g.subs) for (const x of s.items) {
       if (x.slug === it.slug || isLid(x) !== want) continue;
-      for (const k of keys(x)) if (mine.has(k)) { out.push(x); break; }
+      for (const k of keys(x)) if (mine.has(k) && (k[0] === 'c' || g.id === gid)) { out.push(x); break; }
     }
     return out.slice(0, 8);
   }
@@ -40,7 +41,7 @@
       ? `<dl class="pd-specs">${it.specs.map(([k, v]) => `<div><dt>${ZP.esc(ZP.tr(k))}</dt><dd>${ZP.esc(ZP.tr(v))}</dd></div>`).join('')}</dl>`
       : `<p class="pd-empty">${ZP.t('Характеристики уточняйте у отдела продаж.', 'Ask the sales team for specifications.')}</p>`;
     const thumbs = it.imgs.length > 1 ? `<div class="pd-thumbs">${it.imgs.map((src, i) => `<button type="button" data-i="${i}" aria-pressed="${i === img}" aria-label="${ZP.t('Фото', 'Photo')} ${i + 1}"><img src="${src}" alt=""></button>`).join('')}</div>` : '';
-    const pair = matches(it);
+    const pair = matches(it, g.id);
     const pairTitle = isLid(it) ? ZP.t('Подходит к', 'Fits') : ZP.t('Крышки к этому изделию', 'Matching lids');
     const related = s.items.filter(x => x.slug !== it.slug && !pair.includes(x)).slice(0, 4).map(card).join('');
     box.innerHTML = `
