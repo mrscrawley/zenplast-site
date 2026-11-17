@@ -55,7 +55,7 @@
     gsap.from('.story-nav', { opacity: 0, y: 12, duration: .9, delay: .7, ease: 'power3.out', clearProps: 'transform,opacity' });
     let done = false; const go = () => { if (done) return; done = true; if (ch0) ZP.revealLines(ch0, .1); };
     if (ch0) gsap.set(ch0.querySelectorAll('.lmi'), { yPercent: 115 });
-    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { all(); if (ch0) gsap.set(ch0.querySelectorAll('.lmi'), { yPercent: 115 }); go(); });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { all(); if (!done && ch0) gsap.set(ch0.querySelectorAll('.lmi'), { yPercent: 115 }); go(); });
     setTimeout(go, 900);
   }
 
