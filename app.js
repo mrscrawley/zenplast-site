@@ -153,7 +153,7 @@
     gsap.utils.toArray('.eggs .cut').forEach((c, k) => gsap.fromTo(c, { rotate: [-14, 10, -6][k], x: [-60, 80, 40][k] }, { rotate: [4, -6, 8][k], x: 0, ease: 'none',
       scrollTrigger: { trigger: '.eggs', start: 'top bottom', end: 'bottom top', scrub: 1 } }));
     // качество: гранула под лупой
-    gsap.fromTo('.q-lens-video', { scale: .75, rotate: -12, y: 40 }, { scale: 1.08, rotate: 8, y: -20, ease: 'none', scrollTrigger: { trigger: '.q-lens', start: 'top bottom', end: 'bottom 30%', scrub: 1 } });
+    gsap.fromTo('.q-lens-video', { scale: .8, rotate: -12, y: 20 }, { scale: 1, rotate: 8, y: -10, ease: 'none', scrollTrigger: { trigger: '.q-lens', start: 'top bottom', end: 'bottom 30%', scrub: 1 } });
     gsap.utils.toArray('.q-tag').forEach((t, k) => gsap.fromTo(t, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.q-lens', start: `top+=${120 + k * 90} 70%`, toggleActions: 'play none none reverse' } }));
     // карта: разворачивается из наклона
     gsap.fromTo('#geo-map', { rotateX: 42, y: 60, scale: .9 }, { rotateX: 0, y: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.geo', start: 'top bottom', end: 'top 25%', scrub: 1 } });
