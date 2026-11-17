@@ -44,8 +44,8 @@
     const list = items();
     const g = C.find(x => x.id === curG);
     meta.innerHTML = query
-      ? `<div><h3>${ZP.t('Поиск', 'Search')}: «${ZP.esc(query)}»</h3></div><b>${list.length} ${ZP.t('поз.', 'items')}</b>`
-      : `<div><h3>${ZP.esc(ZP.t(g.ru, g.en))}</h3><p>${ZP.esc(ZP.t(...(DESC[g.id] || ['', ''])))}</p></div><b>${list.length} ${ZP.t('поз.', 'items')}</b>`;
+      ? `<div><h3>${ZP.t('Поиск', 'Search')}: «${ZP.esc(query)}»</h3></div>`
+      : `<div><h3>${ZP.esc(ZP.t(g.ru, g.en))}</h3><p>${ZP.esc(ZP.t(...(DESC[g.id] || ['', ''])))}</p></div>`;
     grid.innerHTML = list.length ? list.map((it, k) => {
       const sp = keySpecs(it).map(([key, v]) => `<span><em>${ZP.esc(ZP.tr(key))}</em>${ZP.esc(ZP.tr(v))}</span>`).join('');
       const alt = it.imgs[1] ? `<img class="alt" src="${it.imgs[1]}" alt="" loading="lazy" decoding="async">` : '';
