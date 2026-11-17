@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Зен Пласт — производитель полимерной тары и упаковки</title>
+<meta name="description" content="Литьё под давлением с IML, термо- и вакуумформование, экструзия плёнки PP, PET, PS и крупногабаритная тара. Две площадки в Буда-Кошелево, более 700 тонн полимеров в месяц.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+
+<header class="hdr" id="hdr">
+  <a class="brand" href="#top" aria-label="Зен Пласт, на главную">
+    <span class="brand-mark">ZP</span>
+    <span class="brand-name">Зен Пласт</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#path">Технологии</a>
+    <a href="#range">Продукция</a>
+    <a href="#about">О заводе</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  <a class="hdr-cta" href="#contacts">Получить консультацию</a>
+</header>
+
+<main id="main">
+
+  <!-- ПЕРВЫЙ ЭКРАН -->
+  <section class="hero" id="top">
+    <div class="hero-media" aria-hidden="true">
+      <video class="hero-video" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow">Производитель полимерной тары · Беларусь</p>
+      <h1 class="hero-title"><span class="ln">Вся жизнь</span><span class="ln">в&nbsp;упаковке</span></h1>
+      <p class="hero-lead">Литьё под давлением с&nbsp;IML-этикеткой, термоформование, экструзия плёнки и&nbsp;крупногабаритная тара. Две площадки в&nbsp;Буда-Кошелево.</p>
+      <div class="hero-actions">
+        <a class="btn btn-solid" href="#range">Каталог продукции</a>
+        <a class="btn btn-ghost" href="#path">Как мы производим</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ЦИФРЫ -->
+  <section class="facts" id="about" aria-label="Завод в цифрах">
+    <div class="facts-row">
+      <div class="fact"><div class="fact-num"><span data-count="9000">9000</span><i>+</i></div><div class="fact-unit">м² производственных площадей</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="700">700</span><i>+</i></div><div class="fact-unit">тонн полимеров в месяц</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="2">2</span></div><div class="fact-unit">производственные площадки</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="4">4</span></div><div class="fact-unit">технологии под одной крышей</div></div>
+    </div>
+    <p class="facts-note">Один из крупнейших поставщиков полимерной тары и&nbsp;упаковки в&nbsp;Республике Беларусь. Работаем только с&nbsp;первичными полимерами от&nbsp;проверенных поставщиков и&nbsp;контролируем качество на&nbsp;всех этапах.</p>
+  </section>
+
+  <!-- ПУТЬ ПОЛИМЕРА -->
+  <section class="path" id="path" aria-label="Путь полимера">
+    <div class="path-pin">
+      <div class="path-head">
+        <p class="eyebrow">Путь полимера</p>
+        <h2 class="path-title">Из одной гранулы&nbsp;— два пути</h2>
+      </div>
+
+      <div class="stage" id="stage">
+        <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
+          <path class="wire wire-a" d="M160 288 C 320 288, 360 156, 470 156 L 700 156"/>
+          <path class="wire wire-b" d="M160 288 C 320 288, 360 420, 470 420 L 700 420"/>
+        </svg>
+
+        <div class="node node-g" data-step="0">
+          <div class="granule"><video src="media/granules.mp4" poster="media/granules.jpg" muted loop playsinline autoplay></video></div>
+          <span class="tag">Гранула</span>
+        </div>
+
+        <!-- ветка А: плёнка -> термоформование -->
+        <div class="node node-a1" data-step="1">
+          <img class="cut" src="media/prod/pet_plenka_zen_plast.jpg" alt="Рулон плёнки PET">
+          <span class="tag">Экструзия плёнки</span>
+        </div>
+        <div class="node node-a2 cluster" data-step="2">
+          <img class="cut c1" src="media/prod/1-137.jpg" alt="Упаковка для яиц ПЭТ">
+          <img class="cut c2" src="media/prod/1-83.jpg" alt="Лоток термоформованный чёрный">
+          <img class="cut c3" src="media/prod/1-43.jpg" alt="Контейнер овальный ПЭТ">
+          <img class="cut c4" src="media/prod/1-175.jpg" alt="Крышка укупорочная прозрачная">
+          <span class="tag">Термоформование</span>
+        </div>
+
+        <!-- ветка Б: литьё -->
+        <div class="node node-b1 cluster" data-step="3">
+          <img class="cut c1" src="media/prod/1-430.jpg" alt="Стакан литьевой белый">
+          <img class="cut c2" src="media/prod/1-436.jpg" alt="Стакан литьевой белый">
+          <img class="cut c3" src="media/prod/1-167.jpg" alt="Крышка литьевая синяя">
+          <span class="tag">Литьё с&nbsp;IML</span>
+        </div>
+        <div class="node node-b2 cluster" data-step="4">
+          <img class="cut c1" src="media/prod/1-265.jpg" alt="Ящик перфорированный синий">
+          <img class="cut c2" src="media/prod/1-255.jpg" alt="Ящик-лоток зелёный">
+          <span class="tag">Крупная тара</span>
+        </div>
+      </div>
+
+      <ol class="steps" aria-label="Этапы">
+        <li class="step is-on" data-step="0">
+          <span class="step-k">Сырьё</span>
+          <h3>Первичные полимеры</h3>
+          <p>PP, PET и&nbsp;PS от&nbsp;надёжных поставщиков. Соответствие требованиям ГОСТ и&nbsp;международным стандартам.</p>
+        </li>
+        <li class="step" data-step="1">
+          <span class="step-k">Путь 1 · шаг 1</span>
+          <h3>Экструзия плёнки</h3>
+          <p>Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем. Ширина <b>300–1200&nbsp;мм</b>, толщина <b>350–1500&nbsp;мкм</b>. Для своих линий и&nbsp;для ваших термоформовочных машин.</p>
+        </li>
+        <li class="step" data-step="2">
+          <span class="step-k">Путь 1 · шаг 2</span>
+          <h3>Термо- и&nbsp;вакуумформование</h3>
+          <p>Укупорочные крышки, лотки, стаканы, упаковка для куриных и&nbsp;перепелиных яиц, пищевые лотки под запайку.</p>
+        </li>
+        <li class="step" data-step="3">
+          <span class="step-k">Путь 2</span>
+          <h3>Литьё под давлением с&nbsp;IML</h3>
+          <p>Контейнеры, крышки и&nbsp;стаканы с&nbsp;этикеткой, впаянной в&nbsp;стенку прямо в&nbsp;пресс-форме. Отдельная площадка IML.</p>
+        </li>
+        <li class="step" data-step="4">
+          <span class="step-k">Путь 2</span>
+          <h3>Литьё крупногабаритной тары</h3>
+          <p>Ящики для молочной, мясной, хлебной продукции, овощей и&nbsp;ягод.</p>
+        </li>
+      </ol>
+      <div class="path-progress" aria-hidden="true"><span></span></div>
+    </div>
+  </section>
+
+  <!-- ЗАГЛУШКА ДАЛЬШЕ -->
+  <section class="next" id="range">
+    <p class="eyebrow">Дальше в&nbsp;концепте</p>
+    <h2>Продукция, IML-банка в&nbsp;3D, партнёры и&nbsp;заявка</h2>
+    <p>Следующие разделы собираются после согласования первого экрана и&nbsp;сцены технологий.</p>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="contacts" id="contacts">
+    <div class="ct-col">
+      <p class="eyebrow">Контакты</p>
+      <h2>Ответим на&nbsp;все ваши вопросы</h2>
+      <p class="ct-mail"><a href="mailto:info@zenplast.by">info@zenplast.by</a></p>
+    </div>
+    <dl class="ct-list">
+      <div><dt>Отдел продаж</dt><dd><a href="tel:+375291703227">+375 29 170 32 27</a><br><a href="tel:+375447472770">+375 44 747 27 70</a></dd></div>
+      <div><dt>Общий</dt><dd><a href="tel:+375293273226">+375 29 327 32 26</a></dd></div>
+      <div><dt>Логистика и&nbsp;снабжение</dt><dd><a href="mailto:logist@zenplast.by">logist@zenplast.by</a></dd></div>
+      <div><dt>Офис</dt><dd>Минск, пр-т Победителей,&nbsp;141, офис&nbsp;239</dd></div>
+      <div><dt>Производство</dt><dd>Буда-Кошелево, ул.&nbsp;Техническая,&nbsp;11/9</dd></div>
+      <div><dt>Производство IML</dt><dd>Буда-Кошелево, пер.&nbsp;Интернациональный,&nbsp;12А</dd></div>
+    </dl>
+    <p class="legal">ООО «Зен Пласт», УНП 491479496 · Концепт сайта, не опубликован</p>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
