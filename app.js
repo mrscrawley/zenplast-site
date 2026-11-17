@@ -124,7 +124,7 @@
         const now = performance.now(), ab = Math.abs(e.deltaY);
         // новый жест: пауза в событиях или резкий всплеск силы (инерция только затухает)
         const fresh = now - lastWheel > 160 || ab > lastAbs * 1.5 + 8;
-        const decaying = ab < lastAbs || ab <= 4;               // инерция трекпада только затухает
+        const decaying = ab <= lastAbs;               // инерция трекпада только затухает
         lastWheel = now; lastAbs = ab;
         const stop = () => { e.preventDefault(); e.stopImmediatePropagation(); };
         if (now < lockUntil) return stop();                      // идёт переход
