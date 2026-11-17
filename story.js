@@ -39,9 +39,9 @@ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 214748364
 
   const cam = new THREE.PerspectiveCamera(30, 1, 0.1, 80);
   const key = new THREE.DirectionalLight(0xffffff, 1.6);
-  key.position.set(-4, 8, 6); key.target.position.set(14, 0, 0); key.castShadow = true;
-  key.shadow.mapSize.set(2048, 1024); key.shadow.radius = 6;
-  Object.assign(key.shadow.camera, { left: -8, right: 38, top: 8, bottom: -8, near: 1, far: 40 });
+  key.position.set(-4, 8, 6); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0004;
+  Object.assign(key.shadow.camera, { left: -7, right: 7, top: 6, bottom: -6, near: 1, far: 30 });
   scene.add(key, key.target);
   scene.add(new THREE.HemisphereLight(0xf3f8ff, 0xbdd2e6, .55));
   const rim = new THREE.DirectionalLight(0xcfe3ff, .6); rim.position.set(6, 2, -6); scene.add(rim);
@@ -193,7 +193,8 @@ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 214748364
   });
   labA.material.map = labelTex[0]; labB.material.map = labelTex[1];
   // летящая этикетка перед литьём
-  const flyLab = new THREE.Mesh(new THREE.PlaneGeometry(1.9, .62), new THREE.MeshPhysicalMaterial({ map: labelTex[0], roughness: .3, clearcoat: .8, side: THREE.DoubleSide, transparent: true }));
+  const flyTex = texLoader.load('media/labels/label-1.jpg'); flyTex.colorSpace = THREE.SRGBColorSpace; flyTex.anisotropy = 8;
+  const flyLab = new THREE.Mesh(new THREE.PlaneGeometry(1.9, .62), new THREE.MeshPhysicalMaterial({ map: flyTex, roughness: .3, clearcoat: .8, side: THREE.DoubleSide, transparent: true }));
   iml.add(flyLab);
 
   // --- ящики на паллете (x = 32)
@@ -326,6 +327,8 @@ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 214748364
     ptr.sx = lerp(ptr.sx, ptr.active ? ptr.x : 0, .05); ptr.sy = lerp(ptr.sy, ptr.active ? ptr.y : 0, .05);
     cam.position.set(camPos.x + ptr.sx * .35, camPos.y + ptr.sy * .22, camPos.z);
     cam.lookAt(camTgt);
+    // ключевой свет и его тени ходят за камерой
+    key.target.position.set(camTgt.x, -1, 0); key.position.set(camTgt.x - 4, 8, 6); key.target.updateMatrixWorld();
 
     // курсор в мире (для отталкивания гранул в первой главе)
     if (ptr.active) { ray.setFromCamera({ x: ptr.x, y: ptr.y }, cam); ray.ray.intersectPlane(plane, ptr.world); } else ptr.world.set(99, 99, 0);

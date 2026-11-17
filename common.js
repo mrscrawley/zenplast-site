@@ -13,7 +13,7 @@
   const touch = matchMedia('(pointer: coarse)').matches;
   ZP.reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   ZP.lite = ZP.reduce || conn.saveData === true || /2g/.test(conn.effectiveType || '') ||
-    (nav.deviceMemory && nav.deviceMemory <= 2) || (touch && (nav.hardwareConcurrency || 8) <= 4) || qs.has('lite');
+    (nav.deviceMemory && nav.deviceMemory <= 2) || qs.has('lite');
   if (ZP.lite) {
     root.classList.add('is-lite');
     document.querySelectorAll('video.lp-video').forEach(v => { v.removeAttribute('autoplay'); v.pause(); v.preload = 'none'; });

@@ -350,7 +350,7 @@ p{margin:0}
    3D-мир живёт в своей правой зоне ниже шапки и не заходит под текст. */
 .story{position:relative;height:1200svh;background:var(--bg)}
 .story .anchor{position:absolute;left:0;width:1px;height:1px}
-.story-pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);padding-top:var(--hdr-h);overflow:hidden;background:linear-gradient(180deg,#dfecf7 0%,var(--bg) 40%)}
+.story-pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);padding-top:var(--hdr-h);overflow:hidden;background:var(--bg)}
 .story-copy{position:relative;grid-column:1;padding:2svh 2vw 11svh var(--pad);display:grid;align-items:center;min-height:0}
 /* главы лежат в одной ячейке сетки: центрирование без transform, GSAP его не сбивает */
 .ch{grid-area:1/1;display:flex;flex-direction:column;gap:18px;opacity:0;visibility:hidden;min-width:0}
@@ -379,7 +379,7 @@ p{margin:0}
 .story-stage{position:relative;grid-column:2;min-height:0;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 6%,#000 88%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 12%),linear-gradient(180deg,transparent 0,#000 6%,#000 88%,transparent 100%);mask-composite:intersect}
 #world{position:absolute;inset:0;width:100%;height:100%;display:block}
 .story-fallback{position:absolute;inset:0;display:none}
-.story-fallback img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.story-fallback img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;opacity:0;transition:opacity .6s}
 .story-fallback img.is-on{opacity:1}
 .story.no3d #world{display:none}
 .story.no3d .story-fallback{display:block}
