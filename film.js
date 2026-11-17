@@ -29,12 +29,39 @@
   }
   ZP.scrubber = scrubber;
 
-  // --- единый фильм истории: главы стоят на ключевых кадрах (8 кадров, 7 переходов)
-  const story = document.querySelector('.story'), film = document.getElementById('storyfilm');
+  // --- единый фильм истории: пошагово. Глава = ключевой кадр; переход между главами
+  // проигрывается как обычное видео (вперёд — film.mp4, назад — film-rev.mp4), без покадровой перемотки.
+  const story = document.querySelector('.story'), film = document.getElementById('storyfilm'), rev = document.getElementById('storyfilmrev');
   if (story && film) {
-    const map = [[0, 0], [.06, 0], [.2, 1], [.24, 1], [.34, 2], [.38, 2], [.48, 3], [.52, 3], [.61, 4], [.63, 4], [.74, 5], [.78, 5], [.88, 6], [.92, 6], [.98, 7], [1, 7]];
-    const toT = P => { for (let i = 1; i < map.length; i++) if (P <= map[i][0]) { const [p0, k0] = map[i - 1], [p1, k1] = map[i]; return (k0 + (k1 - k0) * ((P - p0) / ((p1 - p0) || 1))) / 7; } return 1; };
-    scrubber(film, () => toT(clamp(ZP.storyP || 0)), story);
+    const K = 7; let dur = 0, seg = 0, curK = 0, tgtK = 0, busy = false;
+    [film, rev].forEach(v => { if (!v) return; v.muted = true; v.playsInline = true; const w = () => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); }; w(); addEventListener('touchstart', w, { once: true, passive: true }); });
+    const meta = () => { dur = film.duration || 0; seg = dur / K; };
+    film.addEventListener('loadedmetadata', meta); if (film.readyState >= 1) meta();
+    const seek = (v, t) => new Promise(r => { if (Math.abs(v.currentTime - t) < .01) return r(); v.addEventListener('seeked', r, { once: true }); v.currentTime = t; });
+    const until = (v, test) => new Promise(r => { const f = () => test() ? r() : requestAnimationFrame(f); requestAnimationFrame(f); });
+    async function run() {
+      if (busy || !seg) return; busy = true;
+      while (tgtK !== curK) {
+        const k = tgtK, steps = Math.abs(k - curK), rate = Math.min(4, 1.6 + (steps - 1) * .8);
+        if (k > curK || !rev) {
+          if (k < curK) { await seek(film, k * seg); curK = k; break; }
+          film.playbackRate = rate; story.classList.remove('is-rev');
+          film.play().catch(() => {});
+          await until(film, () => film.currentTime >= k * seg - .03 || film.ended);
+          film.pause(); await seek(film, k * seg);
+        } else {
+          await seek(rev, dur - curK * seg);
+          story.classList.add('is-rev'); rev.playbackRate = rate; rev.play().catch(() => {});
+          await until(rev, () => rev.currentTime >= dur - k * seg - .03 || rev.ended);
+          rev.pause(); await seek(film, k * seg); story.classList.remove('is-rev');
+        }
+        curK = k;
+      }
+      busy = false;
+      if (tgtK !== curK) run();
+    }
+    ZP.filmGo = k => { tgtK = Math.max(0, Math.min(K, k)); if (ZP.reduce && seg) { film.currentTime = tgtK * seg; curK = tgtK; return; } run(); };
+    film.addEventListener('loadedmetadata', () => ZP.filmGo(tgtK));
     story.classList.add('has3d', 'is-film');
   }
 
