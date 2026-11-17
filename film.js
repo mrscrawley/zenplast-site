@@ -42,7 +42,9 @@
     async function run() {
       if (busy || !seg) return; busy = true;
       while (tgtK !== curK) {
-        const k = tgtK, steps = Math.abs(k - curK), rate = Math.min(4, 1.6 + (steps - 1) * .8);
+        const k = tgtK, rate = 1.6;
+        // дальний прыжок: встаём на соседний с целью кадр и проигрываем только последний переход
+        if (Math.abs(k - curK) > 1) { const pre = k > curK ? k - 1 : k + 1; await seek(film, pre * seg); curK = pre; }
         if (k > curK || !rev) {
           if (k < curK) { await seek(film, k * seg); curK = k; break; }
           film.playbackRate = rate; story.classList.remove('is-rev');
