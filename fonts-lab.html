@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Лаборатория шрифтов — Зен Пласт</title>
+<link rel="icon" href="media/favicon.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500&family=Inter+Tight:wght@200;300;400;500&family=Onest:wght@200;300;400;500&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef3f7;--card:#f7fafc;--ink:#0d1b2a;--ink-2:#4a5a6b;--blue:#014e9e;--line:rgba(13,27,42,.12)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,system-ui,sans-serif;padding:48px max(20px,4vw) 80px}
+h1{font-weight:300;font-size:clamp(30px,4vw,48px);letter-spacing:-.03em;margin:0 0 8px}
+.lead{color:var(--ink-2);margin:0 0 40px;max-width:46em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,520px),1fr));gap:20px}
+.v{background:var(--card);border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit;box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s}
+.v:hover{box-shadow:inset 0 0 0 2px var(--blue)}
+.tag{font:400 12px "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.t{font-size:clamp(44px,5vw,72px);line-height:.95;letter-spacing:-.04em;margin:0}
+.t b{display:block;color:var(--blue);font-weight:500}
+.p{color:var(--ink-2);margin:0;max-width:30em}
+.n{display:flex;gap:28px;font-variant-numeric:tabular-nums}
+.n div{font-size:44px;line-height:1;letter-spacing:-.05em}
+.n small{display:block;font-size:13px;letter-spacing:0;color:var(--ink-2);margin-top:6px}
+.go{margin-top:auto;font-weight:500;color:var(--blue)}
+.cur{font:400 12px "JetBrains Mono",monospace;color:var(--ink-2)}
+</style>
+</head>
+<body>
+<h1>Лаборатория шрифтов</h1>
+<p class="lead">Четыре пары для сайта Зен Пласта, фирменный синий #014E9E из логотипа. Нажмите на вариант: сайт откроется с этим шрифтом и запомнит выбор. Скажите номер, какой оставить.</p>
+<div class="grid">
+  <a class="v" href="index.html?font=a" style="font-family:Manrope"><span class="tag">A · Manrope <span class="cur">сейчас</span></span><p class="t" style="font-weight:200">Вся жизнь<b>в упаковке</b></p><p class="p">Литьё под давлением с IML-этикеткой, термоформование, экструзия плёнки и крупногабаритная тара.</p><div class="n"><div style="font-weight:200">9 000<small>м² площадей</small></div><div style="font-weight:200">700+<small>тонн в месяц</small></div></div><span class="go">Открыть сайт с A →</span></a>
+  <a class="v" href="index.html?font=b" style="font-family:'Inter Tight'"><span class="tag">B · Inter Tight</span><p class="t" style="font-weight:200">Вся жизнь<b>в упаковке</b></p><p class="p">Литьё под давлением с IML-этикеткой, термоформование, экструзия плёнки и крупногабаритная тара.</p><div class="n"><div style="font-weight:200">9 000<small>м² площадей</small></div><div style="font-weight:200">700+<small>тонн в месяц</small></div></div><span class="go">Открыть сайт с B →</span></a>
+  <a class="v" href="index.html?font=c" style="font-family:Onest"><span class="tag">C · Onest</span><p class="t" style="font-weight:200">Вся жизнь<b>в упаковке</b></p><p class="p">Литьё под давлением с IML-этикеткой, термоформование, экструзия плёнки и крупногабаритная тара.</p><div class="n"><div style="font-weight:200">9 000<small>м² площадей</small></div><div style="font-weight:200">700+<small>тонн в месяц</small></div></div><span class="go">Открыть сайт с C →</span></a>
+  <a class="v" href="index.html?font=d" style="font-family:Onest"><span class="tag">D · Unbounded + Onest</span><p class="t" style="font-family:Unbounded;font-weight:300;font-size:clamp(36px,4vw,58px)">Вся жизнь<b>в упаковке</b></p><p class="p">Литьё под давлением с IML-этикеткой, термоформование, экструзия плёнки и крупногабаритная тара.</p><div class="n"><div style="font-family:Unbounded;font-weight:300;font-size:36px">9 000<small>м² площадей</small></div><div style="font-family:Unbounded;font-weight:300;font-size:36px">700+<small>тонн в месяц</small></div></div><span class="go">Открыть сайт с D →</span></a>
+</div>
+</body>
+</html>

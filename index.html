@@ -3,166 +3,334 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
 <title>Зен Пласт — производитель полимерной тары и упаковки</title>
-<meta name="description" content="Литьё под давлением с IML, термо- и вакуумформование, экструзия плёнки PP, PET, PS и крупногабаритная тара. Две площадки в Буда-Кошелево, более 700 тонн полимеров в месяц.">
+<meta name="description" content="Концепт сайта. Литьё под давлением с IML, термо- и вакуумформование, экструзия плёнки PP, PET, PS и крупногабаритная тара. Две площадки в Буда-Кошелево.">
+<meta property="og:title" content="Зен Пласт — полимерная тара и упаковка">
+<meta property="og:description" content="Концепт сайта: IML, термоформование, плёнка, крупная тара.">
+<meta property="og:image" content="https://mrscrawley.github.io/zenplast-site/media/og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="media/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
 </head>
 <body>
-<a class="skip" href="#main">К содержанию</a>
+<a class="skip" href="#main" data-en="Skip to content">К содержанию</a>
+<div class="concept-flag" data-en="Concept · not the official website">Концепт · не официальный сайт</div>
 
 <header class="hdr" id="hdr">
-  <a class="brand" href="#top" aria-label="Зен Пласт, на главную">
-    <span class="brand-mark">ZP</span>
-    <span class="brand-name">Зен Пласт</span>
+  <a class="brand" href="#top" aria-label="Зен Пласт">
+    <img src="media/logo.png" alt="Zen Plast" width="134" height="94">
   </a>
   <nav class="nav" aria-label="Разделы">
-    <a href="#path">Технологии</a>
-    <a href="#range">Продукция</a>
-    <a href="#about">О заводе</a>
-    <a href="#contacts">Контакты</a>
+    <a href="#path" data-en="Technology">Технологии</a>
+    <a href="#iml">IML</a>
+    <a href="#range" data-en="Products">Продукция</a>
+    <a href="#quality" data-en="Quality">Качество</a>
+    <a href="#contacts" data-en="Contacts">Контакты</a>
   </nav>
-  <a class="hdr-cta" href="#contacts">Получить консультацию</a>
+  <div class="lang" role="group" aria-label="Язык / Language">
+    <button type="button" data-lang="ru" aria-pressed="true">RU</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+  </div>
+  <a class="hdr-cta" href="#contacts" data-en="Get a quote">Получить консультацию</a>
+  <button class="burger" type="button" aria-expanded="false" aria-controls="mmenu" aria-label="Меню"><i></i><i></i></button>
 </header>
+
+<div class="mmenu" id="mmenu" hidden>
+  <nav aria-label="Меню">
+    <a href="#path" data-en="Technology">Технологии</a>
+    <a href="#iml">IML</a>
+    <a href="#range" data-en="Products">Продукция</a>
+    <a href="#eggs" data-en="Egg packaging">Упаковка для яиц</a>
+    <a href="#quality" data-en="Quality">Качество</a>
+    <a href="#jobs" data-en="Careers">Вакансии</a>
+    <a href="#contacts" data-en="Contacts">Контакты</a>
+  </nav>
+  <div class="mmenu-lang"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
+</div>
+
+<div class="mbar" aria-label="Быстрые действия">
+  <a href="tel:+375291703227" data-en="Call">Позвонить</a>
+  <a href="#contacts" class="mbar-rfq" data-en="Request">Заявка</a>
+</div>
 
 <main id="main">
 
-  <!-- ПЕРВЫЙ ЭКРАН -->
+  <!-- 1. ПЕРВЫЙ ЭКРАН -->
   <section class="hero" id="top">
     <div class="hero-media" aria-hidden="true">
-      <video class="hero-video" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
+      <video class="hero-video lp-video" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
     </div>
     <div class="hero-copy">
-      <p class="eyebrow">Производитель полимерной тары · Беларусь</p>
-      <h1 class="hero-title"><span class="ln">Вся жизнь</span><span class="ln">в&nbsp;упаковке</span></h1>
-      <p class="hero-lead">Литьё под давлением с&nbsp;IML-этикеткой, термоформование, экструзия плёнки и&nbsp;крупногабаритная тара. Две площадки в&nbsp;Буда-Кошелево.</p>
+      <p class="eyebrow" data-en="Polymer packaging manufacturer · Belarus">Производитель полимерной тары · Беларусь</p>
+      <h1 class="hero-title"><span class="ln" data-en="A whole life">Вся жизнь</span><span class="ln" data-en="in packaging">в&nbsp;упаковке</span></h1>
+      <p class="hero-lead" data-en="Injection moulding with IML labels, thermoforming, film extrusion and large containers. Two production sites in Buda-Kashalyova.">Литьё под давлением с&nbsp;IML-этикеткой, термоформование, экструзия плёнки и&nbsp;крупногабаритная тара. Две площадки в&nbsp;Буда‑Кошелево.</p>
       <div class="hero-actions">
-        <a class="btn btn-solid" href="#range">Каталог продукции</a>
-        <a class="btn btn-ghost" href="#path">Как мы производим</a>
+        <a class="btn btn-solid" href="#range" data-en="Product catalogue">Каталог продукции</a>
+        <a class="btn btn-ghost" href="#path" data-en="How we make it">Как мы производим</a>
       </div>
     </div>
-    <div class="hero-scroll" aria-hidden="true"><span></span></div>
   </section>
 
-  <!-- ЦИФРЫ -->
+  <!-- 2. ЦИФРЫ -->
   <section class="facts" id="about" aria-label="Завод в цифрах">
+    <div class="facts-bg" aria-hidden="true"><video class="lp-video" src="media/granules.mp4" poster="media/granules.jpg" autoplay muted loop playsinline></video></div>
     <div class="facts-row">
-      <div class="fact"><div class="fact-num"><span data-count="9000">9000</span><i>+</i></div><div class="fact-unit">м² производственных площадей</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="700">700</span><i>+</i></div><div class="fact-unit">тонн полимеров в месяц</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="2">2</span></div><div class="fact-unit">производственные площадки</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="4">4</span></div><div class="fact-unit">технологии под одной крышей</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="9000">9000</span><i>+</i></div><div class="fact-unit" data-en="m² of production space">м² производственных площадей</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="700">700</span><i>+</i></div><div class="fact-unit" data-en="tonnes of polymers a month">тонн полимеров в месяц</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="2">2</span></div><div class="fact-unit" data-en="production sites">производственные площадки</div></div>
+      <div class="fact"><div class="fact-num"><span data-count="4">4</span></div><div class="fact-unit" data-en="production technologies">технологии производства</div></div>
     </div>
-    <p class="facts-note">Один из крупнейших поставщиков полимерной тары и&nbsp;упаковки в&nbsp;Республике Беларусь. Работаем только с&nbsp;первичными полимерами от&nbsp;проверенных поставщиков и&nbsp;контролируем качество на&nbsp;всех этапах.</p>
+    <p class="facts-note" data-en="One of the largest suppliers of polymer containers and packaging in the Republic of Belarus. We work only with virgin polymers from trusted suppliers and control quality at every stage.">Один из крупнейших поставщиков полимерной тары и&nbsp;упаковки в&nbsp;Республике Беларусь. Работаем только с&nbsp;первичными полимерами от&nbsp;проверенных поставщиков и&nbsp;контролируем качество на&nbsp;всех этапах.</p>
   </section>
 
-  <!-- ПУТЬ ПОЛИМЕРА -->
+  <!-- 3. ПУТЬ ПОЛИМЕРА -->
   <section class="path" id="path" aria-label="Путь полимера">
     <div class="path-pin">
       <div class="path-head">
-        <p class="eyebrow">Путь полимера</p>
-        <h2 class="path-title">Из одной гранулы&nbsp;— два пути</h2>
+        <p class="eyebrow" data-en="The polymer's path">Путь полимера</p>
+        <h2 class="path-title" data-en="One granule, two paths">Из одной гранулы&nbsp;— два пути</h2>
       </div>
 
       <div class="stage" id="stage">
         <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-          <path class="wire wire-a" d="M160 288 C 320 288, 360 156, 470 156 L 700 156"/>
-          <path class="wire wire-b" d="M160 288 C 320 288, 360 420, 470 420 L 700 420"/>
+          <path class="wire wire-a" d="M150 288 C 300 288, 330 150, 430 150 L 640 150"/>
+          <path class="wire wire-b" d="M150 288 C 300 288, 330 426, 430 426 L 640 426"/>
         </svg>
-
-        <div class="node node-g" data-step="0">
-          <div class="granule"><video src="media/granules.mp4" poster="media/granules.jpg" muted loop playsinline autoplay></video></div>
-          <span class="tag">Гранула</span>
+        <div class="node node-g">
+          <div class="granule"><video class="lp-video" src="media/granules.mp4" poster="media/granules.jpg" muted loop playsinline autoplay></video></div>
+          <span class="tag"><b data-en="Granule">Гранула</b><small>PP · PET · PS</small></span>
         </div>
-
-        <!-- ветка А: плёнка -> термоформование -->
-        <div class="node node-a1" data-step="1">
-          <img class="cut" src="media/prod/pet_plenka_zen_plast.jpg" alt="Рулон плёнки PET">
-          <span class="tag">Экструзия плёнки</span>
+        <div class="node node-a1">
+          <img class="cut" src="media/prod/pet_plenka_zen_plast.jpg" alt="">
+          <span class="tag"><b data-en="Film extrusion">Экструзия плёнки</b><small data-en="300–1200 mm · 350–1500 µm">300–1200&nbsp;мм · 350–1500&nbsp;мкм</small></span>
         </div>
-        <div class="node node-a2 cluster" data-step="2">
-          <img class="cut c1" src="media/prod/1-137.jpg" alt="Упаковка для яиц ПЭТ">
-          <img class="cut c2" src="media/prod/1-83.jpg" alt="Лоток термоформованный чёрный">
-          <img class="cut c3" src="media/prod/1-43.jpg" alt="Контейнер овальный ПЭТ">
-          <img class="cut c4" src="media/prod/1-175.jpg" alt="Крышка укупорочная прозрачная">
-          <span class="tag">Термоформование</span>
+        <div class="node node-a2 cluster">
+          <img class="cut c1" src="media/prod/1-137.jpg" alt="">
+          <img class="cut c2" src="media/prod/1-83.jpg" alt="">
+          <img class="cut c3" src="media/prod/1-43.jpg" alt="">
+          <img class="cut c4" src="media/prod/1-175.jpg" alt="">
+          <span class="tag"><b data-en="Thermoforming">Термоформование</b><small data-en="lids · trays · cups · egg packs">крышки · лотки · стаканы · яйца</small></span>
         </div>
-
-        <!-- ветка Б: литьё -->
-        <div class="node node-b1 cluster" data-step="3">
-          <img class="cut c1" src="media/prod/1-430.jpg" alt="Стакан литьевой белый">
-          <img class="cut c2" src="media/prod/1-436.jpg" alt="Стакан литьевой белый">
-          <img class="cut c3" src="media/prod/1-167.jpg" alt="Крышка литьевая синяя">
-          <span class="tag">Литьё с&nbsp;IML</span>
+        <div class="node node-b1 cluster">
+          <img class="cut c1" src="media/prod/1-430.jpg" alt="">
+          <img class="cut c2" src="media/prod/1-436.jpg" alt="">
+          <img class="cut c3" src="media/prod/1-167.jpg" alt="">
+          <span class="tag"><b data-en="Moulding with IML">Литьё с&nbsp;IML</b><small data-en="containers · lids · cups">контейнеры · крышки · стаканы</small></span>
         </div>
-        <div class="node node-b2 cluster" data-step="4">
-          <img class="cut c1" src="media/prod/1-265.jpg" alt="Ящик перфорированный синий">
-          <img class="cut c2" src="media/prod/1-255.jpg" alt="Ящик-лоток зелёный">
-          <span class="tag">Крупная тара</span>
+        <div class="node node-b2 cluster">
+          <img class="cut c1" src="media/prod/1-265.jpg" alt="">
+          <img class="cut c2" src="media/prod/1-255.jpg" alt="">
+          <span class="tag"><b data-en="Large containers">Крупная тара</b><small data-en="8 types of crates">8 видов ящиков</small></span>
         </div>
       </div>
 
       <ol class="steps" aria-label="Этапы">
-        <li class="step is-on" data-step="0">
-          <span class="step-k">Сырьё</span>
-          <h3>Первичные полимеры</h3>
-          <p>PP, PET и&nbsp;PS от&nbsp;надёжных поставщиков. Соответствие требованиям ГОСТ и&nbsp;международным стандартам.</p>
+        <li class="step is-on">
+          <img class="step-img" src="media/granules.jpg" alt="">
+          <span class="step-k" data-en="Raw material">Сырьё</span>
+          <h3 data-en="Virgin polymers">Первичные полимеры</h3>
+          <p data-en="PP, PET and PS from reliable suppliers, compliant with GOST and international standards.">PP, PET и&nbsp;PS от&nbsp;надёжных поставщиков. Соответствие требованиям ГОСТ и&nbsp;международным стандартам.</p>
         </li>
-        <li class="step" data-step="1">
-          <span class="step-k">Путь 1 · шаг 1</span>
-          <h3>Экструзия плёнки</h3>
-          <p>Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем. Ширина <b>300–1200&nbsp;мм</b>, толщина <b>350–1500&nbsp;мкм</b>. Для своих линий и&nbsp;для ваших термоформовочных машин.</p>
+        <li class="step">
+          <img class="step-img cutimg" src="media/prod/pet_plenka_zen_plast.jpg" alt="">
+          <span class="step-k" data-en="Path 1 · step 1">Путь 1 · шаг 1</span>
+          <h3 data-en="Film extrusion">Экструзия плёнки</h3>
+          <p data-en="PP, PET and PS film, including with a PE layer. Width <b>300–1200 mm</b>, thickness <b>350–1500 µm</b>, rolls of 30–500 kg. For our own lines and for your thermoforming machines.">Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем. Ширина <b>300–1200&nbsp;мм</b>, толщина <b>350–1500&nbsp;мкм</b>, рулоны 30–500&nbsp;кг. Для своих линий и&nbsp;для ваших термоформовочных машин.</p>
         </li>
-        <li class="step" data-step="2">
-          <span class="step-k">Путь 1 · шаг 2</span>
-          <h3>Термо- и&nbsp;вакуумформование</h3>
-          <p>Укупорочные крышки, лотки, стаканы, упаковка для куриных и&nbsp;перепелиных яиц, пищевые лотки под запайку.</p>
+        <li class="step">
+          <img class="step-img cutimg" src="media/prod/1-137.jpg" alt="">
+          <span class="step-k" data-en="Path 1 · step 2">Путь 1 · шаг 2</span>
+          <h3 data-en="Thermo- and vacuum forming">Термо- и&nbsp;вакуумформование</h3>
+          <p data-en="Closure lids, trays, cups, packs for chicken and quail eggs, sealable food trays.">Укупорочные крышки, лотки, стаканы, упаковка для куриных и&nbsp;перепелиных яиц, пищевые лотки под запайку.</p>
         </li>
-        <li class="step" data-step="3">
-          <span class="step-k">Путь 2</span>
-          <h3>Литьё под давлением с&nbsp;IML</h3>
-          <p>Контейнеры, крышки и&nbsp;стаканы с&nbsp;этикеткой, впаянной в&nbsp;стенку прямо в&nbsp;пресс-форме. Отдельная площадка IML.</p>
+        <li class="step">
+          <img class="step-img cutimg" src="media/prod/1-430.jpg" alt="">
+          <span class="step-k" data-en="Path 2">Путь 2</span>
+          <h3 data-en="Injection moulding with IML">Литьё под давлением с&nbsp;IML</h3>
+          <p data-en="Containers, lids and cups with a label moulded into the wall right in the tool. A dedicated IML site.">Контейнеры, крышки и&nbsp;стаканы с&nbsp;этикеткой, впаянной в&nbsp;стенку прямо в&nbsp;пресс-форме. Отдельная площадка IML.</p>
         </li>
-        <li class="step" data-step="4">
-          <span class="step-k">Путь 2</span>
-          <h3>Литьё крупногабаритной тары</h3>
-          <p>Ящики для молочной, мясной, хлебной продукции, овощей и&nbsp;ягод.</p>
+        <li class="step">
+          <img class="step-img cutimg" src="media/prod/1-265.jpg" alt="">
+          <span class="step-k" data-en="Path 2">Путь 2</span>
+          <h3 data-en="Large container moulding">Литьё крупногабаритной тары</h3>
+          <p data-en="Crates for dairy, sausage, bakery, vegetables and berries.">Ящики для молочной, колбасной, хлебной продукции, овощей и&nbsp;ягод.</p>
         </li>
       </ol>
       <div class="path-progress" aria-hidden="true"><span></span></div>
     </div>
   </section>
 
-  <!-- ЗАГЛУШКА ДАЛЬШЕ -->
-  <section class="next" id="range">
-    <p class="eyebrow">Дальше в&nbsp;концепте</p>
-    <h2>Продукция, IML-банка в&nbsp;3D, партнёры и&nbsp;заявка</h2>
-    <p>Следующие разделы собираются после согласования первого экрана и&nbsp;сцены технологий.</p>
+  <!-- 4. IML-БАНКА В 3D -->
+  <section class="iml" id="iml" aria-label="IML">
+    <div class="iml-pin">
+      <div class="iml-copy">
+        <p class="eyebrow">In-Mould Labelling</p>
+        <h2 class="iml-title" data-en="The label is part of the wall">Этикетка&nbsp;— часть стенки</h2>
+        <ol class="iml-list">
+          <li class="is-on"><span class="k">01</span><div><h3 data-en="Moulded in the tool">Впаивается в&nbsp;пресс-форме</h3><p data-en="The printed label is placed in the mould and fuses with the polymer during injection.">Отпечатанная этикетка закладывается в&nbsp;форму и&nbsp;срастается с&nbsp;полимером в&nbsp;момент литья.</p></div></li>
+          <li><span class="k">02</span><div><h3 data-en="Full-colour, 360°">Полноцветно по&nbsp;кругу</h3><p data-en="The design covers the whole wall of a cup or container, without seams or stickers.">Дизайн занимает всю стенку стакана или контейнера, без швов и&nbsp;наклеек.</p></div></li>
+          <li><span class="k">03</span><div><h3 data-en="Moisture and cold">Влага и&nbsp;холод</h3><p data-en="The label does not peel off in a fridge or freezer.">Этикетка не&nbsp;отклеивается в&nbsp;холодильнике и&nbsp;морозильной камере.</p></div></li>
+          <li><span class="k">04</span><div><h3 data-en="One shape, many products">Одна форма&nbsp;— много продуктов</h3><p data-en="Change the label, keep the tool: one cup for a whole line of flavours.">Меняется этикетка, форма остаётся: один стакан на&nbsp;всю линейку вкусов.</p></div></li>
+        </ol>
+        <p class="iml-note" data-en="Labels on the 3D cup are demo designs.">Этикетки на&nbsp;3D-стакане&nbsp;— демонстрационные.</p>
+      </div>
+      <div class="iml-stage">
+        <canvas id="jar" aria-label="3D-модель стакана с IML-этикеткой"></canvas>
+        <img class="iml-fallback cutimg" src="media/prod/1-430.jpg" alt="Белый стакан, литьё PP">
+      </div>
+    </div>
   </section>
 
-  <!-- КОНТАКТЫ -->
+  <!-- 5. ТАРА НАШИХ КЛИЕНТОВ -->
+  <section class="cases" aria-label="Тара наших клиентов">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="On the shelf">На&nbsp;полке</p>
+      <h2 data-en="Our clients' packaging">Тара наших клиентов</h2>
+      <p class="sec-lead" data-en="IML containers and cups made for dairy and food producers.">IML-контейнеры и&nbsp;стаканы, сделанные для молочных и&nbsp;пищевых производителей.</p>
+    </div>
+    <div class="cases-row">
+      <figure><img src="media/prod/prod-1.jpg" alt="Контейнеры для сыра фета с IML-этикеткой" loading="lazy" width="376" height="264"><figcaption data-en="Feta cheese containers">Контейнеры для сыра фета</figcaption></figure>
+      <figure><img src="media/prod/prod-2.jpg" alt="Контейнеры для плавленого сыра с IML-этикеткой" loading="lazy" width="386" height="272"><figcaption data-en="Processed cheese containers">Контейнеры для плавленого сыра</figcaption></figure>
+      <figure><img src="media/prod/prod-3.jpg" alt="Стаканы с IML-этикеткой для продукции из криля" loading="lazy" width="376" height="264"><figcaption data-en="Cups for krill products">Стаканы для продукции из&nbsp;криля</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- 6. ПРОДУКЦИЯ -->
+  <section class="range" id="range" aria-label="Продукция">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Catalogue">Каталог</p>
+      <h2 data-en="Products">Продукция</h2>
+    </div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="chips" id="chips"></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- 7. ЯЙЦА -->
+  <section class="eggs" id="eggs" aria-label="Упаковка для яиц">
+    <div class="eggs-media" aria-hidden="true">
+      <img class="cut e1" src="media/prod/1-137.jpg" alt="">
+      <img class="cut e2" src="media/prod/1-150.jpg" alt="">
+      <img class="cut e3" src="media/prod/1-160.jpg" alt="">
+    </div>
+    <div class="eggs-copy">
+      <p class="eyebrow" data-en="For poultry farms">Птицефабрикам</p>
+      <h2 data-en="Clear packs for eggs">Прозрачная упаковка для&nbsp;яиц</h2>
+      <ul class="ticks">
+        <li data-en="Clear PET packs for chicken eggs, including the KU-15 jumbo.">Упаковка для куриных яиц из&nbsp;прозрачного ПЭТ, в&nbsp;том числе КУ-15 джамбо.</li>
+        <li data-en="KU-6 and KU-10 small packs for quail eggs.">Мелкоштучная упаковка КУ-6 и&nbsp;КУ-10 для перепелиных яиц.</li>
+        <li data-en="KU-8 and KU-8/1 oval sealable trays.">Овальные лотки под запайку КУ-8 и&nbsp;КУ-8/1.</li>
+      </ul>
+      <a class="btn btn-solid" href="#range" data-open-group="small" data-en="See small packs">Смотреть мелкоштучную упаковку</a>
+    </div>
+  </section>
+
+  <!-- 8. КАЧЕСТВО И ЭКОЛОГИЯ -->
+  <section class="quality" id="quality" aria-label="Качество">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Quality and ecology">Качество и&nbsp;экология</p>
+      <h2 data-en="Only proven materials">Только проверенные материалы</h2>
+    </div>
+    <div class="q-grid">
+      <article>
+        <h3 data-en="Virgin polymers">Первичные полимеры</h3>
+        <p data-en="We produce from quality polymers supplied by reliable partners and guarantee compliance with GOST and international standards.">Производим из&nbsp;качественных полимеров от&nbsp;надёжных поставщиков, гарантируем соответствие требованиям ГОСТ и&nbsp;международным стандартам.</p>
+      </article>
+      <article>
+        <h3 data-en="Control at every stage">Контроль на&nbsp;всех этапах</h3>
+        <p data-en="Modern equipment and standardised quality from raw material to the finished pallet.">Современное оборудование и&nbsp;стандартизированное качество от&nbsp;сырья до&nbsp;готовой паллеты.</p>
+      </article>
+      <article>
+        <h3 data-en="Minimum waste">Минимум отходов</h3>
+        <p data-en="We use safe polymers and recycle waste, reducing the load on the environment.">Используем безопасные полимеры и&nbsp;перерабатываем отходы, снижая нагрузку на&nbsp;окружающую среду.</p>
+      </article>
+      <article>
+        <h3 data-en="Flexible pricing">Гибкая система ценообразования</h3>
+        <p data-en="A wide range and terms that adapt to your volumes.">Широкий ассортимент и&nbsp;условия под&nbsp;ваши объёмы.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 9. ПАРТНЁРЫ -->
+  <section class="partners" aria-label="Партнёры">
+    <div class="sec-head">
+      <p class="eyebrow" data-en="Partners">Партнёры</p>
+      <h2 data-en="Brands that trust us">Нам доверяют</h2>
+    </div>
+    <ul class="logos">
+      <li><img src="media/partners/danone.png" alt="Danone"></li>
+      <li><img src="media/partners/savushkin.png" alt="Савушкин"></li>
+      <li><img src="media/partners/santa-bremor.png" alt="Санта Бремор"></li>
+      <li><img src="media/partners/ingman.png" alt="Ingman"></li>
+      <li><img src="media/partners/karat.png" alt="Карат"></li>
+      <li><img src="media/partners/exponenta.png" alt="Экспонента"></li>
+      <li><img src="media/partners/servolux.png" alt="Серволюкс"></li>
+      <li><img src="media/partners/milavitsa.png" alt="Milavitsa"></li>
+      <li><img src="media/partners/timosha.png" alt="Тимоша"></li>
+      <li><img src="media/partners/jinn.png" alt="Джинн"></li>
+      <li><img src="media/partners/dzerjinskii.png" alt="Агрокомбинат Дзержинский"></li>
+      <li><img src="media/partners/1m.png" alt="1М Молочный"></li>
+    </ul>
+  </section>
+
+  <!-- 10. ВАКАНСИИ -->
+  <section class="jobs" id="jobs" aria-label="Вакансии">
+    <div class="jobs-copy">
+      <p class="eyebrow" data-en="Careers">Вакансии</p>
+      <h2 data-en="Join our team">Присоединяйтесь к&nbsp;команде</h2>
+      <p class="sec-lead" data-en="Zen Plast keeps growing and opens new positions in production and in the office.">ООО «Зен Пласт» постоянно развивается и&nbsp;открывает новые вакансии на&nbsp;производстве и&nbsp;в&nbsp;офисе.</p>
+    </div>
+    <ul class="jobs-list">
+      <li data-en="Stable salary">Стабильная заработная плата</li>
+      <li data-en="Official employment">Официальное оформление</li>
+      <li data-en="Career growth">Карьерный рост</li>
+    </ul>
+    <a class="jobs-phone" href="tel:+375293273226">+375 29 327 32 26</a>
+  </section>
+
+  <!-- 11. КОНТАКТЫ И ЗАЯВКА -->
   <section class="contacts" id="contacts">
     <div class="ct-col">
-      <p class="eyebrow">Контакты</p>
-      <h2>Ответим на&nbsp;все ваши вопросы</h2>
-      <p class="ct-mail"><a href="mailto:info@zenplast.by">info@zenplast.by</a></p>
+      <p class="eyebrow" data-en="Contacts">Контакты</p>
+      <h2 data-en="We'll answer all your questions">Ответим на&nbsp;все ваши вопросы</h2>
+      <form class="form" id="form" novalidate>
+        <label><span data-en="How should we address you?">Как к&nbsp;вам обращаться?</span><input id="f-name" name="name" autocomplete="name" required></label>
+        <label><span data-en="Phone">Телефон</span><input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+        <label><span data-en="Your question">Ваш вопрос</span><textarea id="f-msg" name="message" rows="3"></textarea></label>
+        <button class="btn btn-solid" type="submit" data-en="Get a consultation">Получить консультацию</button>
+        <p class="form-out" id="form-out" role="status" hidden data-en="This is a site concept: the request was not sent anywhere.">Это концепт сайта: заявка никуда не&nbsp;отправлена.</p>
+      </form>
     </div>
     <dl class="ct-list">
-      <div><dt>Отдел продаж</dt><dd><a href="tel:+375291703227">+375 29 170 32 27</a><br><a href="tel:+375447472770">+375 44 747 27 70</a></dd></div>
-      <div><dt>Общий</dt><dd><a href="tel:+375293273226">+375 29 327 32 26</a></dd></div>
-      <div><dt>Логистика и&nbsp;снабжение</dt><dd><a href="mailto:logist@zenplast.by">logist@zenplast.by</a></dd></div>
-      <div><dt>Офис</dt><dd>Минск, пр-т Победителей,&nbsp;141, офис&nbsp;239</dd></div>
-      <div><dt>Производство</dt><dd>Буда-Кошелево, ул.&nbsp;Техническая,&nbsp;11/9</dd></div>
-      <div><dt>Производство IML</dt><dd>Буда-Кошелево, пер.&nbsp;Интернациональный,&nbsp;12А</dd></div>
+      <div><dt data-en="Sales">Отдел продаж</dt><dd><a href="tel:+375291703227">+375 29 170 32 27</a><br><a href="tel:+375447472770">+375 44 747 27 70</a></dd></div>
+      <div><dt data-en="General">Общий</dt><dd><a href="tel:+375293273226">+375 29 327 32 26</a><br><a href="mailto:info@zenplast.by">info@zenplast.by</a></dd></div>
+      <div><dt data-en="Logistics and supply">Логистика и&nbsp;снабжение</dt><dd><a href="mailto:logist@zenplast.by">logist@zenplast.by</a></dd></div>
+      <div><dt data-en="Accounting">Бухгалтерия</dt><dd><a href="tel:+375172273227">+375 17 227 32 27</a></dd></div>
+      <div><dt data-en="Office">Офис</dt><dd data-en="Minsk, 141 Pobediteley Ave., office 239">Минск, пр-т Победителей,&nbsp;141, офис&nbsp;239</dd></div>
+      <div><dt data-en="Production">Производство</dt><dd data-en="Buda-Kashalyova, 11/9 Tekhnicheskaya St.">Буда‑Кошелево, ул.&nbsp;Техническая,&nbsp;11/9</dd></div>
+      <div><dt data-en="IML production">Производство IML</dt><dd data-en="Buda-Kashalyova, 12A Internatsionalny Ln.">Буда‑Кошелево, пер.&nbsp;Интернациональный,&nbsp;12А</dd></div>
     </dl>
-    <p class="legal">ООО «Зен Пласт», УНП 491479496 · Концепт сайта, не опубликован</p>
+    <p class="legal"><span data-en="Zen Plast LLC, UNP 491479496">ООО «Зен Пласт», УНП 491479496</span> · <span data-en="Site concept, not the official website">Концепт сайта, не&nbsp;официальный сайт</span> · <a href="fonts-lab.html" data-en="Font lab">Лаборатория шрифтов</a></p>
   </section>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="app.js?v=1"></script>
+<script src="data/catalog.js?v=5"></script>
+<script src="common.js?v=5"></script>
+<script src="app.js?v=5"></script>
+<script type="module" src="jar.js?v=5"></script>
 </body>
 </html>
