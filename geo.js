@@ -23,13 +23,12 @@
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); (parent || svg).appendChild(n); return n; };
 
-  // контуры стран растворяются к краям через SVG-маску; точки и подписи остаются чёткими
+  // контуры стран растворяются к краям радиальной заливкой (без SVG-маски: она перерисовывала всю карту каждый кадр)
   const defs = el('defs', {});
-  const rg = el('radialGradient', { id: 'geoFadeG', cx: '50%', cy: '50%', r: '50%' }, defs);
-  el('stop', { offset: '52%', 'stop-color': '#fff' }, rg); el('stop', { offset: '98%', 'stop-color': '#000' }, rg);
-  const mk = el('mask', { id: 'geoFade', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: W, height: H }, defs);
-  el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#geoFadeG)' }, mk);
-  const gLand = el('g', { class: 'geo-land', mask: 'url(#geoFade)' }), gArcs = el('g', { class: 'geo-arcs' }), gDots = el('g', { class: 'geo-dots' });
+  const grad = (id, col) => { const rg = el('radialGradient', { id, gradientUnits: 'userSpaceOnUse', cx: W / 2, cy: H / 2, r: W / 2, gradientTransform: `translate(0 ${H / 2}) scale(1 ${H / W}) translate(0 ${-H / 2})` }, defs);
+    el('stop', { offset: '52%', 'stop-color': col }, rg); el('stop', { offset: '98%', 'stop-color': col, 'stop-opacity': 0 }, rg); };
+  grad('geoFill', '#e3eef7'); grad('geoFillHi', '#eef5fb');
+  const gLand = el('g', { class: 'geo-land' }), gArcs = el('g', { class: 'geo-arcs' }), gDots = el('g', { class: 'geo-dots' });
   const hub = proj(HUB.c);
   const arcs = [];
   function addCity(c, group) {
@@ -55,7 +54,7 @@
   arcs.forEach(({ a }) => { const L = a.getTotalLength(); a.style.strokeDasharray = L; a.style.strokeDashoffset = L; a.dataset.l = L; });
 
   // контуры стран (сеть нужна только для подложки; без неё карта всё равно работает)
-  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json').then(r => r.json()).then(topo => {
+  fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json').then(r => r.json()).then(topo => {
     const fc = topojson.feature(topo, topo.objects.countries);
     const near = new Set(['112', '643', '804', '616', '440', '428', '233', '398', '246', '498', '268', '051', '031', '795', '860']);
     fc.features.filter(f => near.has(String(f.id).padStart(3, '0'))).forEach(f => {
