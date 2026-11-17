@@ -85,7 +85,8 @@
       gsap.from(c, { y: 80 + k * 30, opacity: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: '.eggs', start: 'top 75%' } });
       gsap.to(c, { yPercent: (k % 2 ? -1 : 1) * 10, ease: 'none', scrollTrigger: { trigger: '.eggs', start: 'top bottom', end: 'bottom top', scrub: true } });
     });
-    gsap.from('.logos li img', { y: 20, opacity: 0, duration: .8, ease: 'power3.out', stagger: .05, scrollTrigger: { trigger: '.logos', start: 'top 85%' } });
+    // анимируем ячейку, а не сам логотип: у логотипа своя прозрачность в CSS, from() её затирал
+    gsap.fromTo('.logos li', { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'power3.out', stagger: .05, clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: '.logos', start: 'top 85%' } });
     gsap.from('.cases figure img', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.cases-row', start: 'top 85%' } });
   }
 
