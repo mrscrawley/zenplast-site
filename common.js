@@ -39,7 +39,7 @@
     ['Плёнка', 'Film'], ['Упаковка мелкоштучная под яйцо перепелиное', 'Small pack for quail eggs'], ['овальный', 'oval'], ['прозрачный', 'clear'],
     ['белый', 'white'], ['джамбо', 'jumbo'], ['двухсекционный', 'two-compartment'], ['молочный', 'dairy'], ['колбасный', 'sausage'],
     ['сырково-творожный', 'curd'], ['Лоток хлебный с боковой стенкой', 'bread tray with side wall'], ['овощной', 'vegetable'], ['ягодный', 'berry'],
-    ['исполнения', 'versions'], ['грибок', 'mushroom'], ['мл', 'ml'], ['г', 'g'], ['мм', 'mm'], ['мкм', 'µm'], ['кг', 'kg'], ['ПЭТ', 'PET'], ['ПП', 'PP'], ['Айран', 'ayran'], ['Экспонента', 'Exponenta'], ['Мираторг', 'Miratorg']];
+    ['исполнения', 'versions'], ['грибок', 'mushroom cap'], ['мл', 'ml'], ['г', 'g'], ['мм', 'mm'], ['мкм', 'µm'], ['кг', 'kg'], ['ПЭТ', 'PET'], ['ПП', 'PP'], ['Айран', 'ayran'], ['Экспонента', 'Exponenta'], ['Мираторг', 'Miratorg']];
   ZP.lang = (qs.get('lang') === 'en' || qs.get('lang') === 'ru') ? qs.get('lang') : (store.get('zp-lang') || 'ru');
   ZP.t = (ru, en) => ZP.lang === 'en' ? en : ru;
   ZP.tr = s => {
