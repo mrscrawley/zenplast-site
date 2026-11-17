@@ -70,8 +70,24 @@
     document.addEventListener('zp:lang', () => { if (q) q.placeholder = ZP.t('Поиск: стакан, 500 мл, PET…', 'Search: cup, 500 ml, PET…'); renderTabs(); renderGrid(false); });
   }
 
+  /* ---------- перелёт фото карточка ↔ страница изделия ---------- */
+  if (grid) {
+    grid.addEventListener('click', e => { const a = e.target.closest('a.card'); if (!a) return; const im = a.querySelector('.card-img img'); if (im) im.style.viewTransitionName = 'pd-hero'; try { sessionStorage.setItem('zpLast', a.getAttribute('href')); } catch (_) {} });
+    addEventListener('pagereveal', e => {
+      grid.querySelectorAll('.card-img img').forEach(im => im.style.viewTransitionName = '');
+      if (!e.viewTransition) return;
+      let last = null; try { last = sessionStorage.getItem('zpLast'); } catch (_) {}
+      const a = last && grid.querySelector(`a.card[href="${CSS.escape(last)}"]`), im = a && a.querySelector('.card-img img');
+      if (!im) return;
+      im.style.viewTransitionName = 'pd-hero';
+      e.viewTransition.finished.finally(() => { im.style.viewTransitionName = ''; });
+    });
+  }
+
   /* ---------- ЗАЯВКА (п.7) ---------- */
   const form = document.getElementById('form'), out = document.getElementById('form-out');
+  const sample = new URLSearchParams(location.search).get('sample');
+  if (sample && form && ZP.find(sample)) { const m = form.querySelector('#f-msg'); if (m) m.value = ZP.t('Хочу получить образец: ', 'I would like a sample: ') + ZP.tr(ZP.find(sample).it.title); }
   if (form) form.addEventListener('submit', e => {
     e.preventDefault();
     const name = form.querySelector('#f-name'), phone = form.querySelector('#f-phone');

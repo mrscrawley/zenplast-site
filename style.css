@@ -300,21 +300,29 @@ p{margin:0}
 .crumbs{display:flex;flex-wrap:wrap;gap:8px;font-size:14px;color:var(--ink-2);margin-bottom:4svh}
 .crumbs a{text-decoration:none}
 .crumbs a:hover{color:var(--blue)}
-.pd{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:6vw;align-items:start}
-.pd-main{aspect-ratio:1;display:grid;place-items:center}
-.pd-main img{width:80%;height:80%;object-fit:contain;mix-blend-mode:multiply}
+.pd{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:6vw;align-items:start}
+.pd-gallery{position:sticky;top:calc(var(--hdr-h) + 24px)}
+.pd-main{position:relative;aspect-ratio:1;background:#fff;border-radius:32px;overflow:hidden;cursor:zoom-in}
+.pd-main img{position:absolute;inset:6%;width:88%;height:88%;object-fit:contain;view-transition-name:pd-hero;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .18s}
+.pd-main.is-zoom img{transform:scale(2.1);transition:transform .25s ease-out,opacity .18s}
+.pd-main img.is-swap{opacity:0}
 .pd-thumbs{display:flex;gap:10px;margin-top:12px}
-.pd-thumbs button{width:84px;aspect-ratio:1;border:0;padding:6px;border-radius:14px;background:transparent;cursor:pointer;box-shadow:inset 0 0 0 1px transparent}
+.pd-thumbs button{width:84px;aspect-ratio:1;border:0;padding:6px;border-radius:18px;background:#fff;cursor:pointer;box-shadow:inset 0 0 0 1px transparent;transition:box-shadow .25s,transform .25s}
+.pd-thumbs button:hover{transform:translateY(-2px)}
 .pd-thumbs button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--blue)}
-.pd-thumbs img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
-.pd-info h1{font-size:clamp(32px,calc(var(--u)*4),56px);line-height:1.02;font-weight:var(--dw);margin:12px 0 4svh}
+.pd-thumbs img{width:100%;height:100%;object-fit:contain}
+.pd-info h1{font-size:clamp(34px,calc(var(--u)*4.4),62px);line-height:1.02;font-weight:var(--dw);margin:12px 0 4svh}
 .pd-specs{margin:0;display:flex;flex-direction:column}
 .pd-specs div{display:flex;justify-content:space-between;gap:20px;padding:14px 0;border-top:1px solid var(--line)}
+.pd-specs div:last-child{border-bottom:1px solid var(--line)}
 .pd-specs dt{color:var(--ink-2)}
 .pd-specs dd{margin:0;font-weight:500;text-align:right;font-variant-numeric:tabular-nums}
 .pd-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:4svh}
+.pd-actions button.btn{font:inherit;border:0;cursor:pointer}
+.pd-note{margin-top:2.4svh;font-size:14px;color:var(--ink-2);max-width:30em}
 .pd-related{margin-top:14svh}
 .pd-related h2{font-size:clamp(26px,calc(var(--u)*3),40px);font-weight:var(--dw);margin-bottom:4svh}
+.pd-print-head{display:none}
 .pd-empty{color:var(--ink-2)}
 
 /* ТЕЛЕФОН И ПЛАНШЕТ (п.16) */
@@ -510,3 +518,22 @@ p{margin:0}
 .prod-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.12);transform-origin:50% 50%}
 .prod-media::after{content:"";position:absolute;inset:-1px;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0,transparent 18%,transparent 82%,var(--bg) 100%)}
 @media (max-width:820px){.prod-head{grid-template-columns:1fr}.prod-facts{justify-content:start;grid-template-columns:repeat(3,1fr);gap:16px}.prod-media{height:62svh}}
+
+/* --- перелёт фото из каталога на страницу изделия (View Transitions между страницами) --- */
+@view-transition{navigation:auto}
+::view-transition-group(pd-hero){animation-duration:.55s;animation-timing-function:cubic-bezier(.2,.7,.2,1)}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}
+
+/* --- спецификация PDF: печать страницы изделия --- */
+@media print{
+  @page{margin:16mm}
+  body{background:#fff}
+  .hdr,.mmenu,.mbar,.concept-flag,.skip,.crumbs,.pd-actions,.pd-thumbs,.pd-related,.pd-note{display:none!important}
+  .pd-print-head{display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:6mm;margin-bottom:8mm;border-bottom:1px solid #ccd;font:12px var(--body);color:#456}
+  main{padding:0!important}
+  .pd{grid-template-columns:70mm 1fr;gap:10mm}
+  .pd-gallery{position:static}
+  .pd-main{border-radius:0;box-shadow:none}
+  .pd-info h1{font-size:26pt;margin:2mm 0 6mm}
+  .pd-specs div{padding:2.6mm 0;font-size:11pt}
+}
