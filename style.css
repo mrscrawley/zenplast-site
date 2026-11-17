@@ -16,6 +16,7 @@
   --mono:"JetBrains Mono",ui-monospace,monospace;
   --dw:200; /* насыщенность крупных заголовков */
   --pad:max(20px,4vw);
+  --hdr-h:80px; /* высота шапки: под ней не должно быть картинок первого экрана */
   --u:min(1vw,1.9svh); /* единица, которая не раздувается на широком низком экране */
 }
 /* лаборатория шрифтов (п.14) */
@@ -67,7 +68,7 @@ p{margin:0}
 .mbar{display:none}
 
 /* ПЕРВЫЙ ЭКРАН: видео и текст в разных колонках/строках — тара не заходит на текст */
-.hero{position:relative;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#e9f1f8 0%,var(--bg) 100%);padding-top:72px}
+.hero{position:relative;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#e9f1f8 0%,var(--bg) 100%);padding-top:var(--hdr-h)}
 .hero-media{position:relative;width:100%;aspect-ratio:16/10;max-height:58svh;-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent 100%);mask-image:linear-gradient(180deg,#000 78%,transparent 100%)}
 .hero-video{width:100%;height:100%;object-fit:cover;object-position:78% 50%}
 .hero-copy{position:relative;z-index:2;padding:4svh var(--pad) 12svh;max-width:760px}
@@ -77,9 +78,10 @@ p{margin:0}
 .hero-lead{font-size:clamp(17px,calc(var(--u)*1.45),21px);color:var(--ink-2);max-width:34em}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
 @media (min-width:821px) and (min-aspect-ratio:13/10){
-  .hero{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);align-items:center;min-height:100svh;padding-top:0}
-  .hero-copy{grid-column:1;grid-row:1;padding:calc(96px + 2svh) 2vw 10svh var(--pad);max-width:none}
-  .hero-media{grid-column:2;grid-row:1;align-self:stretch;aspect-ratio:auto;max-height:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,#000 80%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,#000 80%,transparent 100%);mask-composite:intersect}
+  /* видео начинается ниже шапки: меню не лежит поверх тары */
+  .hero{display:grid;grid-template-columns:minmax(0,40fr) minmax(0,60fr);align-items:center;min-height:100svh;padding-top:var(--hdr-h)}
+  .hero-copy{grid-column:1;grid-row:1;padding:2svh 2vw 10svh var(--pad);max-width:none}
+  .hero-media{grid-column:2;grid-row:1;align-self:stretch;aspect-ratio:auto;max-height:none;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 7%,#000 82%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 14%),linear-gradient(180deg,transparent 0,#000 7%,#000 82%,transparent 100%);mask-composite:intersect}
   .hero-video{object-position:88% 50%}
   .hero-title{font-size:min(calc(var(--u)*7.6),5.4vw)}
 }
