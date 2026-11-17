@@ -348,7 +348,7 @@ p{margin:0}
 
 /* ===== ИСТОРИЯ «ОТ ГРАНУЛЫ ДО ПОЛКИ» (главы 1–4) =====
    3D-мир живёт в своей правой зоне ниже шапки и не заходит под текст. */
-.story{position:relative;height:640svh;background:var(--bg)}
+.story{position:relative;height:1200svh;background:var(--bg)}
 .story .anchor{position:absolute;left:0;width:1px;height:1px}
 .story-pin{position:sticky;top:0;height:100svh;display:grid;grid-template-columns:minmax(0,38fr) minmax(0,62fr);padding-top:var(--hdr-h);overflow:hidden;background:linear-gradient(180deg,#dfecf7 0%,var(--bg) 40%)}
 .story-copy{position:relative;grid-column:1;padding:2svh 2vw 11svh var(--pad);display:grid;align-items:center;min-height:0}
@@ -383,11 +383,11 @@ p{margin:0}
 .story-fallback img.is-on{opacity:1}
 .story.no3d #world{display:none}
 .story.no3d .story-fallback{display:block}
-.story-nav{position:absolute;left:var(--pad);bottom:4svh;display:flex;gap:22px;z-index:3}
+.story-nav{position:absolute;left:var(--pad);bottom:4svh;display:flex;flex-wrap:wrap;gap:6px 16px;z-index:3;max-width:36%}
 .story-nav button{display:flex;align-items:center;gap:8px;border:0;background:none;padding:4px 0;cursor:pointer;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);opacity:.55;transition:opacity .3s,color .3s}
-.story-nav button i{width:22px;height:2px;background:currentColor;border-radius:2px;transition:width .4s}
+.story-nav button i{width:14px;height:2px;background:currentColor;border-radius:2px;transition:width .4s}
 .story-nav button.is-on{opacity:1;color:var(--blue)}
-.story-nav button.is-on i{width:40px}
+.story-nav button.is-on i{width:30px}
 @media (max-width:820px),(max-aspect-ratio:11/10){
   .story-pin{grid-template-columns:1fr;grid-template-rows:minmax(0,40fr) minmax(0,60fr);padding-bottom:76px}
   .story-stage{grid-column:1;grid-row:1;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0,#000 8%,#000 80%,transparent 100%)}
@@ -403,3 +403,6 @@ p{margin:0}
   .story-nav{display:none}
   .ch .hero-actions{margin-top:4px}
 }
+
+.ch .iml-note{font-size:13px;color:var(--ink-2)}
+.ch-steps li{padding:10px 0}

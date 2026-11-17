@@ -62,7 +62,7 @@
   if (storyEl) {
     const chs = [...storyEl.querySelectorAll('.ch')], navs = [...storyEl.querySelectorAll('.story-nav button')];
     const fbs = [...storyEl.querySelectorAll('.story-fallback img')];
-    const bounds = [0, .18, .44, .68, 1.01];
+    const bounds = [0, .09, .22, .34, .5, .655, .81, .93, 1.01];
     let cur = -1;
     const counter = storyEl.querySelector('[data-count]'); const cnt = { v: 0 }; let counted = false;
     function setCh(i) {
@@ -78,10 +78,10 @@
     }
     gsap.set(chs, { autoAlpha: 0 }); setCh(0);
     const st = ScrollTrigger.create({ trigger: storyEl, start: 'top top', end: 'bottom bottom',
-      onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < 3 && p >= bounds[i + 1]) i++; setCh(i); } });
+      onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < chs.length - 1 && p >= bounds[i + 1]) i++; setCh(i); } });
     ZP.storyP = 0;
     navs.forEach((b, k) => b.addEventListener('click', () => {
-      const y = st.start + (st.end - st.start) * (k === 0 ? 0 : (bounds[k] + .06));
+      const y = st.start + (st.end - st.start) * (k === 0 ? 0 : (bounds[k] + .03));
       ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' });
     }));
   }
@@ -98,15 +98,6 @@
     gsap.fromTo('.logos li', { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'power3.out', stagger: .05, clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: '.logos', start: 'top 85%' } });
     gsap.from('.cases figure img', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.cases-row', start: 'top 85%' } });
   }
-
-  /* ---------- IML: шаги текста; 3D читает тот же прогресс ---------- */
-  const imlItems = [...document.querySelectorAll('.iml-list li')];
-  ScrollTrigger.create({ trigger: '.iml', start: 'top top', end: 'bottom bottom',
-    onUpdate: self => {
-      const p = self.progress; window.ZP.imlProgress = p;
-      const i = Math.min(imlItems.length - 1, Math.floor(p * imlItems.length * .999));
-      imlItems.forEach((li, k) => li.classList.toggle('is-on', k === i));
-    } });
 
   addEventListener('load', () => ScrollTrigger.refresh());
 })();

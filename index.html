@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=11">
+<link rel="stylesheet" href="style.css?v=12">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -69,9 +69,11 @@
 
   <!-- ИСТОРИЯ «ОТ ГРАНУЛЫ ДО ПОЛКИ»: главы 1–4, 3D-мир справа, текст слева -->
   <section class="story" id="top" aria-label="От гранулы до упаковки">
-    <span class="anchor" id="about" style="top:22%"></span>
-    <span class="anchor" id="path" style="top:46%"></span>
-    <span class="anchor" id="film" style="top:70%"></span>
+    <span class="anchor" id="about" style="top:11%"></span>
+    <span class="anchor" id="path" style="top:24%"></span>
+    <span class="anchor" id="film" style="top:37%"></span>
+    <span class="anchor" id="iml" style="top:67%"></span>
+    <span class="anchor" id="crates" style="top:82%"></span>
     <div class="story-pin">
       <div class="story-copy">
         <article class="ch is-on" data-ch="0">
@@ -111,6 +113,37 @@
           </dl>
           <p class="ch-lead" data-en="PP, PET and PS film, including with a PE layer — for our own lines and for your thermoforming machines.">Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем&nbsp;— для своих линий и&nbsp;для ваших термоформовочных машин.</p>
         </article>
+        <article class="ch" data-ch="4">
+          <p class="eyebrow" data-en="04 · Path A">04 · Путь A</p>
+          <h2 class="ch-title" data-en="From sheet to shape">Из листа&nbsp;— в&nbsp;форму</h2>
+          <p class="ch-lead" data-en="The heated film is drawn into the mould by vacuum. That is how egg packs, trays, cups and closure lids are made.">Нагретая плёнка вакуумом втягивается в&nbsp;форму. Так получаются упаковка для яиц, лотки, стаканы и&nbsp;укупорочные крышки.</p>
+          <div class="ch-big"><b>35</b><span data-en="thermoformed items<br>in the catalogue">позиций термоформования<br>в&nbsp;каталоге</span></div>
+        </article>
+        <article class="ch" data-ch="5">
+          <p class="eyebrow" data-en="05 · Path B">05 · Путь B</p>
+          <h2 class="ch-title" data-en="The label is part of the wall">Этикетка&nbsp;— часть стенки</h2>
+          <ol class="ch-paths ch-steps">
+            <li><span class="k">1</span><div><b data-en="Label into the mould">Этикетка в&nbsp;форму</b><small data-en="printed in full colour, all around">полноцветная, по&nbsp;всему кругу</small></div></li>
+            <li><span class="k">2</span><div><b data-en="Moulding">Литьё</b><small data-en="the polymer fuses with the label">полимер срастается с&nbsp;этикеткой</small></div></li>
+            <li><span class="k">3</span><div><b data-en="One shape, many products">Одна форма&nbsp;— много продуктов</b><small data-en="no peeling in the fridge or freezer">не&nbsp;отклеивается в&nbsp;холоде и&nbsp;влаге</small></div></li>
+          </ol>
+          <p class="iml-note" data-en="Labels on the 3D cup are demo designs.">Этикетки на&nbsp;3D-стакане&nbsp;— демонстрационные.</p>
+        </article>
+        <article class="ch" data-ch="6">
+          <p class="eyebrow" data-en="06 · Large containers">06 · Крупная тара</p>
+          <h2 class="ch-title" data-en="Crates for every product">Ящики под&nbsp;каждый продукт</h2>
+          <p class="ch-lead" data-en="Dairy, curd, sausage, bakery, vegetable and berry crates — 8 types, moulded on our own line.">Молочные, сырково-творожные, колбасные, хлебные, овощные и&nbsp;ягодные&nbsp;— 8&nbsp;видов на&nbsp;своей линии литья.</p>
+          <dl class="ch-spec">
+            <div><dt data-en="Dairy crate №1">Ящик №1</dt><dd>400×300×280</dd></div>
+            <div><dt data-en="Per pallet">На паллете</dt><dd>80 <small data-en="pcs">шт</small></dd></div>
+          </dl>
+        </article>
+        <article class="ch" data-ch="7">
+          <p class="eyebrow" data-en="07 · The whole line">07 · Вся линия</p>
+          <h2 class="ch-title" data-en="From granule to shelf">От&nbsp;гранулы до&nbsp;полки</h2>
+          <p class="ch-lead" data-en="Film, thermoforming, IML moulding and large containers in one company. 71 items in the catalogue.">Плёнка, термоформование, литьё с&nbsp;IML и&nbsp;крупная тара в&nbsp;одной компании. 71&nbsp;позиция в&nbsp;каталоге.</p>
+          <div class="hero-actions"><a class="btn btn-solid" href="#range" data-en="Open the catalogue">Открыть каталог</a></div>
+        </article>
       </div>
       <div class="story-stage">
         <canvas id="world" aria-hidden="true"></canvas>
@@ -119,6 +152,10 @@
           <img src="media/granules.jpg" alt="" data-ch="1">
           <img src="media/hero.jpg" alt="" data-ch="2">
           <img src="media/prod/pet_plenka_zen_plast.jpg" alt="" data-ch="3">
+          <img src="media/prod/1-137.jpg" alt="" data-ch="4">
+          <img src="media/cases/krill.jpg" alt="" data-ch="5">
+          <img src="media/prod/1-265.jpg" alt="" data-ch="6">
+          <img src="media/hero.jpg" alt="" data-ch="7">
         </div>
       </div>
       <nav class="story-nav" aria-label="Главы">
@@ -126,28 +163,11 @@
         <button type="button" data-go="1"><i></i><span data-en="Raw material">Сырьё</span></button>
         <button type="button" data-go="2"><i></i><span data-en="Two paths">Два пути</span></button>
         <button type="button" data-go="3"><i></i><span data-en="Film">Плёнка</span></button>
+        <button type="button" data-go="4"><i></i><span data-en="Forming">Формование</span></button>
+        <button type="button" data-go="5"><i></i><span>IML</span></button>
+        <button type="button" data-go="6"><i></i><span data-en="Crates">Ящики</span></button>
+        <button type="button" data-go="7"><i></i><span data-en="Line">Линия</span></button>
       </nav>
-    </div>
-  </section>
-
-  <!-- 4. IML-БАНКА В 3D -->
-  <section class="iml" id="iml" aria-label="IML">
-    <div class="iml-pin">
-      <div class="iml-copy">
-        <p class="eyebrow">In-Mould Labelling</p>
-        <h2 class="iml-title" data-en="The label is part of the wall">Этикетка&nbsp;— часть стенки</h2>
-        <ol class="iml-list">
-          <li class="is-on"><span class="k">01</span><div><h3 data-en="Moulded in the tool">Впаивается в&nbsp;пресс-форме</h3><p data-en="The printed label is placed in the mould and fuses with the polymer during injection.">Отпечатанная этикетка закладывается в&nbsp;форму и&nbsp;срастается с&nbsp;полимером в&nbsp;момент литья.</p></div></li>
-          <li><span class="k">02</span><div><h3 data-en="Full-colour, 360°">Полноцветно по&nbsp;кругу</h3><p data-en="The design covers the whole wall of a cup or container, without seams or stickers.">Дизайн занимает всю стенку стакана или контейнера, без швов и&nbsp;наклеек.</p></div></li>
-          <li><span class="k">03</span><div><h3 data-en="Moisture and cold">Влага и&nbsp;холод</h3><p data-en="The label does not peel off in a fridge or freezer.">Этикетка не&nbsp;отклеивается в&nbsp;холодильнике и&nbsp;морозильной камере.</p></div></li>
-          <li><span class="k">04</span><div><h3 data-en="One shape, many products">Одна форма&nbsp;— много продуктов</h3><p data-en="Change the label, keep the tool: one cup for a whole line of flavours.">Меняется этикетка, форма остаётся: один стакан на&nbsp;всю линейку вкусов.</p></div></li>
-        </ol>
-        <p class="iml-note" data-en="Labels on the 3D cup are demo designs.">Этикетки на&nbsp;3D-стакане&nbsp;— демонстрационные.</p>
-      </div>
-      <div class="iml-stage">
-        <canvas id="jar" aria-label="3D-модель стакана с IML-этикеткой"></canvas>
-        <img class="iml-fallback cutimg" src="media/prod/1-430.jpg" alt="Белый стакан, литьё PP">
-      </div>
     </div>
   </section>
 
@@ -304,11 +324,10 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script src="data/catalog.js?v=11"></script>
-<script src="common.js?v=11"></script>
-<script src="app.js?v=11"></script>
-<script src="geo.js?v=11"></script>
-<script type="module" src="jar.js?v=11"></script>
-<script type="module" src="story.js?v=11"></script>
+<script src="data/catalog.js?v=12"></script>
+<script src="common.js?v=12"></script>
+<script src="app.js?v=12"></script>
+<script src="geo.js?v=12"></script>
+<script type="module" src="story.js?v=12"></script>
 </body>
 </html>
