@@ -62,7 +62,9 @@
   if (storyEl) {
     const chs = [...storyEl.querySelectorAll('.ch')], navs = [...storyEl.querySelectorAll('.story-nav button')];
     const fbs = [...storyEl.querySelectorAll('.story-fallback img')];
-    const bounds = [0, .09, .18, .30, .44, .66, .81, .94, 1.01];
+    // главы привязаны к ключевым кадрам фильма (film.js): гранулы, сырьё, поток, плёнка, формование, IML, ящики, вся линия
+    const bounds = [0, .08, .17, .29, .43, .69, .83, .95, 1.01];
+    const navAt = [0, .12, .22, .36, .5, .76, .9, 1];
     let cur = -1;
     const counter = storyEl.querySelector('[data-count]'); const cnt = { v: 0 }; let counted = false;
     function setCh(i) {
@@ -81,7 +83,7 @@
       onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < chs.length - 1 && p >= bounds[i + 1]) i++; setCh(i); } });
     ZP.storyP = 0;
     navs.forEach((b, k) => b.addEventListener('click', () => {
-      const y = st.start + (st.end - st.start) * (k === 0 ? 0 : (bounds[k] + .03));
+      const y = st.start + (st.end - st.start) * navAt[k];
       ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' });
     }));
   }

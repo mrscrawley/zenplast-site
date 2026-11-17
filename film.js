@@ -37,7 +37,8 @@
   const story = document.querySelector('.story'), film = document.getElementById('storyfilm');
   if (story && film) {
     // прогресс истории → время фильма: главы стоят на ключевых кадрах (8 кадров, 7 переходов)
-    const map = [[0, 0], [.05, 0], [.22, 1], [.36, 2], [.5, 3], [.62, 4], [.76, 5], [.9, 6], [1, 7]];
+    // у каждого ключевого кадра «полочка»: пока читаешь главу, кадр стоит
+    const map = [[0, 0], [.06, 0], [.2, 1], [.24, 1], [.34, 2], [.38, 2], [.48, 3], [.52, 3], [.61, 4], [.63, 4], [.74, 5], [.78, 5], [.88, 6], [.92, 6], [.98, 7], [1, 7]];
     const toT = P => { for (let i = 1; i < map.length; i++) if (P <= map[i][0]) { const [p0, k0] = map[i - 1], [p1, k1] = map[i]; return (k0 + (k1 - k0) * ((P - p0) / ((p1 - p0) || 1))) / 7; } return 1; };
     scrubber(film, () => toT(clamp(ZP.storyP || 0)), { parallax: film.parentElement });
     story.classList.add('has3d', 'is-film');
