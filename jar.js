@@ -22,7 +22,7 @@ const fail = () => stageEl && stageEl.classList.add('no3d');
   const pmrem = new THREE.PMREMGenerator(renderer);
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
   const cam = new THREE.PerspectiveCamera(26, 1, 0.1, 50);
-  cam.position.set(0, 1.55, 8.2); cam.lookAt(0, 0.95, 0);
+  cam.position.set(0, 1.7, 8.2); cam.lookAt(0, 1.15, 0);
   const key = new THREE.DirectionalLight(0xffffff, 1.4); key.position.set(-3, 5, 4); scene.add(key);
   scene.add(new THREE.HemisphereLight(0xeef4ff, 0xd9e2ea, .6));
 
@@ -90,7 +90,7 @@ const fail = () => stageEl && stageEl.classList.add('no3d');
   function size() {
     const w = stageEl.clientWidth, h = stageEl.clientHeight; if (!w || !h) return;
     renderer.setSize(w, h, false); cam.aspect = w / h;
-    cam.position.z = w / h < .9 ? 10.5 : w / h < 1.25 ? 9.6 : 8.2; cam.updateProjectionMatrix();
+    cam.position.z = w / h < .9 ? 11 : w / h < 1.25 ? 10 : 9; cam.updateProjectionMatrix();
   }
   new ResizeObserver(size).observe(stageEl); size();
 
@@ -129,7 +129,7 @@ const fail = () => stageEl && stageEl.classList.add('no3d');
     group.position.y = .05 + Math.sin(t * 1.1) * .04;
     // крышка парит над стаканом и закрывается к концу сцены
     const close = Math.min(1, Math.max(0, (p - .72) / .2));
-    lid.position.y = H + .07 + .75 * (1 - close) + Math.sin(t * 1.3) * .03 * (1 - close);
+    lid.position.y = H + .07 + .55 * (1 - close) + Math.sin(t * 1.3) * .03 * (1 - close);
     lid.rotation.x = .18 * (1 - close); lid.rotation.z = -.1 * (1 - close);
     shadow.material.opacity = .9 - (group.position.y) * .6;
     renderer.render(scene, cam);

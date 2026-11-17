@@ -1,16 +1,16 @@
 /* Зен Пласт — концепт. Светлая «прозрачность»: ледяной студийный фон, тара парит, секции без границ.
    Фирменный синий из логотипа #014E9E. */
 :root{
-  --bg:#eef3f7;
-  --bg-2:#f7fafc;
+  --bg:#d5e5f2;   /* голубой фон как у гранул */
+  --bg-2:#dceaf5;
   --ink:#0d1b2a;
   --ink-2:#4a5a6b;
   --line:rgba(13,27,42,.12);
   --blue:#014e9e;
   --blue-2:#013a77;
-  --blue-soft:#e3edf8;
-  --ice:#dce8f2;
-  --glass:rgba(247,250,252,.66);
+  --blue-soft:#c7dbee;
+  --ice:#cbdeec;
+  --glass:rgba(220,234,245,.7);
   --display:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
   --body:"Inter Tight",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,monospace;
@@ -68,7 +68,7 @@ p{margin:0}
 .mbar{display:none}
 
 /* ПЕРВЫЙ ЭКРАН: видео и текст в разных колонках/строках — тара не заходит на текст */
-.hero{position:relative;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#e9f1f8 0%,var(--bg) 100%);padding-top:var(--hdr-h)}
+.hero{position:relative;display:flex;flex-direction:column;overflow:hidden;background:linear-gradient(180deg,#e3eef8 0%,var(--bg) 100%);padding-top:var(--hdr-h)}
 .hero-media{position:relative;width:100%;aspect-ratio:16/10;max-height:58svh;-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent 100%);mask-image:linear-gradient(180deg,#000 78%,transparent 100%)}
 .hero-video{width:100%;height:100%;object-fit:cover;object-position:78% 50%}
 .hero-copy{position:relative;z-index:2;padding:4svh var(--pad) 12svh;max-width:760px}
@@ -93,7 +93,7 @@ p{margin:0}
 
 /* ЦИФРЫ (п.12): гранулы плывут фоном справа */
 .facts{position:relative;overflow:hidden;padding:14svh var(--pad) 12svh;background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%)}
-.facts-bg{position:absolute;right:-6vw;top:0;bottom:0;width:62vw;opacity:.55;-webkit-mask-image:radial-gradient(60% 60% at 60% 50%,#000 30%,transparent 75%);mask-image:radial-gradient(60% 60% at 60% 50%,#000 30%,transparent 75%);pointer-events:none}
+.facts-bg{position:absolute;right:-6vw;top:0;bottom:0;width:62vw;opacity:.8;-webkit-mask-image:radial-gradient(60% 60% at 60% 50%,#000 30%,transparent 75%);mask-image:radial-gradient(60% 60% at 60% 50%,#000 30%,transparent 75%);pointer-events:none}
 .facts-bg video{width:100%;height:100%;object-fit:cover}
 .facts-row{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .fact-num{font-family:var(--display);font-size:calc(var(--u)*8);font-weight:var(--dw);letter-spacing:-.05em;line-height:1;font-variant-numeric:tabular-nums;display:flex;align-items:flex-start}
@@ -165,7 +165,8 @@ p{margin:0}
 .cases{padding:14svh var(--pad) 10svh;background:var(--bg)}
 .cases-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .cases figure{margin:0;display:flex;flex-direction:column;gap:12px}
-.cases img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:22px}
+.cases img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 62%,transparent 100%);mask-image:radial-gradient(ellipse closest-side at 50% 50%,#000 62%,transparent 100%)}
+.cases figcaption{text-align:center}
 .cases figcaption{font-size:15px;color:var(--ink-2)}
 
 /* КАТАЛОГ (п.1) */
@@ -180,7 +181,7 @@ p{margin:0}
 .chips button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:28px 22px}
 .card{text-decoration:none;display:flex;flex-direction:column;gap:10px}
-.card-img{aspect-ratio:1;background:var(--bg-2);border-radius:20px;display:grid;place-items:center;overflow:hidden}
+.card-img{aspect-ratio:1;display:grid;place-items:center}
 .card-img img{width:84%;height:84%;object-fit:contain;mix-blend-mode:multiply;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
 .card:hover .card-img img{transform:scale(1.06) translateY(-2%)}
 .card-body h3{font-size:17px;font-weight:500;letter-spacing:-.01em;line-height:1.3}
@@ -209,7 +210,7 @@ p{margin:0}
 /* ПАРТНЁРЫ (п.4) */
 .partners{padding:12svh var(--pad);background:var(--bg)}
 .logos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
-.logos li{aspect-ratio:3/2;min-width:0;background:var(--bg-2);border-radius:18px;padding:9% 12%}
+.logos li{aspect-ratio:3/2;min-width:0;background:rgba(255,255,255,.45);border-radius:18px;padding:9% 12%}
 .logos img{width:100%;height:100%;object-fit:contain;filter:grayscale(1) contrast(.9);opacity:.75;transition:filter .3s,opacity .3s}
 .logos li:hover img{filter:none;opacity:1}
 
@@ -223,8 +224,8 @@ p{margin:0}
 .geo-stage{position:relative;min-width:0}
 #geo-map{width:100%;height:auto;max-height:76svh;display:block;overflow:hidden;-webkit-mask-image:radial-gradient(72% 68% at 52% 52%,#000 58%,transparent 100%);mask-image:radial-gradient(72% 68% at 52% 52%,#000 58%,transparent 100%)}
 .geo-city text,.geo-hub text{paint-order:stroke;stroke:var(--bg-2);stroke-width:4px;stroke-linejoin:round}
-.geo-country{fill:#e4ecf3;stroke:#fff;stroke-width:1}
-.geo-country.is-by,.geo-country.is-ru{fill:#d3e2f1}
+.geo-country{fill:#e3eef7;stroke:var(--bg);stroke-width:1.2}
+.geo-country.is-by,.geo-country.is-ru{fill:#eef5fb}
 .geo-arc{fill:none;stroke:var(--blue);stroke-width:2.2;opacity:.55;stroke-linecap:round}
 .geo-arc.geo-ru{stroke-dasharray:none}
 .geo-city circle{fill:var(--blue);opacity:.25;transition:opacity .4s}
@@ -268,10 +269,10 @@ p{margin:0}
 .crumbs a{text-decoration:none}
 .crumbs a:hover{color:var(--blue)}
 .pd{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:6vw;align-items:start}
-.pd-main{aspect-ratio:1;background:var(--bg);border-radius:28px;display:grid;place-items:center;overflow:hidden}
+.pd-main{aspect-ratio:1;display:grid;place-items:center}
 .pd-main img{width:80%;height:80%;object-fit:contain;mix-blend-mode:multiply}
 .pd-thumbs{display:flex;gap:10px;margin-top:12px}
-.pd-thumbs button{width:84px;aspect-ratio:1;border:0;padding:6px;border-radius:14px;background:var(--bg);cursor:pointer;box-shadow:inset 0 0 0 1px transparent}
+.pd-thumbs button{width:84px;aspect-ratio:1;border:0;padding:6px;border-radius:14px;background:transparent;cursor:pointer;box-shadow:inset 0 0 0 1px transparent}
 .pd-thumbs button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--blue)}
 .pd-thumbs img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply}
 .pd-info h1{font-size:clamp(32px,calc(var(--u)*4),56px);line-height:1.02;font-weight:var(--dw);margin:12px 0 4svh}
@@ -322,7 +323,6 @@ p{margin:0}
   .iml-list p{max-height:none;margin-top:6px}
   .cases-row{grid-template-columns:1fr;gap:28px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
-  .card-img{border-radius:16px}
   .tabs{flex-wrap:nowrap;overflow-x:auto;margin-inline:calc(var(--pad) * -1);padding-inline:var(--pad);scrollbar-width:none}
   .tabs button{flex:none}
   .eggs{grid-template-columns:1fr}
