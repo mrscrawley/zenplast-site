@@ -47,13 +47,25 @@
     if (dict[s]) return dict[s];
     let out = s;
     for (const [a, b] of words) out = out.replace(new RegExp('(^|[^А-Яа-яЁё])' + a + '(?=$|[^А-Яа-яЁё])', 'g'), '$1' + b);
-    return out.replace(/№/g, 'No.');
+    out = out.replace(/№/g, 'No.')
+      .replace(/ф\s?(\d{2,3})/g, 'Ø$1').replace(/(\d{2,3})\s?ф/g, 'Ø$1');
+    // артикулы и остатки кириллицы — латиницей (КЛ-1 → KL-1, ЛС-8 → LS-8, ТС/PР → TS/PP)
+    const T = { А:'A',Б:'B',В:'V',Г:'G',Д:'D',Е:'E',Ё:'E',Ж:'Zh',З:'Z',И:'I',Й:'Y',К:'K',Л:'L',М:'M',Н:'N',О:'O',П:'P',Р:'P',С:'S',Т:'T',У:'U',Ф:'F',Х:'Kh',Ц:'Ts',Ч:'Ch',Ш:'Sh',Щ:'Shch',Ы:'Y',Э:'E',Ю:'Yu',Я:'Ya',Ь:'',Ъ:'' };
+    out = out.replace(/ТС\//g, 'TS/').replace(/\/PР\//g, '/PP/');
+    return out.replace(/[А-ЯЁЬЪ]/g, ch => T[ch] ?? ch).replace(/[а-яё]/g, ch => { const u = T[ch.toUpperCase()]; return u === undefined ? ch : u.toLowerCase(); });
   };
   const nodes = [...document.querySelectorAll('[data-en]')];
   nodes.forEach(n => n.dataset.ru = n.innerHTML);
+  // атрибуты (alt, aria-label, title) и заголовок вкладки — тоже на английском
+  const ATTR = { 'Зен Пласт':'Zen Plast','Зен Пласт, на главную':'Zen Plast, home','Разделы':'Sections','Меню':'Menu','Быстрые действия':'Quick actions','От гранулы до упаковки':'From granule to packaging','Главы':'Chapters','Производство':'Production','Цех Зен Пласт':'Zen Plast factory floor','Тара наших клиентов':"Our clients' packaging",'Контейнер Sveza «Фета нежная»':'Sveza feta container','Контейнеры «Карат»':'Karat containers','Стакан «Антарктик криль»':'Antarctic Krill cup','Контейнеры для сыра фета':'Feta cheese containers','Контейнеры для плавленого сыра':'Processed cheese containers','Стаканы для продукции из криля':'Cups for krill products','Каталог':'Catalogue','Упаковка для яиц':'Egg packaging','Качество':'Quality','Партнёры':'Partners','Савушкин':'Savushkin','Санта Бремор':'Santa Bremor','Карат':'Karat','Экспонента':'Exponenta','Серволюкс':'Servolux','Тимоша':'Timosha','Джинн':'Dzhinn','Агрокомбинат Дзержинский':'Dzerzhinsky Agro Plant','1М Молочный':'1M Dairy','География поставок':'Delivery geography','Карта поставок: маршруты из Буда-Кошелево в города Беларуси и России':'Delivery map: routes from Buda-Kashalyova to cities in Belarus and Russia','Вакансии':'Careers','Обсудим вашу упаковку':"Let's talk about your packaging",'Навигация':'Breadcrumbs','Фото':'Photo' };
+  const attrEls = [...document.querySelectorAll('[alt],[aria-label],[title]')].filter(e => ['alt','aria-label','title'].some(a => /[А-Яа-яЁё]/.test(e.getAttribute(a) || '')));
+  attrEls.forEach(e => ['alt','aria-label','title'].forEach(a => { const v = e.getAttribute(a); if (v && /[А-Яа-яЁё]/.test(v)) e.dataset['ru' + a.replace('-', '')] = v; }));
+  const docTitle = document.title;
   ZP.applyLang = () => {
     root.lang = ZP.lang;
     nodes.forEach(n => n.innerHTML = ZP.lang === 'en' ? n.dataset.en : n.dataset.ru);
+    attrEls.forEach(e => ['alt','aria-label','title'].forEach(a => { const ru = e.dataset['ru' + a.replace('-', '')]; if (ru) e.setAttribute(a, ZP.lang === 'en' ? (ATTR[ru] || ZP.tr(ru)) : ru); }));
+    if (docTitle.startsWith('Зен Пласт —')) document.title = ZP.lang === 'en' ? 'Zen Plast — polymer packaging manufacturer' : docTitle;
     document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === ZP.lang));
     document.dispatchEvent(new CustomEvent('zp:lang'));
   };

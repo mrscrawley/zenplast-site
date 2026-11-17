@@ -49,7 +49,7 @@
     grid.innerHTML = list.length ? list.map((it, k) => {
       const sp = keySpecs(it).map(([key, v]) => `<span><em>${ZP.esc(ZP.tr(key))}</em>${ZP.esc(ZP.tr(v))}</span>`).join('');
       const alt = it.imgs[1] ? `<img class="alt" src="${it.imgs[1]}" alt="" loading="lazy" decoding="async">` : '';
-      const img = it.imgs[0] ? `<img class="${alt ? 'has-alt' : ''}" src="${it.imgs[0]}" alt="${ZP.esc(it.title)}" loading="lazy" decoding="async">` : '';
+      const img = it.imgs[0] ? `<img class="${alt ? 'has-alt' : ''}" src="${it.imgs[0]}" alt="${ZP.esc(ZP.tr(it.title))}" loading="lazy" decoding="async">` : '';
       return `<a class="card" href="product.html?p=${encodeURIComponent(it.slug)}"><div class="card-img">${img}${alt}<span class="card-go"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span></div><div class="card-body"><h3>${ZP.esc(ZP.tr(it.title))}</h3><div class="card-specs">${sp}</div></div></a>`;
     }).join('') : `<p class="range-empty">${ZP.t('Ничего не нашли. Попробуйте другое слово или напишите нам — подберём.', 'Nothing found. Try another word or write to us.')}</p>`;
     if (hasGsap && !reduce && animate) {

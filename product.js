@@ -49,7 +49,7 @@
       <nav class="crumbs" aria-label="${ZP.t('Навигация', 'Breadcrumbs')}"><a href="index.html">${ZP.t('Главная', 'Home')}</a><span>/</span><a href="index.html?group=${g.id}#range">${ZP.esc(ZP.t(g.ru, g.en))}</a><span>/</span><span>${ZP.esc(ZP.t(s.ru, s.en))}</span></nav>
       <div class="pd">
         <div class="pd-gallery">
-          <div class="pd-main" title="${ZP.t('Наведите, чтобы рассмотреть', 'Hover to zoom')}">${it.imgs[img] ? `<img src="${it.imgs[img]}" alt="${ZP.esc(it.title)}">` : ''}</div>
+          <div class="pd-main" title="${ZP.t('Наведите, чтобы рассмотреть', 'Hover to zoom')}">${it.imgs[img] ? `<img src="${it.imgs[img]}" alt="${ZP.esc(title)}">` : ''}</div>
           ${thumbs}
         </div>
         <div class="pd-info">
