@@ -561,3 +561,25 @@ p{margin:0}
 
 /* AVIF-обёртки не участвуют в раскладке */
 .orbit picture,.q-lens picture{display:contents}
+
+/* --- телефон: каталог не шире экрана, главы истории не упираются в нижнюю панель --- */
+.range-body > *{min-width:0}
+@media (max-width:820px),(max-aspect-ratio:11/10){
+  .story-pin{grid-template-rows:minmax(0,34fr) minmax(0,66fr);padding-bottom:84px}
+  #storyfilm,#storyfilmrev{object-position:62% 50%}
+  .ch{gap:10px}
+  .ch .hero-title{font-size:clamp(36px,10vw,52px);margin:0}
+  .ch .hero-actions{flex-wrap:nowrap;gap:8px}
+  .ch .hero-actions .btn{padding:12px 16px;font-size:14.5px;white-space:nowrap}
+  .ch-big b{font-size:clamp(56px,16vw,96px)}
+  .ch-paths{gap:6px}
+  .ch-paths li{padding:9px 0;gap:12px}
+  .ch-paths .k{width:32px;height:32px;font-size:12px}
+  .ch-paths b{font-size:17px}
+  .ch-paths small{font-size:13px}
+  .ch-steps li{padding:6px 0}
+}
+@media (max-height:720px) and (max-width:820px){
+  .ch-lead{font-size:14px;line-height:1.45}
+  .ch .eyebrow{font-size:11px}
+}
