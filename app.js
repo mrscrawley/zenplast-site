@@ -57,24 +57,33 @@
 
   if (!hasGsap) return;
 
-  /* ---------- ПЕРВЫЙ ЭКРАН ---------- */
-  if (!reduce) {
-    gsap.from('.hero-title .ln', { yPercent: 40, opacity: 0, duration: 1.2, ease: 'expo.out', stagger: .12, delay: .15 });
-    gsap.from(['.hero .eyebrow', '.hero-lead', '.hero-actions'], { y: 18, opacity: 0, duration: 1, ease: 'power3.out', stagger: .1, delay: .45 });
-    gsap.to('.hero-video', { scale: 1.05, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true } });
-  }
-
-  /* ---------- ЦИФРЫ (п.12) ---------- */
-  document.querySelectorAll('[data-count]').forEach(el => {
-    const to = +el.dataset.count, fmt = n => Math.round(n).toLocaleString('ru-RU');
-    if (reduce) { el.textContent = fmt(to); return; }
-    const o = { v: 0 }; el.textContent = '0';
-    ScrollTrigger.create({ trigger: el, start: 'top 85%', once: true,
-      onEnter: () => gsap.to(o, { v: to, duration: to > 10 ? 2.2 : 1.2, ease: 'power3.out', onUpdate: () => el.textContent = fmt(o.v) }) });
-  });
-  if (!reduce) {
-    gsap.fromTo('.facts-bg', { yPercent: -8 }, { yPercent: 8, ease: 'none', scrollTrigger: { trigger: '.facts', start: 'top bottom', end: 'bottom top', scrub: true } });
-    gsap.from('.fact', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .1, scrollTrigger: { trigger: '.facts-row', start: 'top 85%' } });
+  /* ---------- ИСТОРИЯ: прогресс, главы, навигация ---------- */
+  const storyEl = document.querySelector('.story');
+  if (storyEl) {
+    const chs = [...storyEl.querySelectorAll('.ch')], navs = [...storyEl.querySelectorAll('.story-nav button')];
+    const fbs = [...storyEl.querySelectorAll('.story-fallback img')];
+    const bounds = [0, .18, .44, .68, 1.01];
+    let cur = -1;
+    const counter = storyEl.querySelector('[data-count]'); const cnt = { v: 0 }; let counted = false;
+    function setCh(i) {
+      if (i === cur) return;
+      const prev = chs[cur]; cur = i;
+      if (prev) gsap.to(prev, { autoAlpha: 0, y: -24, duration: .45, ease: 'power2.in', overwrite: true });
+      chs[i].classList.add('is-on');
+      gsap.fromTo(chs[i], { autoAlpha: 0, y: 34 }, { autoAlpha: 1, y: 0, duration: .8, delay: prev ? .25 : 0, ease: 'power3.out', overwrite: true });
+      if (!reduce) gsap.fromTo(chs[i].children, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: .9, stagger: .07, delay: prev ? .3 : .1, ease: 'power3.out', clearProps: 'transform,opacity' });
+      navs.forEach((b, k) => b.classList.toggle('is-on', k === i));
+      fbs.forEach(im => im.classList.toggle('is-on', +im.dataset.ch === i));
+      if (i === 1 && counter && !counted) { counted = true; cnt.v = 0; gsap.to(cnt, { v: 700, duration: reduce ? 0 : 2, ease: 'power3.out', onUpdate: () => counter.textContent = Math.round(cnt.v) }); }
+    }
+    gsap.set(chs, { autoAlpha: 0 }); setCh(0);
+    const st = ScrollTrigger.create({ trigger: storyEl, start: 'top top', end: 'bottom bottom',
+      onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < 3 && p >= bounds[i + 1]) i++; setCh(i); } });
+    ZP.storyP = 0;
+    navs.forEach((b, k) => b.addEventListener('click', () => {
+      const y = st.start + (st.end - st.start) * (k === 0 ? 0 : (bounds[k] + .06));
+      ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' });
+    }));
   }
 
   /* ---------- reveal для обычных блоков (анимируем детей, не родителей картинок с multiply) ---------- */
@@ -89,35 +98,6 @@
     gsap.fromTo('.logos li', { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'power3.out', stagger: .05, clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: '.logos', start: 'top 85%' } });
     gsap.from('.cases figure img', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.cases-row', start: 'top 85%' } });
   }
-
-  /* ---------- ПУТЬ ПОЛИМЕРА (п.11) ---------- */
-  const mm = gsap.matchMedia();
-  mm.add('(min-width: 821px)', () => {
-    const wa = document.querySelector('.wire-a'), wb = document.querySelector('.wire-b');
-    [wa, wb].forEach(p => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; p.dataset.l = L; });
-    const steps = [...document.querySelectorAll('.step')];
-    gsap.set('.stage .node:not(.node-g) .tag', { autoAlpha: 0, y: 10 });
-    gsap.set('.stage .node:not(.node-g) .cut', { y: 50, scale: .82, autoAlpha: 0 });
-    gsap.set('.node-g', { '--x': '50%', scale: 1.35 });
-    const tl = gsap.timeline({ defaults: { ease: 'power2.inOut' },
-      scrollTrigger: { trigger: '.path', start: 'top top', end: 'bottom bottom', scrub: .8,
-        onUpdate: self => {
-          const p = self.progress, i = p < .16 ? 0 : p < .38 ? 1 : p < .58 ? 2 : p < .8 ? 3 : 4;
-          steps.forEach((s, k) => s.classList.toggle('is-on', k === i));
-          gsap.set('.path-progress span', { scaleX: p });
-        } } });
-    const show = (sel, at) => tl.to(sel + ' .cut', { y: 0, scale: 1, autoAlpha: 1, duration: .9, stagger: .12, ease: 'power3.out' }, at)
-                                .to(sel + ' .tag', { autoAlpha: 1, y: 0, duration: .5 }, '<.3');
-    tl.to('.node-g', { '--x': '15%', scale: 1, duration: 1 });
-    tl.to(wa, { strokeDashoffset: () => wa.dataset.l * .52, duration: 1 }, '+=.1'); show('.node-a1', '<.5');
-    tl.to(wa, { strokeDashoffset: 0, duration: 1 }, '+=.3'); show('.node-a2', '<.5');
-    tl.to(wb, { strokeDashoffset: () => wb.dataset.l * .52, duration: 1 }, '+=.3'); show('.node-b1', '<.5');
-    tl.to(wb, { strokeDashoffset: 0, duration: 1 }, '+=.3'); show('.node-b2', '<.5');
-    tl.to({}, { duration: .6 });
-    if (!reduce && !lite) gsap.utils.toArray('.stage .cut').forEach((c, k) =>
-      gsap.to(c, { rotation: k % 2 ? 2.5 : -2.5, yPercent: k % 2 ? -5 : 5, duration: 3.2 + (k % 3) * .7, ease: 'sine.inOut', yoyo: true, repeat: -1 }));
-    return () => [wa, wb].forEach(p => { p.style.strokeDasharray = ''; p.style.strokeDashoffset = ''; });
-  });
 
   /* ---------- IML: шаги текста; 3D читает тот же прогресс ---------- */
   const imlItems = [...document.querySelectorAll('.iml-list li')];

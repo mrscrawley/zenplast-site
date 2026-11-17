@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=10">
+<link rel="stylesheet" href="style.css?v=11">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -67,108 +67,66 @@
 
 <main id="main">
 
-  <!-- 1. ПЕРВЫЙ ЭКРАН -->
-  <section class="hero" id="top">
-    <div class="hero-media" aria-hidden="true">
-      <video class="hero-video lp-video" src="media/hero.mp4" poster="media/hero.jpg" autoplay muted loop playsinline preload="auto"></video>
-    </div>
-    <div class="hero-copy">
-      <p class="eyebrow" data-en="Polymer packaging manufacturer · Belarus">Производитель полимерной тары · Беларусь</p>
-      <h1 class="hero-title"><span class="ln" data-en="A whole life">Вся жизнь</span><span class="ln" data-en="in packaging">в&nbsp;упаковке</span></h1>
-      <p class="hero-lead" data-en="Injection moulding with IML labels, thermoforming, film extrusion and large containers. Two production sites in Buda-Kashalyova.">Литьё под давлением с&nbsp;IML-этикеткой, термоформование, экструзия плёнки и&nbsp;крупногабаритная тара. Две площадки в&nbsp;Буда‑Кошелево.</p>
-      <div class="hero-actions">
-        <a class="btn btn-solid" href="#range" data-en="Product catalogue">Каталог продукции</a>
-        <a class="btn btn-ghost" href="#path" data-en="How we make it">Как мы производим</a>
+  <!-- ИСТОРИЯ «ОТ ГРАНУЛЫ ДО ПОЛКИ»: главы 1–4, 3D-мир справа, текст слева -->
+  <section class="story" id="top" aria-label="От гранулы до упаковки">
+    <span class="anchor" id="about" style="top:22%"></span>
+    <span class="anchor" id="path" style="top:46%"></span>
+    <span class="anchor" id="film" style="top:70%"></span>
+    <div class="story-pin">
+      <div class="story-copy">
+        <article class="ch is-on" data-ch="0">
+          <p class="eyebrow" data-en="Polymer packaging manufacturer · Belarus">Производитель полимерной тары · Беларусь</p>
+          <h1 class="hero-title"><span class="ln" data-en="A whole life">Вся жизнь</span><span class="ln" data-en="in packaging">в&nbsp;упаковке</span></h1>
+          <p class="ch-lead" data-en="Injection moulding with IML labels, thermoforming, film extrusion and large containers. Two production sites in Buda-Kashalyova.">Литьё под давлением с&nbsp;IML-этикеткой, термоформование, экструзия плёнки и&nbsp;крупногабаритная тара. Две площадки в&nbsp;Буда‑Кошелево.</p>
+          <div class="hero-actions">
+            <a class="btn btn-solid" href="#range" data-en="Product catalogue">Каталог продукции</a>
+            <a class="btn btn-ghost" href="#about" data-en="How we make it">Как мы производим</a>
+          </div>
+        </article>
+        <article class="ch" data-ch="1">
+          <p class="eyebrow" data-en="01 · Raw material">01 · Сырьё</p>
+          <h2 class="ch-title" data-en="Everything starts with a granule">Всё начинается с&nbsp;гранулы</h2>
+          <div class="ch-big"><b data-count="700">700</b><i>+</i><span data-en="tonnes of polymers<br>processed every month">тонн полимеров<br>перерабатываем в&nbsp;месяц</span></div>
+          <ul class="ch-facts">
+            <li><b>9&nbsp;000+&nbsp;м²</b><span data-en="production space">производственных площадей</span></li>
+            <li><b>2</b><span data-en="production sites">площадки в&nbsp;Буда‑Кошелево</span></li>
+          </ul>
+          <p class="ch-lead" data-en="Only virgin PP, PET and PS from trusted suppliers, compliant with GOST and international standards.">Только первичные PP, PET и&nbsp;PS от&nbsp;проверенных поставщиков, по&nbsp;ГОСТ и&nbsp;международным стандартам.</p>
+        </article>
+        <article class="ch" data-ch="2">
+          <p class="eyebrow" data-en="02 · Technology">02 · Технологии</p>
+          <h2 class="ch-title" data-en="One granule, two paths">Из одной гранулы&nbsp;— два пути</h2>
+          <ol class="ch-paths">
+            <li><span class="k">A</span><div><b data-en="Film → thermoforming">Плёнка → термоформование</b><small data-en="lids, trays, cups, egg packs">крышки, лотки, стаканы, упаковка для яиц</small></div></li>
+            <li><span class="k">B</span><div><b data-en="Injection moulding">Литьё под давлением</b><small data-en="IML containers, lids, cups and crates">IML-контейнеры, крышки, стаканы и&nbsp;ящики</small></div></li>
+          </ol>
+        </article>
+        <article class="ch" data-ch="3">
+          <p class="eyebrow" data-en="03 · Path A">03 · Путь A</p>
+          <h2 class="ch-title" data-en="Film extrusion">Экструзия плёнки</h2>
+          <dl class="ch-spec">
+            <div><dt data-en="Width">Ширина</dt><dd>300–1200 <small data-en="mm">мм</small></dd></div>
+            <div><dt data-en="Thickness">Толщина</dt><dd>350–1500 <small data-en="µm">мкм</small></dd></div>
+            <div><dt data-en="Roll">Рулон</dt><dd>30–500 <small data-en="kg">кг</small></dd></div>
+          </dl>
+          <p class="ch-lead" data-en="PP, PET and PS film, including with a PE layer — for our own lines and for your thermoforming machines.">Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем&nbsp;— для своих линий и&nbsp;для ваших термоформовочных машин.</p>
+        </article>
       </div>
-    </div>
-  </section>
-
-  <!-- 2. ЦИФРЫ -->
-  <section class="facts" id="about" aria-label="Завод в цифрах">
-    <div class="facts-bg" aria-hidden="true"><video class="lp-video" src="media/granules.mp4" poster="media/granules.jpg" autoplay muted loop playsinline></video></div>
-    <div class="facts-row">
-      <div class="fact"><div class="fact-num"><span data-count="9000">9000</span><i>+</i></div><div class="fact-unit" data-en="m² of production space">м² производственных площадей</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="700">700</span><i>+</i></div><div class="fact-unit" data-en="tonnes of polymers a month">тонн полимеров в месяц</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="2">2</span></div><div class="fact-unit" data-en="production sites">производственные площадки</div></div>
-      <div class="fact"><div class="fact-num"><span data-count="4">4</span></div><div class="fact-unit" data-en="production technologies">технологии производства</div></div>
-    </div>
-    <p class="facts-note" data-en="One of the largest suppliers of polymer containers and packaging in the Republic of Belarus. We work only with virgin polymers from trusted suppliers and control quality at every stage.">Один из крупнейших поставщиков полимерной тары и&nbsp;упаковки в&nbsp;Республике Беларусь. Работаем только с&nbsp;первичными полимерами от&nbsp;проверенных поставщиков и&nbsp;контролируем качество на&nbsp;всех этапах.</p>
-  </section>
-
-  <!-- 3. ПУТЬ ПОЛИМЕРА -->
-  <section class="path" id="path" aria-label="Путь полимера">
-    <div class="path-pin">
-      <div class="path-head">
-        <p class="eyebrow" data-en="The polymer's path">Путь полимера</p>
-        <h2 class="path-title" data-en="One granule, two paths">Из одной гранулы&nbsp;— два пути</h2>
-      </div>
-
-      <div class="stage" id="stage">
-        <svg class="wires" viewBox="0 0 1000 600" preserveAspectRatio="none" aria-hidden="true">
-          <path class="wire wire-a" d="M150 288 C 300 288, 330 150, 430 150 L 640 150"/>
-          <path class="wire wire-b" d="M150 288 C 300 288, 330 426, 430 426 L 640 426"/>
-        </svg>
-        <div class="node node-g">
-          <div class="granule"><video class="lp-video" src="media/granules.mp4" poster="media/granules.jpg" muted loop playsinline autoplay></video></div>
-          <span class="tag"><b data-en="Granule">Гранула</b><small>PP · PET · PS</small></span>
-        </div>
-        <div class="node node-a1">
-          <img class="cut" src="media/prod/pet_plenka_zen_plast.jpg" alt="">
-          <span class="tag"><b data-en="Film extrusion">Экструзия плёнки</b><small data-en="300–1200 mm · 350–1500 µm">300–1200&nbsp;мм · 350–1500&nbsp;мкм</small></span>
-        </div>
-        <div class="node node-a2 cluster">
-          <img class="cut c1" src="media/prod/1-137.jpg" alt="">
-          <img class="cut c2" src="media/prod/1-83.jpg" alt="">
-          <img class="cut c3" src="media/prod/1-43.jpg" alt="">
-          <img class="cut c4" src="media/prod/1-175.jpg" alt="">
-          <span class="tag"><b data-en="Thermoforming">Термоформование</b><small data-en="lids · trays · cups · egg packs">крышки · лотки · стаканы · яйца</small></span>
-        </div>
-        <div class="node node-b1 cluster">
-          <img class="cut c1" src="media/prod/1-430.jpg" alt="">
-          <img class="cut c2" src="media/prod/1-436.jpg" alt="">
-          <img class="cut c3" src="media/prod/1-167.jpg" alt="">
-          <span class="tag"><b data-en="Moulding with IML">Литьё с&nbsp;IML</b><small data-en="containers · lids · cups">контейнеры · крышки · стаканы</small></span>
-        </div>
-        <div class="node node-b2 cluster">
-          <img class="cut c1" src="media/prod/1-265.jpg" alt="">
-          <img class="cut c2" src="media/prod/1-255.jpg" alt="">
-          <span class="tag"><b data-en="Large containers">Крупная тара</b><small data-en="8 types of crates">8 видов ящиков</small></span>
+      <div class="story-stage">
+        <canvas id="world" aria-hidden="true"></canvas>
+        <div class="story-fallback" aria-hidden="true">
+          <img src="media/granules.jpg" alt="" data-ch="0">
+          <img src="media/granules.jpg" alt="" data-ch="1">
+          <img src="media/hero.jpg" alt="" data-ch="2">
+          <img src="media/prod/pet_plenka_zen_plast.jpg" alt="" data-ch="3">
         </div>
       </div>
-
-      <ol class="steps" aria-label="Этапы">
-        <li class="step is-on">
-          <img class="step-img" src="media/granules.jpg" alt="">
-          <span class="step-k" data-en="Raw material">Сырьё</span>
-          <h3 data-en="Virgin polymers">Первичные полимеры</h3>
-          <p data-en="PP, PET and PS from reliable suppliers, compliant with GOST and international standards.">PP, PET и&nbsp;PS от&nbsp;надёжных поставщиков. Соответствие требованиям ГОСТ и&nbsp;международным стандартам.</p>
-        </li>
-        <li class="step">
-          <img class="step-img cutimg" src="media/prod/pet_plenka_zen_plast.jpg" alt="">
-          <span class="step-k" data-en="Path 1 · step 1">Путь 1 · шаг 1</span>
-          <h3 data-en="Film extrusion">Экструзия плёнки</h3>
-          <p data-en="PP, PET and PS film, including with a PE layer. Width <b>300–1200 mm</b>, thickness <b>350–1500 µm</b>, rolls of 30–500 kg. For our own lines and for your thermoforming machines.">Плёнка PP, PET и&nbsp;PS, в&nbsp;том числе с&nbsp;PE-слоем. Ширина <b>300–1200&nbsp;мм</b>, толщина <b>350–1500&nbsp;мкм</b>, рулоны 30–500&nbsp;кг. Для своих линий и&nbsp;для ваших термоформовочных машин.</p>
-        </li>
-        <li class="step">
-          <img class="step-img cutimg" src="media/prod/1-137.jpg" alt="">
-          <span class="step-k" data-en="Path 1 · step 2">Путь 1 · шаг 2</span>
-          <h3 data-en="Thermo- and vacuum forming">Термо- и&nbsp;вакуумформование</h3>
-          <p data-en="Closure lids, trays, cups, packs for chicken and quail eggs, sealable food trays.">Укупорочные крышки, лотки, стаканы, упаковка для куриных и&nbsp;перепелиных яиц, пищевые лотки под запайку.</p>
-        </li>
-        <li class="step">
-          <img class="step-img cutimg" src="media/prod/1-430.jpg" alt="">
-          <span class="step-k" data-en="Path 2">Путь 2</span>
-          <h3 data-en="Injection moulding with IML">Литьё под давлением с&nbsp;IML</h3>
-          <p data-en="Containers, lids and cups with a label moulded into the wall right in the tool. A dedicated IML site.">Контейнеры, крышки и&nbsp;стаканы с&nbsp;этикеткой, впаянной в&nbsp;стенку прямо в&nbsp;пресс-форме. Отдельная площадка IML.</p>
-        </li>
-        <li class="step">
-          <img class="step-img cutimg" src="media/prod/1-265.jpg" alt="">
-          <span class="step-k" data-en="Path 2">Путь 2</span>
-          <h3 data-en="Large container moulding">Литьё крупногабаритной тары</h3>
-          <p data-en="Crates for dairy, sausage, bakery, vegetables and berries.">Ящики для молочной, колбасной, хлебной продукции, овощей и&nbsp;ягод.</p>
-        </li>
-      </ol>
-      <div class="path-progress" aria-hidden="true"><span></span></div>
+      <nav class="story-nav" aria-label="Главы">
+        <button type="button" data-go="0"><i></i><span data-en="Granule">Гранула</span></button>
+        <button type="button" data-go="1"><i></i><span data-en="Raw material">Сырьё</span></button>
+        <button type="button" data-go="2"><i></i><span data-en="Two paths">Два пути</span></button>
+        <button type="button" data-go="3"><i></i><span data-en="Film">Плёнка</span></button>
+      </nav>
     </div>
   </section>
 
@@ -346,10 +304,11 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script src="data/catalog.js?v=10"></script>
-<script src="common.js?v=10"></script>
-<script src="app.js?v=10"></script>
-<script src="geo.js?v=10"></script>
-<script type="module" src="jar.js?v=10"></script>
+<script src="data/catalog.js?v=11"></script>
+<script src="common.js?v=11"></script>
+<script src="app.js?v=11"></script>
+<script src="geo.js?v=11"></script>
+<script type="module" src="jar.js?v=11"></script>
+<script type="module" src="story.js?v=11"></script>
 </body>
 </html>
