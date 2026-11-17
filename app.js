@@ -197,5 +197,13 @@
     gsap.fromTo('#geo-map', { rotateX: 42, y: 60, scale: .9 }, { rotateX: 0, y: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.geo', start: 'top bottom', end: 'top 25%', scrub: 1 } });
   }
 
+  /* ---------- ПРОИЗВОДСТВО: ролик играет, только пока виден; при прокрутке камера «отъезжает» ---------- */
+  const pv = document.querySelector('.prod-media video');
+  if (pv) {
+    new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? pv.play().catch(() => {}) : pv.pause()), { threshold: .15 }).observe(pv);
+    if (!reduce) gsap.fromTo(pv, { scale: 1.18, yPercent: -4 }, { scale: 1.02, yPercent: 4, ease: 'none', scrollTrigger: { trigger: '.prod-media', start: 'top bottom', end: 'bottom top', scrub: true } });
+    if (!reduce) gsap.from('.prod-facts > div', { y: 30, opacity: 0, duration: 1, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.prod-facts', start: 'top 85%' } });
+  }
+
   addEventListener('load', () => ScrollTrigger.refresh());
 })();
