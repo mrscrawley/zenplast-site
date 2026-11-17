@@ -222,5 +222,8 @@
     if (!reduce) gsap.from('.prod-facts > div', { y: 30, opacity: 0, duration: 1, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.prod-facts', start: 'top 85%' } });
   }
 
+  /* ---------- футер: буквы логотипа поднимаются по очереди ---------- */
+  if (!reduce) gsap.from('.foot-mark span:not(.sp)', { yPercent: 105, duration: 1.1, ease: 'power4.out', stagger: .05, scrollTrigger: { trigger: '.foot-mark', start: 'top 95%' } });
+
   addEventListener('load', () => ScrollTrigger.refresh());
 })();
