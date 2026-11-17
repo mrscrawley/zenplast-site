@@ -50,7 +50,7 @@
     scrubber(v, ptr => {
       const r = sec.getBoundingClientRect(), h = innerHeight;
       const p = clamp((h - r.top) / (h + r.height * .4));
-      return mode === 'orbit' ? clamp(p * 1.1 - .05 + ptr.tx * .5) : clamp((p - .15) / .6);
+      return mode === 'orbit' ? clamp(p * 1.1 - .05 + ptr.tx * .5) : clamp((p - .42) / .38); // яйца ложатся, когда блок уже в центре экрана
     }, mode === 'orbit' ? { parallax: v.parentElement } : {});
   });
 })();
