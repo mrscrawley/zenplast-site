@@ -45,11 +45,11 @@
   ZP.tr = s => {
     if (ZP.lang !== 'en' || !s) return s;
     if (dict[s]) return dict[s];
-    let out = s;
+    let out = s.replace('Лоток хлебный с боковой стенкой', 'bread tray with side wall');
     for (const [a, b] of words) out = out.replace(new RegExp('(^|[^А-Яа-яЁё])' + a + '(?=$|[^А-Яа-яЁё])', 'g'), '$1' + b);
     out = out.replace(/№/g, 'No.')
       .replace(/[фФ]\s?(\d{2,3})/g, 'Ø$1').replace(/(\d{2,3})\s?[фФ]/g, 'Ø$1')
-      .replace(/(\d)\s?[хx×*]\s?(?=\d)/g, '$1×').replace(/грибок/gi, 'mushroom cap');
+      .replace(/(\d)\s?[хx×*]\s?(?=\d)/g, '$1×').replace(/(\d),(\d)/g, '$1.$2').replace(/грибок/gi, 'mushroom cap');
     // артикулы и остатки кириллицы — латиницей (КЛ-1 → KL-1, ЛС-8 → LS-8, ТС/PР → TS/PP)
     const T = { А:'A',Б:'B',В:'V',Г:'G',Д:'D',Е:'E',Ё:'E',Ж:'Zh',З:'Z',И:'I',Й:'Y',К:'K',Л:'L',М:'M',Н:'N',О:'O',П:'P',Р:'R',С:'S',Т:'T',У:'U',Ф:'F',Х:'Kh',Ц:'Ts',Ч:'Ch',Ш:'Sh',Щ:'Shch',Ы:'Y',Э:'E',Ю:'Yu',Я:'Ya',Ь:'',Ъ:'' };
     out = out.replace(/ТС\//g, 'TS/').replace(/\/PР\//g, '/PP/');
