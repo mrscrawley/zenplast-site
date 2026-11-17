@@ -25,7 +25,7 @@
   };
   const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ');
   function renderTabs() {
-    tabs.innerHTML = C.map((g, k) => `<button role="tab" type="button" data-g="${g.id}" aria-selected="${!query && g.id === curG}"><span class="t">${ZP.esc(ZP.t(g.ru, g.en))}</span><i>${count(g)}</i></button>`).join('');
+    tabs.innerHTML = C.map((g, k) => `<button role="tab" type="button" data-g="${g.id}" aria-selected="${!query && g.id === curG}"><span class="t">${ZP.esc(ZP.t(g.ru, g.en))}</span></button>`).join('');
     const g = C.find(x => x.id === curG);
     const subs = g.subs.filter(s => s.items.length);
     chips.innerHTML = !query && subs.length > 1 ? [`<button type="button" data-s="all" aria-pressed="${curS === 'all'}">${ZP.t('Все', 'All')}</button>`]

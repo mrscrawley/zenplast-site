@@ -181,7 +181,7 @@ p{margin:0}
 .range-body{display:grid;grid-template-columns:minmax(260px,.32fr) 1fr;gap:4vw;align-items:start}
 .range-nav{position:sticky;top:calc(var(--hdr-h) + 24px)}
 .tabs{display:flex;flex-direction:column;counter-reset:t}
-.tabs button{position:relative;display:grid;grid-template-columns:1fr auto;align-items:baseline;gap:10px;text-align:left;border:0;background:none;cursor:pointer;padding:16px 0;border-top:1px solid var(--line);color:var(--ink-2);transition:color .3s}
+.tabs button{position:relative;display:grid;grid-template-columns:1fr;align-items:baseline;gap:10px;text-align:left;border:0;background:none;cursor:pointer;padding:16px 0;border-top:1px solid var(--line);color:var(--ink-2);transition:color .3s}
 .tabs button:last-child{border-bottom:1px solid var(--line)}
 .tabs button .n{font:500 11px var(--mono);letter-spacing:.08em;color:var(--ink-2)}
 .tabs button .t{font-family:var(--display);font-size:clamp(19px,calc(var(--u)*1.6),25px);font-weight:300;letter-spacing:-.025em;line-height:1.15;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
