@@ -112,6 +112,15 @@
         gsap.to(im, { rotateY: x * 18, rotateX: -y * 14, scale: 1.04, duration: .6, ease: 'power3.out' }); });
       fig.addEventListener('pointerleave', () => gsap.to(im, { rotateY: (k - 1) * 6, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));
     });
+    // тара на полке: выплывает по прокрутке, за курсором слегка наклоняется
+    gsap.utils.toArray('.orbit img').forEach((im, k) => {
+      gsap.fromTo(im, { y: 90, rotate: (k - 1) * 6, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, ease: 'power3.out', duration: 1.2, delay: k * .08,
+        scrollTrigger: { trigger: '.orbits', start: 'top 80%' } });
+      const box = im.parentElement;
+      box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        gsap.to(im, { rotateY: x * 16, rotateX: -y * 12, scale: 1.04, duration: .6, ease: 'power3.out' }); });
+      box.addEventListener('pointerleave', () => gsap.to(im, { rotateY: 0, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));
+    });
     // яйца: упаковки разъезжаются и вращаются по прокрутке
     gsap.utils.toArray('.eggs .cut').forEach((c, k) => gsap.fromTo(c, { rotate: [-14, 10, -6][k], x: [-60, 80, 40][k] }, { rotate: [4, -6, 8][k], x: 0, ease: 'none',
       scrollTrigger: { trigger: '.eggs', start: 'top bottom', end: 'bottom top', scrub: 1 } }));
