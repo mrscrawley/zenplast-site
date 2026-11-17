@@ -66,12 +66,12 @@
   const show = p => {
     const n = arcs.length;
     arcs.forEach(({ a, g }, i) => {
-      const k = Math.max(0, Math.min(1, p * (n + 2) - i));
+      const k = Math.max(0, Math.min(1, p * (n + 1) - i));
       a.style.strokeDashoffset = a.dataset.l * (1 - k);
       g.classList.toggle('is-on', k > .9);
     });
   };
   if (ZP.reduce || !window.ScrollTrigger) { show(1); return; }
   show(0);
-  ScrollTrigger.create({ trigger: '.geo', start: 'top 70%', end: 'bottom 80%', scrub: .6, onUpdate: s => show(s.progress) });
+  ScrollTrigger.create({ trigger: '.geo', start: 'top 85%', end: 'top 30%', scrub: .5, onUpdate: s => show(s.progress) });
 })();
