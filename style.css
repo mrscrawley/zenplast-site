@@ -246,7 +246,7 @@ p{margin:0}
 .jobs-phone:hover{color:var(--blue)}
 
 /* КОНТАКТЫ И ЗАЯВКА (п.7) */
-.contacts{padding:14svh var(--pad) 10svh;background:linear-gradient(180deg,var(--blue-soft) 0%,var(--ice) 100%);display:grid;grid-template-columns:1fr 1.15fr;gap:6vw}
+.contacts{padding:14svh var(--pad) 10svh;background:linear-gradient(180deg,var(--bg) 0%,var(--blue-soft) 35%,var(--ice) 100%);display:grid;grid-template-columns:1fr 1.15fr;gap:6vw}
 .contacts h2{margin:14px 0 32px}
 .form{display:flex;flex-direction:column;gap:14px;max-width:520px}
 .form label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--ink-2)}
