@@ -2,6 +2,9 @@
 // Ролики крутятся, только пока видны на экране; currentTime меняем, лишь когда цель сдвинулась.
 (() => {
   const ZP = window.ZP || {};
+  // источники: на телефоне и узких экранах — лёгкие версии роликов
+  const small = matchMedia('(max-width: 820px), (max-aspect-ratio: 11/10)').matches;
+  document.querySelectorAll('video[data-src]').forEach(v => { v.src = (small && v.dataset.srcM) || v.dataset.src; v.preload = v.closest('.story') ? 'auto' : 'metadata'; });
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
   function scrubber(video, getP, watchEl) {

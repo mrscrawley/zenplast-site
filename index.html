@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=57">
+<link rel="stylesheet" href="style.css?v=58">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -146,8 +146,8 @@
         </article>
       </div>
       <div class="story-stage">
-        <video id="storyfilmrev" src="media/film-rev.mp4?c=5" muted playsinline preload="auto" aria-hidden="true"></video>
-        <video id="storyfilm" src="media/film.mp4?c=5" poster="media/film-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+        <video id="storyfilmrev" data-src="media/film-rev.mp4?c=5" data-src-m="media/film-rev-m.mp4?c=5" muted playsinline preload="none" aria-hidden="true"></video>
+        <video id="storyfilm" data-src="media/film.mp4?c=5" data-src-m="media/film-m.mp4?c=5" poster="media/film-poster.jpg" muted playsinline preload="none" aria-hidden="true"></video>
         <div class="story-fallback" aria-hidden="true">
           <img src="media/granules.jpg" alt="" data-ch="0">
           <img src="media/granules.jpg" alt="" data-ch="1">
@@ -188,7 +188,7 @@
       </dl>
     </div>
     <div class="prod-media">
-      <video src="media/prod.mp4" poster="media/prod.jpg" muted loop playsinline preload="metadata" aria-label="Цех Зен Пласт"></video>
+      <video data-src="media/prod.mp4" data-src-m="media/prod-m.mp4" poster="media/prod.jpg" muted loop playsinline preload="none" aria-label="Цех Зен Пласт"></video>
     </div>
   </section>
 
@@ -200,9 +200,9 @@
     </div>
     <div class="cases-stage">
       <div class="orbits">
-        <div class="orbit"><img src="media/pack-feta.png" alt="Контейнер Sveza «Фета нежная»" width="900" height="900" loading="lazy" decoding="async"></div>
-        <div class="orbit"><img src="media/pack-karat.png" alt="Контейнеры «Карат»" width="900" height="900" loading="lazy" decoding="async"></div>
-        <div class="orbit"><img src="media/pack-krill.png" alt="Стакан «Антарктик криль»" width="900" height="900" loading="lazy" decoding="async"></div>
+        <div class="orbit"><picture><source type="image/avif" srcset="media/pack-feta.avif"><img src="media/pack-feta.png" alt="Контейнер Sveza «Фета нежная»" width="900" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="orbit"><picture><source type="image/avif" srcset="media/pack-karat.avif"><img src="media/pack-karat.png" alt="Контейнеры «Карат»" width="900" height="900" loading="lazy" decoding="async"></picture></div>
+        <div class="orbit"><picture><source type="image/avif" srcset="media/pack-krill.avif"><img src="media/pack-krill.png" alt="Стакан «Антарктик криль»" width="900" height="900" loading="lazy" decoding="async"></picture></div>
       </div>
       <div class="cases-row cases-fallback">
         <img src="media/cases/feta.jpg" alt="Контейнеры для сыра фета" loading="lazy" width="1400" height="1050">
@@ -258,7 +258,7 @@
       <p class="eyebrow" data-en="Quality and ecology">Качество и&nbsp;экология</p>
       <h2 data-en="Only proven materials">Только проверенные материалы</h2>
     </div>
-    <div class="q-lens" aria-hidden="true"><img class="q-lens-video" src="media/granule-cut.png" alt="" width="900" height="900" loading="lazy" decoding="async"><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
+    <div class="q-lens" aria-hidden="true"><picture><source type="image/avif" srcset="media/granule-cut.avif"><img class="q-lens-video" src="media/granule-cut.png" alt="" width="900" height="900" loading="lazy" decoding="async"></picture><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
     <div class="q-grid">
       <article>
         <h3 data-en="Virgin polymers">Первичные полимеры</h3>
@@ -386,11 +386,11 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script src="data/catalog.js?v=57"></script>
-<script src="common.js?v=57"></script>
-<script src="app.js?v=57"></script>
-<script src="geo.js?v=57"></script>
-<script src="film.js?v=57"></script>
-<script src="fx.js?v=57"></script>
+<script src="data/catalog.js?v=58"></script>
+<script src="common.js?v=58"></script>
+<script src="app.js?v=58"></script>
+<script src="geo.js?v=58"></script>
+<script src="film.js?v=58"></script>
+<script src="fx.js?v=58"></script>
 </body>
 </html>
