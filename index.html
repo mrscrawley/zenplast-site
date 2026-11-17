@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=15">
+<link rel="stylesheet" href="style.css?v=18">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -117,7 +117,7 @@
           <p class="eyebrow" data-en="04 · Path A">04 · Путь A</p>
           <h2 class="ch-title" data-en="From sheet to shape">Из листа&nbsp;— в&nbsp;форму</h2>
           <p class="ch-lead" data-en="The heated film is drawn into the mould by vacuum. That is how egg packs, trays, cups and closure lids are made.">Нагретая плёнка вакуумом втягивается в&nbsp;форму. Так получаются упаковка для яиц, лотки, стаканы и&nbsp;укупорочные крышки.</p>
-          <div class="ch-big"><b>35</b><span data-en="thermoformed items<br>in the catalogue">позиций термоформования<br>в&nbsp;каталоге</span></div>
+          <ul class="ch-facts"><li><b data-en="Lids">Крышки</b></li><li><b data-en="Trays">Лотки</b></li><li><b data-en="Cups">Стаканы</b></li><li><b data-en="Egg packs">Яйца</b></li></ul>
         </article>
         <article class="ch" data-ch="5">
           <p class="eyebrow" data-en="05 · Path B">05 · Путь B</p>
@@ -141,7 +141,7 @@
         <article class="ch" data-ch="7">
           <p class="eyebrow" data-en="07 · The whole line">07 · Вся линия</p>
           <h2 class="ch-title" data-en="From granule to shelf">От&nbsp;гранулы до&nbsp;полки</h2>
-          <p class="ch-lead" data-en="Film, thermoforming, IML moulding and large containers in one company. 71 items in the catalogue.">Плёнка, термоформование, литьё с&nbsp;IML и&nbsp;крупная тара в&nbsp;одной компании. 71&nbsp;позиция в&nbsp;каталоге.</p>
+          <p class="ch-lead" data-en="Film, thermoforming, IML moulding and large containers in one company. Over 100 items.">Плёнка, термоформование, литьё с&nbsp;IML и&nbsp;крупная тара в&nbsp;одной компании. Более 100&nbsp;позиций.</p>
           <div class="hero-actions"><a class="btn btn-solid" href="#range" data-en="Open the catalogue">Открыть каталог</a></div>
         </article>
       </div>
@@ -175,13 +175,21 @@
   <section class="cases" aria-label="Тара наших клиентов">
     <div class="sec-head">
       <p class="eyebrow" data-en="On the shelf">На&nbsp;полке</p>
-      <h2 data-en="Our clients' packaging">Тара наших клиентов</h2>
+      <h2 data-en="Packaging we are proud of">Тара, которой мы гордимся</h2>
       <p class="sec-lead" data-en="IML containers and cups made for dairy and food producers.">IML-контейнеры и&nbsp;стаканы, сделанные для молочных и&nbsp;пищевых производителей.</p>
     </div>
-    <div class="cases-row">
-      <figure><img src="media/cases/feta.jpg" alt="Контейнеры для сыра фета с IML-этикеткой" loading="lazy" width="1400" height="1050"><figcaption data-en="Feta cheese containers">Контейнеры для сыра фета</figcaption></figure>
-      <figure><img src="media/cases/karat.jpg" alt="Контейнеры для плавленого сыра с IML-этикеткой" loading="lazy" width="1400" height="1050"><figcaption data-en="Processed cheese containers">Контейнеры для плавленого сыра</figcaption></figure>
-      <figure><img src="media/cases/krill.jpg" alt="Стаканы с IML-этикеткой для продукции из криля" loading="lazy" width="1400" height="1050"><figcaption data-en="Cups for krill products">Стаканы для продукции из&nbsp;криля</figcaption></figure>
+    <div class="cases-stage">
+      <canvas id="cases3d" aria-label="3D-модели тары: контейнер Sveza, лотки «Карат», стакан «Антарктик криль»"></canvas>
+      <div class="cases-row cases-fallback">
+        <img src="media/cases/feta.jpg" alt="Контейнеры для сыра фета" loading="lazy" width="1400" height="1050">
+        <img src="media/cases/karat.jpg" alt="Контейнеры для плавленого сыра" loading="lazy" width="1400" height="1050">
+        <img src="media/cases/krill.jpg" alt="Стаканы для продукции из криля" loading="lazy" width="1400" height="1050">
+      </div>
+    </div>
+    <div class="cases-caps">
+      <p data-en="Feta cheese container">Контейнер для сыра фета</p>
+      <p data-en="Processed cheese containers">Контейнеры для плавленого сыра</p>
+      <p data-en="Cup for krill products">Стакан для продукции из&nbsp;криля</p>
     </div>
   </section>
 
@@ -221,7 +229,7 @@
       <p class="eyebrow" data-en="Quality and ecology">Качество и&nbsp;экология</p>
       <h2 data-en="Only proven materials">Только проверенные материалы</h2>
     </div>
-    <div class="q-lens" aria-hidden="true"><div class="q-lens-img"></div><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
+    <div class="q-lens" aria-hidden="true"><div class="q-lens-img"></div><canvas id="lens3d"></canvas><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
     <div class="q-grid">
       <article>
         <h3 data-en="Virgin polymers">Первичные полимеры</h3>
@@ -278,21 +286,6 @@
     <div class="geo-stage"><svg id="geo-map" role="img" aria-label="Карта поставок: маршруты из Буда-Кошелево в города Беларуси и России"></svg></div>
   </section>
 
-  <!-- 10. ВАКАНСИИ -->
-  <section class="jobs" id="jobs" aria-label="Вакансии">
-    <div class="jobs-copy">
-      <p class="eyebrow" data-en="Careers">Вакансии</p>
-      <h2 data-en="Join our team">Присоединяйтесь к&nbsp;команде</h2>
-      <p class="sec-lead" data-en="Zen Plast keeps growing and opens new positions in production and in the office.">ООО «Зен Пласт» постоянно развивается и&nbsp;открывает новые вакансии на&nbsp;производстве и&nbsp;в&nbsp;офисе.</p>
-    </div>
-    <ul class="jobs-list">
-      <li data-en="Stable salary">Стабильная заработная плата</li>
-      <li data-en="Official employment">Официальное оформление</li>
-      <li data-en="Career growth">Карьерный рост</li>
-    </ul>
-    <a class="jobs-phone" href="tel:+375293273226">+375 29 327 32 26</a>
-  </section>
-
   <!-- 11. КОНТАКТЫ И ЗАЯВКА -->
   <section class="contacts" id="contacts">
     <div class="ct-col">
@@ -317,6 +310,21 @@
     </dl>
     <p class="legal"><span data-en="Zen Plast LLC, UNP 491479496">ООО «Зен Пласт», УНП 491479496</span> · <span data-en="Site concept, not the official website">Концепт сайта, не&nbsp;официальный сайт</span> · <a href="fonts-lab.html" data-en="Font lab">Лаборатория шрифтов</a></p>
   </section>
+  <!-- 10. ВАКАНСИИ -->
+  <section class="jobs" id="jobs" aria-label="Вакансии">
+    <div class="jobs-copy">
+      <p class="eyebrow" data-en="Careers">Вакансии</p>
+      <h2 data-en="Join our team">Присоединяйтесь к&nbsp;команде</h2>
+      <p class="sec-lead" data-en="Zen Plast keeps growing and opens new positions in production and in the office.">ООО «Зен Пласт» постоянно развивается и&nbsp;открывает новые вакансии на&nbsp;производстве и&nbsp;в&nbsp;офисе.</p>
+    </div>
+    <ul class="jobs-list">
+      <li data-en="Stable salary">Стабильная заработная плата</li>
+      <li data-en="Official employment">Официальное оформление</li>
+      <li data-en="Career growth">Карьерный рост</li>
+    </ul>
+    <a class="jobs-phone" href="tel:+375293273226">+375 29 327 32 26</a>
+  </section>
+
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -325,10 +333,11 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script src="data/catalog.js?v=15"></script>
-<script src="common.js?v=15"></script>
-<script src="app.js?v=15"></script>
-<script src="geo.js?v=15"></script>
-<script type="module" src="story.js?v=15"></script>
+<script src="data/catalog.js?v=18"></script>
+<script src="common.js?v=18"></script>
+<script src="app.js?v=18"></script>
+<script src="geo.js?v=18"></script>
+<script type="module" src="showcase.js?v=18"></script>
+<script type="module" src="story.js?v=18"></script>
 </body>
 </html>

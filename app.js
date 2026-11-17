@@ -102,10 +102,10 @@
   /* ---------- ЗАХОД 3: нижние главы ---------- */
   if (!reduce) {
     // тара клиентов: выплывают с поворотом, по прокрутке слегка вращаются, за курсором наклоняются
-    gsap.utils.toArray('.cases figure img').forEach((im, k) => {
+    gsap.utils.toArray('.cases-fallback img').forEach((im, k) => {
       gsap.fromTo(im, { rotateY: (k - 1) * -28, rotateX: 10, z: -260, y: 80 }, { rotateY: (k - 1) * 6, rotateX: 0, z: 0, y: 0, ease: 'none',
         scrollTrigger: { trigger: '.cases-row', start: 'top bottom', end: 'center 45%', scrub: .8 } });
-      const fig = im.closest('figure');
+      const fig = im;
       fig.addEventListener('pointermove', e => { const r = fig.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
         gsap.to(im, { rotateY: x * 18, rotateX: -y * 14, scale: 1.04, duration: .6, ease: 'power3.out' }); });
       fig.addEventListener('pointerleave', () => gsap.to(im, { rotateY: (k - 1) * 6, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));

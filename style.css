@@ -421,3 +421,15 @@ p{margin:0}
 .geo-stage{perspective:1600px}
 #geo-map{transform-origin:50% 70%;will-change:transform}
 @media (max-width:820px){.q-tag{font-size:10px;padding:6px 10px}.q-tag::before{display:none}.q-tag.t1{left:2%}.q-tag.t2{right:2%}.q-tag.t3{left:6%}}
+
+/* 3D-модели тары и гранула под лупой */
+.cases-stage{position:relative}
+#cases3d{display:block;width:100%;height:clamp(360px,58svh,640px)}
+.cases-fallback{display:none}
+.cases.no3d #cases3d{display:none}
+.cases.no3d .cases-fallback{display:grid}
+.cases-caps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;font-size:15px;color:var(--ink-2)}
+#lens3d{position:absolute;width:min(56svh,500px);aspect-ratio:1;border-radius:50%;-webkit-mask:radial-gradient(circle,#000 56%,transparent 71%);mask:radial-gradient(circle,#000 56%,transparent 71%)}
+.q-lens.has3d .q-lens-img{display:none}
+.q-lens.no3d #lens3d{display:none}
+@media (max-width:820px){.cases-caps{font-size:13px;gap:8px}#cases3d{height:46svh}}

@@ -28,8 +28,7 @@ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 214748364
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.12;
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.enabled = false; // тени убраны по просьбе пользователя
 
   const BG = new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() || '#d5e5f2');
   const scene = new THREE.Scene();
@@ -48,7 +47,7 @@ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 214748364
 
   // мягкая тень на «полу»
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(90, 24), new THREE.ShadowMaterial({ opacity: .12 }));
-  floor.rotation.x = -Math.PI / 2; floor.position.set(15, -1.95, 0); floor.receiveShadow = true; scene.add(floor);
+  floor.rotation.x = -Math.PI / 2; floor.position.set(15, -1.95, 0); floor.visible = false;
 
   /* ---------- ГРАНУЛЫ ---------- */
   const mobile = matchMedia('(max-width: 820px)').matches;
