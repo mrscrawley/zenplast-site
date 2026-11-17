@@ -22,6 +22,7 @@
   // --- шрифт из лаборатории (п.14): ?font=a|b|c|d, запоминается
   const fonts = { a: 'Manrope', b: 'Inter Tight', c: 'Onest', d: 'Unbounded' };
   let font = qs.get('font'); if (font && fonts[font]) store.set('zp-font', font); else font = store.get('zp-font');
+  if (font === 'b') font = null;
   if (font && fonts[font]) root.dataset.font = font;
 
   // --- язык (п.15): ru по умолчанию, ?lang=en или кнопка, выбор запоминается

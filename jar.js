@@ -61,8 +61,8 @@ const fail = () => stageEl && stageEl.classList.add('no3d');
     [W * .25, W * .75].forEach(cx => {
       g.fillStyle = d.bg; g.globalAlpha = .82; g.beginPath(); g.roundRect(cx - 360, 150, 720, 380, 40); g.fill(); g.globalAlpha = 1;
       g.fillStyle = d.ink; g.textAlign = 'center';
-      g.font = '600 120px Manrope, Inter, sans-serif'; g.fillText(d[lang][0], cx, 300, 660);
-      g.font = '300 76px Manrope, Inter, sans-serif'; g.fillText(d[lang][1], cx, 400, 660);
+      g.font = '600 120px "Inter Tight", Inter, sans-serif'; g.fillText(d[lang][0], cx, 300, 660);
+      g.font = '300 76px "Inter Tight", Inter, sans-serif'; g.fillText(d[lang][1], cx, 400, 660);
       g.font = '500 40px "JetBrains Mono", monospace'; g.fillText(d.w + '  ·  IML DEMO', cx, 480);
     });
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.wrapS = THREE.RepeatWrapping;
