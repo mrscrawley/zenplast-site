@@ -96,7 +96,28 @@
     });
     // анимируем ячейку, а не сам логотип: у логотипа своя прозрачность в CSS, from() её затирал
     gsap.fromTo('.logos li', { y: 20, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .8, ease: 'power3.out', stagger: .05, clearProps: 'transform,opacity,visibility', scrollTrigger: { trigger: '.logos', start: 'top 85%' } });
-    gsap.from('.cases figure img', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: .12, scrollTrigger: { trigger: '.cases-row', start: 'top 85%' } });
+  }
+
+
+  /* ---------- ЗАХОД 3: нижние главы ---------- */
+  if (!reduce) {
+    // тара клиентов: выплывают с поворотом, по прокрутке слегка вращаются, за курсором наклоняются
+    gsap.utils.toArray('.cases figure img').forEach((im, k) => {
+      gsap.fromTo(im, { rotateY: (k - 1) * -28, rotateX: 10, z: -260, y: 80 }, { rotateY: (k - 1) * 6, rotateX: 0, z: 0, y: 0, ease: 'none',
+        scrollTrigger: { trigger: '.cases-row', start: 'top bottom', end: 'center 45%', scrub: .8 } });
+      const fig = im.closest('figure');
+      fig.addEventListener('pointermove', e => { const r = fig.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        gsap.to(im, { rotateY: x * 18, rotateX: -y * 14, scale: 1.04, duration: .6, ease: 'power3.out' }); });
+      fig.addEventListener('pointerleave', () => gsap.to(im, { rotateY: (k - 1) * 6, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));
+    });
+    // яйца: упаковки разъезжаются и вращаются по прокрутке
+    gsap.utils.toArray('.eggs .cut').forEach((c, k) => gsap.fromTo(c, { rotate: [-14, 10, -6][k], x: [-60, 80, 40][k] }, { rotate: [4, -6, 8][k], x: 0, ease: 'none',
+      scrollTrigger: { trigger: '.eggs', start: 'top bottom', end: 'bottom top', scrub: 1 } }));
+    // качество: гранула под лупой
+    gsap.fromTo('.q-lens-img', { scale: .55, rotate: -20 }, { scale: 1.25, rotate: 10, ease: 'none', scrollTrigger: { trigger: '.q-lens', start: 'top bottom', end: 'bottom 30%', scrub: 1 } });
+    gsap.utils.toArray('.q-tag').forEach((t, k) => gsap.fromTo(t, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.q-lens', start: `top+=${120 + k * 90} 70%`, toggleActions: 'play none none reverse' } }));
+    // карта: разворачивается из наклона
+    gsap.fromTo('#geo-map', { rotateX: 42, y: 60, scale: .9 }, { rotateX: 0, y: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.geo', start: 'top bottom', end: 'top 25%', scrub: 1 } });
   }
 
   addEventListener('load', () => ScrollTrigger.refresh());

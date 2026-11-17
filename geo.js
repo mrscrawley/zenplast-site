@@ -23,7 +23,13 @@
   const NS = 'http://www.w3.org/2000/svg';
   const el = (tag, attrs, parent) => { const n = document.createElementNS(NS, tag); for (const k in attrs) n.setAttribute(k, attrs[k]); (parent || svg).appendChild(n); return n; };
 
-  const gLand = el('g', { class: 'geo-land' }), gArcs = el('g', { class: 'geo-arcs' }), gDots = el('g', { class: 'geo-dots' });
+  // контуры стран растворяются к краям через SVG-маску; точки и подписи остаются чёткими
+  const defs = el('defs', {});
+  const rg = el('radialGradient', { id: 'geoFadeG', cx: '50%', cy: '50%', r: '50%' }, defs);
+  el('stop', { offset: '52%', 'stop-color': '#fff' }, rg); el('stop', { offset: '98%', 'stop-color': '#000' }, rg);
+  const mk = el('mask', { id: 'geoFade', maskUnits: 'userSpaceOnUse', x: 0, y: 0, width: W, height: H }, defs);
+  el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#geoFadeG)' }, mk);
+  const gLand = el('g', { class: 'geo-land', mask: 'url(#geoFade)' }), gArcs = el('g', { class: 'geo-arcs' }), gDots = el('g', { class: 'geo-dots' });
   const hub = proj(HUB.c);
   const arcs = [];
   function addCity(c, group) {
