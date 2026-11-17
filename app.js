@@ -128,15 +128,16 @@
         if (!quiet && now >= lockUntil && now - lockUntil < 1200) { lockUntil = now + 60; e.preventDefault(); e.stopImmediatePropagation(); return; }
         if (step(Math.sign(e.deltaY))) { e.preventDefault(); e.stopImmediatePropagation(); }
       }, { passive: false, capture: true });
-      let ty = null;
-      addEventListener('touchstart', e => { ty = inStory() ? e.touches[0].clientY : null; }, { passive: true });
+      let ty = null, used = false;
+      addEventListener('touchstart', e => { ty = inStory() ? e.touches[0].clientY : null; used = false; }, { passive: true });
       addEventListener('touchmove', e => {
         if (ty === null) return;
+        if (used) { e.preventDefault(); return; }               // остаток свайпа не листает дальше
         const dy = ty - e.touches[0].clientY;
         const dir = Math.sign(dy), edge = cur + dir < 0 || cur + dir > chs.length - 1;
         if (edge && performance.now() >= lockUntil) { ty = null; return; }
         e.preventDefault();
-        if (Math.abs(dy) > 40) { step(dir); ty = null; }
+        if (Math.abs(dy) > 40) { step(dir); used = true; }
       }, { passive: false });
       addEventListener('keydown', e => {
         if (!inStory() || e.target.closest('input,textarea')) return;
