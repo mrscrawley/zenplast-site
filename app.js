@@ -124,10 +124,11 @@
         const now = performance.now(), ab = Math.abs(e.deltaY);
         // новый жест: пауза в событиях или резкий всплеск силы (инерция только затухает)
         const fresh = now - lastWheel > 160 || ab > lastAbs * 1.5 + 8;
+        const decaying = ab < lastAbs || ab <= 4;               // инерция трекпада только затухает
         lastWheel = now; lastAbs = ab;
         const stop = () => { e.preventDefault(); e.stopImmediatePropagation(); };
         if (now < lockUntil) return stop();                      // идёт переход
-        if (!fresh && now - lockUntil < 450) return stop();     // короткий хвост инерции, не дольше 0,45 с
+        if (!fresh && decaying && now - lockUntil < 2000) return stop(); // хвост инерции; ровная прокрутка колесом не гасится
         if (step(Math.sign(e.deltaY))) stop();
       }, { passive: false, capture: true });
       let ty = null, used = false;
