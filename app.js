@@ -107,9 +107,43 @@
     gsap.set(chs, { autoAlpha: 0 }); setCh(0);
     // каждый жест прокрутки доводит до следующей главы
     const st = ScrollTrigger.create({ trigger: storyEl, start: 'top top', end: 'bottom bottom',
-      snap: reduce ? false : { snapTo: navAt, directional: true, delay: .04, duration: { min: .45, max: .9 }, ease: 'power2.inOut' },
       onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < chs.length - 1 && p >= bounds[i + 1]) i++; setCh(i); } });
     ZP.storyP = 0;
+    // внутри истории один жест = одна глава; инерция трекпада гасится, пока идёт переход
+    const goCh = k => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { duration: 1, easing: t => 1 - Math.pow(1 - t, 3) }) : scrollTo({ top: y, behavior: 'smooth' }); };
+    let lockUntil = 0, lastWheel = 0;
+    const inStory = () => scrollY >= st.start - 4 && scrollY <= st.end + 4;
+    const step = dir => {
+      const now = performance.now();
+      if (now < lockUntil) return true;                       // ещё листаем — гасим
+      const next = cur + dir;
+      if (next < 0 || next > chs.length - 1) return false;    // край истории — отпускаем прокрутку дальше
+      lockUntil = now + 1100; goCh(next); return true;
+    };
+    if (!reduce) {
+      addEventListener('wheel', e => {
+        if (!inStory() || Math.abs(e.deltaY) < 2) return;
+        const now = performance.now(), quiet = now - lastWheel > 220; lastWheel = now;
+        // хвост инерции после перехода тоже гасим, пока жест не закончится
+        if (!quiet && now >= lockUntil && now - lockUntil < 1200) { lockUntil = now + 60; e.preventDefault(); e.stopImmediatePropagation(); return; }
+        if (step(Math.sign(e.deltaY))) { e.preventDefault(); e.stopImmediatePropagation(); }
+      }, { passive: false, capture: true });
+      let ty = null;
+      addEventListener('touchstart', e => { ty = inStory() ? e.touches[0].clientY : null; }, { passive: true });
+      addEventListener('touchmove', e => {
+        if (ty === null) return;
+        const dy = ty - e.touches[0].clientY;
+        const dir = Math.sign(dy), edge = cur + dir < 0 || cur + dir > chs.length - 1;
+        if (edge && performance.now() >= lockUntil) { ty = null; return; }
+        e.preventDefault();
+        if (Math.abs(dy) > 40) { step(dir); ty = null; }
+      }, { passive: false });
+      addEventListener('keydown', e => {
+        if (!inStory() || e.target.closest('input,textarea')) return;
+        const dir = ['ArrowDown', 'PageDown', ' '].includes(e.key) ? 1 : ['ArrowUp', 'PageUp'].includes(e.key) ? -1 : 0;
+        if (dir && step(dir)) e.preventDefault();
+      });
+    }
     navs.forEach((b, k) => b.addEventListener('click', () => {
       const y = st.start + (st.end - st.start) * navAt[k];
       ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' });
