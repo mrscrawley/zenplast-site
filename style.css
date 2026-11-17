@@ -409,17 +409,17 @@ p{margin:0}
 
 /* ЗАХОД 3: нижние главы */
 .cases-row{perspective:1400px}
-.cases img{transform-origin:50% 60%;will-change:transform}
+.cases img{transform-origin:50% 60%}
 .quality{position:relative;overflow:hidden}
 .q-lens{position:relative;height:min(62svh,560px);margin:0 auto 6svh;display:grid;place-items:center}
-.q-lens-img{width:min(54svh,480px);aspect-ratio:1;border-radius:50%;background:url(media/granules.jpg) 62% 50%/cover;-webkit-mask:radial-gradient(circle,#000 54%,transparent 71%);mask:radial-gradient(circle,#000 54%,transparent 71%);will-change:transform}
+.q-lens-img{width:min(54svh,480px);aspect-ratio:1;border-radius:50%;background:url(media/granules.jpg) 62% 50%/cover;-webkit-mask:radial-gradient(circle,#000 54%,transparent 71%);mask:radial-gradient(circle,#000 54%,transparent 71%)}
 .q-tag{position:absolute;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-2);background:var(--glass);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
 .q-tag::before{content:"";position:absolute;width:44px;height:1px;background:var(--blue);top:50%}
 .q-tag.t1{left:12%;top:24%}.q-tag.t1::before{left:100%}
 .q-tag.t2{right:16%;top:44%}.q-tag.t2::before{right:100%}
 .q-tag.t3{left:18%;bottom:16%}.q-tag.t3::before{left:100%}
 .geo-stage{perspective:1600px}
-#geo-map{transform-origin:50% 70%;will-change:transform}
+#geo-map{transform-origin:50% 70%}
 @media (max-width:820px){.q-tag{font-size:10px;padding:6px 10px}.q-tag::before{display:none}.q-tag.t1{left:2%}.q-tag.t2{right:2%}.q-tag.t3{left:6%}}
 
 /* 3D-модели тары и гранула под лупой */
@@ -435,7 +435,7 @@ p{margin:0}
 @media (max-width:820px){.cases-caps{font-size:13px;gap:8px}#cases3d{height:46svh}}
 
 /* Фильм истории и ролики Higgsfield по прокрутке */
-#storyidle,#storyfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;will-change:transform}
+#storyfilm{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%}
 .orbits{display:grid;grid-template-columns:repeat(3,1fr);gap:2vw}
 .orbit{aspect-ratio:1;padding:8%;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%),linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent 0,#000 10%,#000 90%,transparent 100%),linear-gradient(180deg,transparent 0,#000 10%,#000 90%,transparent 100%);mask-composite:intersect}
 /* видео меньше плитки: растворяется только поле вокруг, изделие не задето */
@@ -447,5 +447,3 @@ p{margin:0}
 
 .q-lens-video{width:min(60svh,540px);aspect-ratio:1;object-fit:contain;display:block}
 
-#storyidle{z-index:2;transition:opacity .5s}
-.story.is-moving #storyidle{opacity:0;pointer-events:none}
