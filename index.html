@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=23">
+<link rel="stylesheet" href="style.css?v=24">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -117,7 +117,7 @@
           <p class="eyebrow" data-en="04 · Path A">04 · Путь A</p>
           <h2 class="ch-title" data-en="From sheet to shape">Из листа&nbsp;— в&nbsp;форму</h2>
           <p class="ch-lead" data-en="The heated film is drawn into the mould by vacuum. That is how egg packs, trays, cups and closure lids are made.">Нагретая плёнка вакуумом втягивается в&nbsp;форму. Так получаются упаковка для яиц, лотки, стаканы и&nbsp;укупорочные крышки.</p>
-          <ul class="ch-facts"><li><b data-en="Lids">Крышки</b></li><li><b data-en="Trays">Лотки</b></li><li><b data-en="Cups">Стаканы</b></li><li><b data-en="Egg packs">Яйца</b></li></ul>
+          <ul class="ch-facts"><li><b data-en="Lids">Крышки</b></li><li><b data-en="Trays">Лотки</b></li><li><b data-en="Cups">Стаканы</b></li></ul>
         </article>
         <article class="ch" data-ch="5">
           <p class="eyebrow" data-en="05 · Path B">05 · Путь B</p>
@@ -146,6 +146,7 @@
         </article>
       </div>
       <div class="story-stage">
+        <video id="storyidle" src="media/idle.mp4" muted playsinline preload="auto" aria-hidden="true"></video>
         <video id="storyfilm" src="media/film.mp4" poster="media/film-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
         <div class="story-fallback" aria-hidden="true">
           <img src="media/granules.jpg" alt="" data-ch="0">
@@ -229,7 +230,7 @@
       <p class="eyebrow" data-en="Quality and ecology">Качество и&nbsp;экология</p>
       <h2 data-en="Only proven materials">Только проверенные материалы</h2>
     </div>
-    <div class="q-lens" aria-hidden="true"><div class="q-lens-img"></div><canvas id="lens3d"></canvas><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
+    <div class="q-lens" aria-hidden="true"><video class="q-lens-video" data-scrub="lens" src="media/lens.mp4" poster="media/lens.jpg" muted playsinline preload="auto"></video><span class="q-tag t1" data-en="virgin polymer">первичный полимер</span><span class="q-tag t2">ГОСТ</span><span class="q-tag t3" data-en="control at every stage">контроль на&nbsp;каждом этапе</span></div>
     <div class="q-grid">
       <article>
         <h3 data-en="Virgin polymers">Первичные полимеры</h3>
@@ -333,11 +334,10 @@
 <script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
-<script src="data/catalog.js?v=23"></script>
-<script src="common.js?v=23"></script>
-<script src="app.js?v=23"></script>
-<script src="geo.js?v=23"></script>
-<script type="module" src="showcase.js?v=23"></script>
-<script src="film.js?v=23"></script>
+<script src="data/catalog.js?v=24"></script>
+<script src="common.js?v=24"></script>
+<script src="app.js?v=24"></script>
+<script src="geo.js?v=24"></script>
+<script src="film.js?v=24"></script>
 </body>
 </html>

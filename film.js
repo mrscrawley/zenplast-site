@@ -41,6 +41,22 @@
     const toT = P => { for (let i = 1; i < map.length; i++) if (P <= map[i][0]) { const [p0, k0] = map[i - 1], [p1, k1] = map[i]; return (k0 + (k1 - k0) * ((P - p0) / ((p1 - p0) || 1))) / 7; } return 1; };
     scrubber(film, () => toT(clamp(ZP.storyP || 0)), { parallax: film.parentElement });
     story.classList.add('has3d', 'is-film');
+    // первый экран: кадр стоит, курсор слегка двигает гранулы (короткий ролик дрейфа с тем же первым кадром)
+    const idle = document.getElementById('storyidle');
+    if (idle) {
+      const host = idle.parentElement; let tx = 0, x = 0, dur = 0;
+      idle.addEventListener('loadedmetadata', () => dur = idle.duration); if (idle.readyState >= 1) dur = idle.duration;
+      host.addEventListener('pointermove', e => { const r = host.getBoundingClientRect(); tx = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)); });
+      host.addEventListener('pointerleave', () => tx = 0);
+      const loop = () => {
+        const moving = (ZP.storyP || 0) > .012;
+        story.classList.toggle('is-moving', moving);
+        x += (tx - x) * .06;
+        if (!moving && dur && !idle.seeking && Math.abs(idle.currentTime - x * dur * .6) > .03) idle.currentTime = x * dur * .6;
+        requestAnimationFrame(loop);
+      };
+      requestAnimationFrame(loop);
+    }
   }
 
   // --- малые ролики: прогресс = положение секции на экране (+ курсор для облёта тары)
@@ -50,6 +66,7 @@
     scrubber(v, ptr => {
       const r = sec.getBoundingClientRect(), h = innerHeight;
       const p = clamp((h - r.top) / (h + r.height * .4));
+      if (mode === 'lens') return clamp((p - .1) / .8);
       return mode === 'orbit' ? clamp(p * 1.1 - .05 + ptr.tx * .5) : clamp((p - .42) / .38); // яйца ложатся, когда блок уже в центре экрана
     }, mode === 'orbit' ? { parallax: v.parentElement } : {});
   });
