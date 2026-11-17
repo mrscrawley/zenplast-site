@@ -25,7 +25,7 @@
   };
   const norm = s => String(s).toLowerCase().replace(/ё/g, 'е').replace(/\s+/g, ' ');
   function renderTabs() {
-    tabs.innerHTML = C.map((g, k) => `<button role="tab" type="button" data-g="${g.id}" aria-selected="${!query && g.id === curG}"><span class="n">${pad(k + 1)}</span><span class="t">${ZP.esc(ZP.t(g.ru, g.en))}</span><i>${count(g)}</i></button>`).join('');
+    tabs.innerHTML = C.map((g, k) => `<button role="tab" type="button" data-g="${g.id}" aria-selected="${!query && g.id === curG}"><span class="t">${ZP.esc(ZP.t(g.ru, g.en))}</span><i>${count(g)}</i></button>`).join('');
     const g = C.find(x => x.id === curG);
     const subs = g.subs.filter(s => s.items.length);
     chips.innerHTML = !query && subs.length > 1 ? [`<button type="button" data-s="all" aria-pressed="${curS === 'all'}">${ZP.t('Все', 'All')}</button>`]
@@ -50,7 +50,7 @@
       const sp = keySpecs(it).map(([key, v]) => `<span><em>${ZP.esc(ZP.tr(key))}</em>${ZP.esc(ZP.tr(v))}</span>`).join('');
       const alt = it.imgs[1] ? `<img class="alt" src="${it.imgs[1]}" alt="" loading="lazy" decoding="async">` : '';
       const img = it.imgs[0] ? `<img class="${alt ? 'has-alt' : ''}" src="${it.imgs[0]}" alt="${ZP.esc(it.title)}" loading="lazy" decoding="async">` : '';
-      return `<a class="card" href="product.html?p=${encodeURIComponent(it.slug)}"><div class="card-img"><span class="card-n">${pad(k + 1)}</span>${img}${alt}<span class="card-go"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span></div><div class="card-body"><h3>${ZP.esc(ZP.tr(it.title))}</h3><div class="card-specs">${sp}</div></div></a>`;
+      return `<a class="card" href="product.html?p=${encodeURIComponent(it.slug)}"><div class="card-img">${img}${alt}<span class="card-go"><svg viewBox="0 0 16 16"><path d="M4 12L12 4M5.5 4H12v6.5"/></svg></span></div><div class="card-body"><h3>${ZP.esc(ZP.tr(it.title))}</h3><div class="card-specs">${sp}</div></div></a>`;
     }).join('') : `<p class="range-empty">${ZP.t('Ничего не нашли. Попробуйте другое слово или напишите нам — подберём.', 'Nothing found. Try another word or write to us.')}</p>`;
     if (hasGsap && !reduce && animate) {
       gsap.fromTo(grid.querySelectorAll('.card'), { y: 40, opacity: 0, clipPath: 'inset(12% 0 0 0 round 26px)' }, { y: 0, opacity: 1, clipPath: 'inset(0% 0 0 0 round 26px)', duration: .8, ease: 'power3.out', stagger: .035, clearProps: 'all' });
