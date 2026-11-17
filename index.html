@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Inter+Tight:wght@200;300;400;500;600&family=Onest:wght@200;300;400;500;600&family=Unbounded:wght@300;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=9">
 <script type="importmap">
 { "imports": {
   "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
@@ -53,6 +53,7 @@
     <a href="#range" data-en="Products">Продукция</a>
     <a href="#eggs" data-en="Egg packaging">Упаковка для яиц</a>
     <a href="#quality" data-en="Quality">Качество</a>
+    <a href="#geo" data-en="Geography">География</a>
     <a href="#jobs" data-en="Careers">Вакансии</a>
     <a href="#contacts" data-en="Contacts">Контакты</a>
   </nav>
@@ -200,9 +201,9 @@
       <p class="sec-lead" data-en="IML containers and cups made for dairy and food producers.">IML-контейнеры и&nbsp;стаканы, сделанные для молочных и&nbsp;пищевых производителей.</p>
     </div>
     <div class="cases-row">
-      <figure><img src="media/prod/prod-1.jpg" alt="Контейнеры для сыра фета с IML-этикеткой" loading="lazy" width="376" height="264"><figcaption data-en="Feta cheese containers">Контейнеры для сыра фета</figcaption></figure>
-      <figure><img src="media/prod/prod-2.jpg" alt="Контейнеры для плавленого сыра с IML-этикеткой" loading="lazy" width="386" height="272"><figcaption data-en="Processed cheese containers">Контейнеры для плавленого сыра</figcaption></figure>
-      <figure><img src="media/prod/prod-3.jpg" alt="Стаканы с IML-этикеткой для продукции из криля" loading="lazy" width="376" height="264"><figcaption data-en="Cups for krill products">Стаканы для продукции из&nbsp;криля</figcaption></figure>
+      <figure><img src="media/cases/feta.jpg" alt="Контейнеры для сыра фета с IML-этикеткой" loading="lazy" width="1400" height="1050"><figcaption data-en="Feta cheese containers">Контейнеры для сыра фета</figcaption></figure>
+      <figure><img src="media/cases/karat.jpg" alt="Контейнеры для плавленого сыра с IML-этикеткой" loading="lazy" width="1400" height="1050"><figcaption data-en="Processed cheese containers">Контейнеры для плавленого сыра</figcaption></figure>
+      <figure><img src="media/cases/krill.jpg" alt="Стаканы с IML-этикеткой для продукции из криля" loading="lazy" width="1400" height="1050"><figcaption data-en="Cups for krill products">Стаканы для продукции из&nbsp;криля</figcaption></figure>
     </div>
   </section>
 
@@ -284,6 +285,20 @@
     </ul>
   </section>
 
+  <!-- 9b. ГЕОГРАФИЯ ПОСТАВОК (со старого сайта) -->
+  <section class="geo" id="geo" aria-label="География поставок">
+    <div class="geo-copy">
+      <p class="eyebrow" data-en="Supply geography">География поставок</p>
+      <h2 data-en="From Buda-Kashalyova to the Urals">Из Буда‑Кошелево до&nbsp;Урала</h2>
+      <div class="geo-stats">
+        <div><b>7</b><span data-en="cities in Belarus">городов Беларуси</span></div>
+        <div><b>9</b><span data-en="cities in Russia">городов России</span></div>
+      </div>
+      <p class="sec-lead" data-en="Minsk, Grodno, Brest, Vitebsk, Mogilev, Gomel, Kalinkavichy — and further to Pskov, Moscow, Bryansk, Kursk, Lipetsk, Samara, Chelyabinsk and Shadrinsk.">Минск, Гродно, Брест, Витебск, Могилёв, Гомель, Калинковичи&nbsp;— и&nbsp;дальше в&nbsp;Псков, Москву, Брянск, Курск, Липецк, Самару, Челябинск и&nbsp;Шадринск.</p>
+    </div>
+    <div class="geo-stage"><svg id="geo-map" role="img" aria-label="Карта поставок: маршруты из Буда-Кошелево в города Беларуси и России"></svg></div>
+  </section>
+
   <!-- 10. ВАКАНСИИ -->
   <section class="jobs" id="jobs" aria-label="Вакансии">
     <div class="jobs-copy">
@@ -328,9 +343,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="data/catalog.js?v=8"></script>
-<script src="common.js?v=8"></script>
-<script src="app.js?v=8"></script>
-<script type="module" src="jar.js?v=8"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-array@3.2.4/dist/d3-array.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-geo@3.1.1/dist/d3-geo.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="data/catalog.js?v=9"></script>
+<script src="common.js?v=9"></script>
+<script src="app.js?v=9"></script>
+<script src="geo.js?v=9"></script>
+<script type="module" src="jar.js?v=9"></script>
 </body>
 </html>

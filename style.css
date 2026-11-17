@@ -165,7 +165,7 @@ p{margin:0}
 .cases{padding:14svh var(--pad) 10svh;background:var(--bg)}
 .cases-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .cases figure{margin:0;display:flex;flex-direction:column;gap:12px}
-.cases img{width:100%;aspect-ratio:376/264;object-fit:cover;border-radius:18px}
+.cases img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:22px}
 .cases figcaption{font-size:15px;color:var(--ink-2)}
 
 /* КАТАЛОГ (п.1) */
@@ -212,6 +212,29 @@ p{margin:0}
 .logos li{aspect-ratio:3/2;min-width:0;background:var(--bg-2);border-radius:18px;padding:9% 12%}
 .logos img{width:100%;height:100%;object-fit:contain;filter:grayscale(1) contrast(.9);opacity:.75;transition:filter .3s,opacity .3s}
 .logos li:hover img{filter:none;opacity:1}
+
+/* ГЕОГРАФИЯ ПОСТАВОК */
+.geo{display:grid;grid-template-columns:minmax(280px,30%) 1fr;align-items:center;gap:4vw;padding:12svh var(--pad);background:linear-gradient(180deg,var(--bg) 0%,var(--bg-2) 100%);overflow:hidden}
+.geo-copy{display:flex;flex-direction:column;gap:18px}
+.geo h2{font-size:clamp(34px,calc(var(--u)*4.6),68px);line-height:1;font-weight:var(--dw)}
+.geo-stats{display:flex;gap:36px}
+.geo-stats b{display:block;font-family:var(--display);font-size:clamp(48px,calc(var(--u)*6),88px);font-weight:var(--dw);letter-spacing:-.05em;line-height:1;color:var(--blue)}
+.geo-stats span{font-size:14px;color:var(--ink-2)}
+.geo-stage{position:relative;min-width:0}
+#geo-map{width:100%;height:auto;max-height:76svh;display:block;overflow:hidden;-webkit-mask-image:radial-gradient(72% 68% at 52% 52%,#000 58%,transparent 100%);mask-image:radial-gradient(72% 68% at 52% 52%,#000 58%,transparent 100%)}
+.geo-city text,.geo-hub text{paint-order:stroke;stroke:var(--bg-2);stroke-width:4px;stroke-linejoin:round}
+.geo-country{fill:#e4ecf3;stroke:#fff;stroke-width:1}
+.geo-country.is-by,.geo-country.is-ru{fill:#d3e2f1}
+.geo-arc{fill:none;stroke:var(--blue);stroke-width:2.2;opacity:.55;stroke-linecap:round}
+.geo-arc.geo-ru{stroke-dasharray:none}
+.geo-city circle{fill:var(--blue);opacity:.25;transition:opacity .4s}
+.geo-city text{font:500 21px var(--body);fill:var(--ink);opacity:0;transition:opacity .4s}
+.geo-city.is-on circle{opacity:1}
+.geo-city.is-on text{opacity:1}
+.geo-hub circle{fill:var(--blue)}
+.geo-hub .pulse{fill:var(--blue);opacity:.18;transform-origin:center;transform-box:fill-box;animation:geoPulse 2.4s ease-out infinite}
+.geo-hub text{font:600 25px var(--body);fill:var(--blue-2)}
+@keyframes geoPulse{0%{transform:scale(.5);opacity:.35}100%{transform:scale(2.2);opacity:0}}
 
 /* ВАКАНСИИ (п.8) */
 .jobs{display:grid;grid-template-columns:1.2fr 1fr auto;align-items:end;gap:4vw;padding:12svh var(--pad);background:linear-gradient(180deg,var(--bg) 0%,var(--blue-soft) 100%)}
@@ -306,6 +329,9 @@ p{margin:0}
   .q-grid{grid-template-columns:1fr}
   .logos{grid-template-columns:repeat(3,1fr);gap:10px}
   .jobs{grid-template-columns:1fr}
+  .geo{grid-template-columns:1fr}
+  .geo-city text{font-size:30px}
+  .geo-hub text{font-size:34px}
   .contacts{grid-template-columns:1fr}
   .ct-list{grid-template-columns:1fr;padding-top:0}
   .pd{grid-template-columns:1fr}
@@ -316,5 +342,6 @@ p{margin:0}
 .is-lite .hero-media{background:url(media/hero.jpg) 88% 50%/cover}
 .is-lite .facts-bg{background:url(media/granules.jpg) center/cover}
 @media (prefers-reduced-motion:reduce){
+  .geo-hub .pulse{animation:none}
   .step,.iml-list li,.iml-list p{transition:none}
 }
