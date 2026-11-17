@@ -111,22 +111,24 @@
     ZP.storyP = 0;
     // внутри истории один жест = одна глава; инерция трекпада гасится, пока идёт переход
     const goCh = k => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { duration: 1, easing: t => 1 - Math.pow(1 - t, 3) }) : scrollTo({ top: y, behavior: 'smooth' }); };
-    let lockUntil = 0, lastWheel = 0;
+    let lockUntil = 0, lastWheel = 0, lastAbs = 0;
     const inStory = () => scrollY >= st.start - 4 && scrollY <= st.end + 4;
     const step = dir => {
-      const now = performance.now();
-      if (now < lockUntil) return true;                       // ещё листаем — гасим
       const next = cur + dir;
       if (next < 0 || next > chs.length - 1) return false;    // край истории — отпускаем прокрутку дальше
-      lockUntil = now + 1100; goCh(next); return true;
+      lockUntil = performance.now() + 950; goCh(next); return true;
     };
     if (!reduce) {
       addEventListener('wheel', e => {
-        if (!inStory() || Math.abs(e.deltaY) < 2) return;
-        const now = performance.now(), quiet = now - lastWheel > 220; lastWheel = now;
-        // хвост инерции после перехода тоже гасим, пока жест не закончится
-        if (!quiet && now >= lockUntil && now - lockUntil < 1200) { lockUntil = now + 60; e.preventDefault(); e.stopImmediatePropagation(); return; }
-        if (step(Math.sign(e.deltaY))) { e.preventDefault(); e.stopImmediatePropagation(); }
+        if (!inStory() || Math.abs(e.deltaY) < 1) return;
+        const now = performance.now(), ab = Math.abs(e.deltaY);
+        // новый жест: пауза в событиях или резкий всплеск силы (инерция только затухает)
+        const fresh = now - lastWheel > 160 || ab > lastAbs * 1.5 + 8;
+        lastWheel = now; lastAbs = ab;
+        const stop = () => { e.preventDefault(); e.stopImmediatePropagation(); };
+        if (now < lockUntil) return stop();                      // идёт переход
+        if (!fresh && now - lockUntil < 450) return stop();     // короткий хвост инерции, не дольше 0,45 с
+        if (step(Math.sign(e.deltaY))) stop();
       }, { passive: false, capture: true });
       let ty = null, used = false;
       addEventListener('touchstart', e => { ty = inStory() ? e.touches[0].clientY : null; used = false; }, { passive: true });
@@ -137,12 +139,12 @@
         const dir = Math.sign(dy), edge = cur + dir < 0 || cur + dir > chs.length - 1;
         if (edge && performance.now() >= lockUntil) { ty = null; return; }
         e.preventDefault();
-        if (Math.abs(dy) > 40) { step(dir); used = true; }
+        if (Math.abs(dy) > 40) { if (performance.now() >= lockUntil) step(dir); used = true; }
       }, { passive: false });
       addEventListener('keydown', e => {
         if (!inStory() || e.target.closest('input,textarea')) return;
         const dir = ['ArrowDown', 'PageDown', ' '].includes(e.key) ? 1 : ['ArrowUp', 'PageUp'].includes(e.key) ? -1 : 0;
-        if (dir && step(dir)) e.preventDefault();
+        if (dir && (performance.now() < lockUntil || step(dir))) e.preventDefault();
       });
     }
     navs.forEach((b, k) => b.addEventListener('click', () => {

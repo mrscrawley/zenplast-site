@@ -37,8 +37,9 @@
     [film, rev].forEach(v => { if (!v) return; v.muted = true; v.playsInline = true; const w = () => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); }; w(); addEventListener('touchstart', w, { once: true, passive: true }); });
     const meta = () => { dur = film.duration || 0; seg = dur / K; };
     film.addEventListener('loadedmetadata', meta); if (film.readyState >= 1) meta();
-    const seek = (v, t) => new Promise(r => { if (Math.abs(v.currentTime - t) < .01) return r(); v.addEventListener('seeked', r, { once: true }); v.currentTime = t; });
-    const until = (v, test) => new Promise(r => { const f = () => test() ? r() : requestAnimationFrame(f); requestAnimationFrame(f); });
+    const seek = (v, t) => new Promise(r => { if (Math.abs(v.currentTime - t) < .01) return r(); const done = () => { clearTimeout(to); r(); }; const to = setTimeout(done, 1500); v.addEventListener('seeked', done, { once: true }); v.currentTime = t; });
+    // ждём кадр-цель, но не дольше лимита: если видео не пошло, переход завершится мгновенно
+    const until = (v, test, ms) => new Promise(r => { const t0 = performance.now(); const f = () => (test() || performance.now() - t0 > ms) ? r() : requestAnimationFrame(f); requestAnimationFrame(f); });
     async function run() {
       if (busy || !seg) return; busy = true;
       while (tgtK !== curK) {
@@ -49,12 +50,12 @@
           if (k < curK) { await seek(film, k * seg); curK = k; break; }
           film.playbackRate = rate; story.classList.remove('is-rev');
           film.play().catch(() => {});
-          await until(film, () => film.currentTime >= k * seg - .03 || film.ended);
+          await until(film, () => film.currentTime >= k * seg - .03 || film.ended, seg / rate * 1000 + 1500);
           film.pause(); await seek(film, k * seg);
         } else {
           await seek(rev, dur - curK * seg);
           story.classList.add('is-rev'); rev.playbackRate = rate; rev.play().catch(() => {});
-          await until(rev, () => rev.currentTime >= dur - k * seg - .03 || rev.ended);
+          await until(rev, () => rev.currentTime >= dur - k * seg - .03 || rev.ended, seg / rate * 1000 + 1500);
           rev.pause(); await seek(film, k * seg); story.classList.remove('is-rev');
         }
         curK = k;
