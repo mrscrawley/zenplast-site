@@ -115,6 +115,7 @@
       chs[i].classList.add('is-on');
       gsap.fromTo(chs[i], { autoAlpha: 0, y: 34 }, { autoAlpha: 1, y: 0, duration: .8, delay: prev ? .25 : 0, ease: 'power3.out', overwrite: true });
       if (!reduce) gsap.fromTo(chs[i].children, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: .9, stagger: .07, delay: prev ? .3 : .1, ease: 'power3.out', clearProps: 'transform,opacity' });
+      ZP.revealLines && ZP.revealLines(chs[i], prev ? .32 : .15);
       navs.forEach((b, k) => b.classList.toggle('is-on', k === i));
       ZP.filmGo && ZP.filmGo(i);
       fbs.forEach(im => im.classList.toggle('is-on', +im.dataset.ch === i));

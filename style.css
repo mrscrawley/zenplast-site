@@ -537,3 +537,7 @@ p{margin:0}
   .pd-info h1{font-size:26pt;margin:2mm 0 6mm}
   .pd-specs div{padding:2.6mm 0;font-size:11pt}
 }
+
+/* --- заголовки по строкам из-под маски --- */
+.lm{display:block;overflow:hidden;padding-bottom:.1em;margin-bottom:-.1em}
+.lmi{display:inline-block;will-change:transform}
