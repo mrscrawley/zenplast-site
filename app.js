@@ -62,7 +62,7 @@
   if (storyEl) {
     const chs = [...storyEl.querySelectorAll('.ch')], navs = [...storyEl.querySelectorAll('.story-nav button')];
     const fbs = [...storyEl.querySelectorAll('.story-fallback img')];
-    const bounds = [0, .09, .22, .34, .5, .655, .81, .93, 1.01];
+    const bounds = [0, .09, .18, .30, .44, .66, .81, .94, 1.01];
     let cur = -1;
     const counter = storyEl.querySelector('[data-count]'); const cnt = { v: 0 }; let counted = false;
     function setCh(i) {
