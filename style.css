@@ -646,3 +646,11 @@ p{margin:0}
   .q-tag:hover .q-tip,.q-tag:focus-visible .q-tip{max-height:120px;opacity:1;margin-top:8px;width:240px}
   .q-tag:hover .q-tag-t::after,.q-tag:focus-visible .q-tag-t::after{content:"−"}
 }
+
+/* --- телефон: выбор языка в шапке рядом с меню --- */
+@media (max-width:820px){
+  .hdr .lang{display:flex;margin-left:auto}
+  .hdr .lang button{padding:6px 8px;font-size:11.5px}
+  .hdr .burger{margin-left:10px}
+  .mmenu-lang{display:none}
+}
