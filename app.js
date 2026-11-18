@@ -262,7 +262,8 @@
   }
 
   /* ---------- пилюли «Качества»: на телефоне раскрываются по нажатию ---------- */
-  document.querySelectorAll('.q-tag').forEach(t => t.addEventListener('click', () => {
+  const mouse = matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (!mouse) document.querySelectorAll('.q-tag').forEach(t => t.addEventListener('click', () => {
     const open = !t.classList.contains('is-open');
     document.querySelectorAll('.q-tag.is-open').forEach(x => { x.classList.remove('is-open'); x.setAttribute('aria-expanded', 'false'); });
     if (open) { t.classList.add('is-open'); t.setAttribute('aria-expanded', 'true'); }
