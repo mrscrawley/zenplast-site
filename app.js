@@ -61,7 +61,7 @@
   const toTop = () => { const r = document.getElementById('range'); if (r && r.getBoundingClientRect().top < -40) { const y = r.getBoundingClientRect().top + scrollY - 20; ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' }); } };
   function openGroup(id, sub = 'all') { curG = id; curS = sub; query = ''; if (q) q.value = ''; renderTabs(); renderGrid(); }
   if (tabs) {
-    tabs.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { openGroup(b.dataset.g); toTop(); } });
+    tabs.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { openGroup(b.dataset.g); } });
     chips.addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (b) { curS = b.dataset.s; renderTabs(); renderGrid(); } });
     document.querySelectorAll('[data-open-group]').forEach(a => a.addEventListener('click', () => openGroup(a.dataset.openGroup)));
     let qt; if (q) q.addEventListener('input', () => { clearTimeout(qt); qt = setTimeout(() => { query = q.value.trim(); renderTabs(); renderGrid(); }, 180); });
