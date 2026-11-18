@@ -608,3 +608,4 @@ p{margin:0}
 .q-cluster{position:relative;width:min(56svh,500px);aspect-ratio:1}
 .q-lens .q-gr{display:block;position:absolute;will-change:transform}
 .q-gr img{display:block;width:100%;height:auto;will-change:transform}
+.foot-credit{color:var(--ink)}
