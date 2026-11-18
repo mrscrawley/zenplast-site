@@ -128,6 +128,17 @@
     ZP.storyP = 0;
     // внутри истории один жест = одна глава; инерция трекпада гасится, пока идёт переход
     const goCh = k => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { duration: 1, easing: t => 1 - Math.pow(1 - t, 3) }) : scrollTo({ top: y, behavior: 'smooth' }); };
+    // ссылки меню на главы истории (#iml, #path…) ведут ровно на свою главу
+    const CH = { '#top': 0, '#about': 1, '#path': 2, '#film': 3, '#iml': 5, '#crates': 6 };
+    document.addEventListener('click', e => {
+      const l = e.target.closest('a[href]'); if (!l) return;
+      const href = l.getAttribute('href'), hash = href.slice(href.indexOf('#'));
+      if (!(hash in CH) || (href[0] !== '#' && !/^index\.html#/.test(href))) return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      goCh(CH[hash]); history.replaceState(null, '', hash);
+      ZP.closeMenu && ZP.closeMenu();
+    }, true);
+    if (location.hash in CH) { const k = CH[location.hash]; requestAnimationFrame(() => setTimeout(() => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y); }, 60)); }
     let lockUntil = 0, lastWheel = 0, lastAbs = 0;
     const inStory = () => scrollY >= st.start - 4 && scrollY <= st.end + 4;
     const step = dir => {

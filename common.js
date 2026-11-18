@@ -93,6 +93,7 @@
 
   // --- мобильное меню (п.16)
   const burger = document.querySelector('.burger'), menu = document.getElementById('mmenu');
+  ZP.closeMenu = () => closeMenu();
   function closeMenu() { if (!menu) return; menu.hidden = true; burger.setAttribute('aria-expanded', 'false'); root.classList.remove('menu-open'); }
   if (burger && menu) {
     burger.addEventListener('click', () => {
