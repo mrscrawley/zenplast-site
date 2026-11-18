@@ -135,10 +135,14 @@
       const href = l.getAttribute('href'), hash = href.slice(href.indexOf('#'));
       if (!(hash in CH) || (href[0] !== '#' && !/^index\.html#/.test(href))) return;
       e.preventDefault(); e.stopImmediatePropagation();
-      goCh(CH[hash]); history.replaceState(null, '', hash);
+      // сразу на главу: без прокрутки и без проигрывания фильма
+      const k = CH[hash], y = st.start + (st.end - st.start) * navAt[k];
+      ZP.filmJump && ZP.filmJump(k);
+      ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y);
+      lockUntil = performance.now() + 400; history.replaceState(null, '', hash);
       ZP.closeMenu && ZP.closeMenu();
     }, true);
-    if (location.hash in CH) { const k = CH[location.hash]; requestAnimationFrame(() => setTimeout(() => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y); }, 60)); }
+    if (location.hash in CH) { const k = CH[location.hash]; requestAnimationFrame(() => setTimeout(() => { ZP.filmJump && ZP.filmJump(k); const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y); }, 60)); }
     let lockUntil = 0, lastWheel = 0, lastAbs = 0;
     const inStory = () => scrollY >= st.start - 4 && scrollY <= st.end + 4;
     const step = dir => {
