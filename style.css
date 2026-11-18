@@ -470,11 +470,11 @@ p{margin:0}
 .q-tag{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:0;cursor:pointer;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-2);background:var(--glass);padding:8px 14px;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap;transition:background .35s,box-shadow .35s,padding .45s cubic-bezier(.2,.7,.2,1)}
 .q-tag::before{content:"";position:absolute;width:44px;height:1px;background:var(--blue);top:50%}
 .q-tag.t1{left:12%;top:24%}.q-tag.t1::before{left:100%}
-.q-tag.t2{right:8%;top:44%}.q-tag.t2::before{right:100%}
+.q-tag.t2{left:calc(50% + min(56svh,500px) * .464 + 84px);top:44%}.q-tag.t2::before{right:100%}
 .q-tag.t3{left:12%;bottom:16%}.q-tag.t3::before{left:100%}
 .geo-stage{perspective:1600px}
 #geo-map{transform-origin:50% 70%;will-change:transform}
-@media (max-width:820px){.q-tag{font-size:10px;padding:6px 10px}.q-tag::before{display:none}.q-tag.t1{left:2%}.q-tag.t2{right:2%}.q-tag.t3{left:6%}}
+@media (max-width:820px){.q-tag{font-size:10px;padding:6px 10px}.q-tag::before{display:none}.q-tag.t1{left:2%}.q-tag.t2{left:auto;right:2%}.q-tag.t3{left:6%}}
 
 /* 3D-модели тары и гранула под лупой */
 .cases-stage{position:relative}
