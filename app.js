@@ -228,7 +228,7 @@
     gsap.utils.toArray('.eggs .cut').forEach((c, k) => gsap.fromTo(c, { rotate: [-14, 10, -6][k], x: [-60, 80, 40][k] }, { rotate: [4, -6, 8][k], x: 0, ease: 'none',
       scrollTrigger: { trigger: '.eggs', start: 'top bottom', end: 'bottom top', scrub: 1 } }));
     // качество: гранула под лупой
-    gsap.fromTo('.q-lens-video', { scale: .8, rotate: -12, y: 20 }, { scale: 1, rotate: 8, y: -10, ease: 'none', scrollTrigger: { trigger: '.q-lens', start: 'top bottom', end: 'bottom 30%', scrub: 1 } });
+    gsap.fromTo('.q-cluster', { scale: .86, y: 30 }, { scale: 1, y: -10, ease: 'none', scrollTrigger: { trigger: '.q-lens', start: 'top bottom', end: 'bottom 30%', scrub: 1 } });
     gsap.utils.toArray('.q-tag').forEach((t, k) => gsap.fromTo(t, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .8, delay: k * .15, ease: 'power3.out', scrollTrigger: { trigger: '.q-lens', start: 'top 80%', toggleActions: 'play none none reverse' } }));
     // карта: разворачивается из наклона
     gsap.fromTo('#geo-map', { rotateX: 42, y: 60, scale: .9 }, { rotateX: 0, y: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.geo', start: 'top bottom', end: 'top 25%', scrub: 1 } });
@@ -248,6 +248,25 @@
     tl.from('.foot-mark .lg-sq', { scale: .6, opacity: 0, transformOrigin: '0% 0%', duration: .9, ease: 'power3.out' })
       .from('.foot-mark .lg-zp', { opacity: 0, x: -40, duration: .7, ease: 'power3.out' }, '-=.45')
       .from('.foot-mark .lg-tx', { opacity: 0, y: 60, duration: 1, ease: 'power4.out' }, '-=.5');
+  }
+
+  /* ---------- гранулы в невесомости: каждая парит в своём ритме, за курсором расходятся по глубине ---------- */
+  if (!reduce) {
+    const grs = gsap.utils.toArray('.q-gr');
+    grs.forEach((g, i) => {
+      const big = g.dataset.k === '1', amp = big ? 7 : 12 + i * 2;
+      gsap.to(g, { y: `+=${amp}`, duration: 3.2 + i * .55, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -i * .7 });
+      gsap.to(g, { x: `+=${big ? 4 : 6 + i}`, duration: 4.1 + i * .6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -i * 1.1 });
+      gsap.fromTo(g, { rotation: big ? -3 : -6 - i }, { rotation: big ? 3 : 6 + i, duration: 5 + i * .7, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -i * .4 });
+    });
+    const lens = document.querySelector('.q-lens');
+    if (lens && matchMedia('(hover:hover)').matches) {
+      const movers = grs.map((g, i) => { const im = g.querySelector('img'), depth = g.dataset.k === '1' ? 8 : 18 + i * 4;
+        return { depth, x: gsap.quickTo(im, 'x', { duration: .9, ease: 'power3.out' }), y: gsap.quickTo(im, 'y', { duration: .9, ease: 'power3.out' }) }; });
+      lens.addEventListener('pointermove', e => { const r = lens.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width - .5, ny = (e.clientY - r.top) / r.height - .5;
+        movers.forEach(m => { m.x(nx * m.depth * 2); m.y(ny * m.depth * 2); }); });
+      lens.addEventListener('pointerleave', () => movers.forEach(m => { m.x(0); m.y(0); }));
+    }
   }
 
   /* ---------- пилюли «Качества»: на телефоне раскрываются по нажатию ---------- */
