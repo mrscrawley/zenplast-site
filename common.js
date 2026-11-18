@@ -40,10 +40,21 @@
     ['белый', 'white'], ['джамбо', 'jumbo'], ['двухсекционный', 'two-compartment'], ['молочный', 'dairy'], ['колбасный', 'sausage'],
     ['сырково-творожный', 'curd'], ['Лоток хлебный с боковой стенкой', 'bread tray with side wall'], ['овощной', 'vegetable'], ['ягодный', 'berry'],
     ['исполнения', 'versions'], ['грибок', 'mushroom cap'], ['мл', 'ml'], ['г', 'g'], ['мм', 'mm'], ['мкм', 'µm'], ['кг', 'kg'], ['ПЭТ', 'PET'], ['ПП', 'PP'], ['Айран', 'ayran'], ['Экспонента', 'Exponenta'], ['Мираторг', 'Miratorg']];
-  ZP.lang = (qs.get('lang') === 'en' || qs.get('lang') === 'ru') ? qs.get('lang') : (store.get('zp-lang') || 'ru');
-  ZP.t = (ru, en) => ZP.lang === 'en' ? en : ru;
+  ZP.lang = ['ru', 'be', 'en'].includes(qs.get('lang')) ? qs.get('lang') : (store.get('zp-lang') || 'ru');
+  // беларуская: слоўнік data/be.js, ключ — рускі тэкст (непарыўныя прабелы нармалізуюцца)
+  const norm = s => String(s).replace(/&nbsp;|\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+  const BE = {}; for (const [k, v] of Object.entries(window.ZP_BE || {})) BE[norm(k)] = v;
+  const be = s => { const v = BE[norm(s)]; return v === undefined ? s : v; };
+  ZP.be = be;
+  ZP.t = (ru, en) => ZP.lang === 'en' ? en : ZP.lang === 'be' ? be(ru) : ru;
   ZP.tr = s => {
-    if (ZP.lang !== 'en' || !s) return s;
+    if (!s || ZP.lang === 'ru') return s;
+    if (ZP.lang === 'be') {
+      const d = window.ZP_BE_DICT || {}; if (d[s]) return d[s];
+      if (BE[norm(s)] !== undefined) return BE[norm(s)];
+      let o = s; for (const [a, b] of (window.ZP_BE_WORDS || [])) o = o.split(a).join(b);
+      return o;
+    }
     if (dict[s]) return dict[s];
     let out = s.replace('Лоток хлебный с боковой стенкой', 'bread tray with side wall');
     for (const [a, b] of words) out = out.replace(new RegExp('(^|[^А-Яа-яЁё])' + a + '(?=$|[^А-Яа-яЁё])', 'g'), '$1' + b);
@@ -64,9 +75,9 @@
   const docTitle = document.title;
   ZP.applyLang = () => {
     root.lang = ZP.lang;
-    nodes.forEach(n => n.innerHTML = ZP.lang === 'en' ? n.dataset.en : n.dataset.ru);
-    attrEls.forEach(e => ['alt','aria-label','title'].forEach(a => { const ru = e.dataset['ru' + a.replace('-', '')]; if (ru) e.setAttribute(a, ZP.lang === 'en' ? (ATTR[ru] || ZP.tr(ru)) : ru); }));
-    if (docTitle.startsWith('Зен Пласт —')) document.title = ZP.lang === 'en' ? 'Zen Plast — polymer packaging manufacturer' : docTitle;
+    nodes.forEach(n => n.innerHTML = ZP.lang === 'en' ? n.dataset.en : ZP.lang === 'be' ? be(n.dataset.ru) : n.dataset.ru);
+    attrEls.forEach(e => ['alt','aria-label','title'].forEach(a => { const ru = e.dataset['ru' + a.replace('-', '')]; if (ru) e.setAttribute(a, ZP.lang === 'en' ? (ATTR[ru] || ZP.tr(ru)) : ZP.lang === 'be' ? be(ru) : ru); }));
+    if (docTitle.startsWith('Зен Пласт —')) document.title = ZP.lang === 'en' ? 'Zen Plast — polymer packaging manufacturer' : ZP.lang === 'be' ? 'Зэн Пласт — вытворца палімернай тары і ўпакоўкі' : docTitle;
     document.querySelectorAll('[data-lang]').forEach(b => b.setAttribute('aria-pressed', b.dataset.lang === ZP.lang));
     document.dispatchEvent(new CustomEvent('zp:lang'));
   };
