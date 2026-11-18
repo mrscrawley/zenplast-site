@@ -78,15 +78,13 @@
     story.classList.add('has3d', 'is-film');
   }
 
-  // --- малые ролики: прогресс = положение секции на экране
+  // --- малые ролики: прогресс считаем по самому ролику — на телефоне секция выше и картинка в ней сверху
   document.querySelectorAll('video[data-scrub]').forEach(v => {
-    const sec = v.closest('section') || v.parentElement;
-    const mode = v.dataset.scrub;
+    const box = v.parentElement, sec = v.closest('section') || box;
     scrubber(v, () => {
-      const r = sec.getBoundingClientRect(), h = innerHeight;
-      const p = clamp((h - r.top) / (h + r.height * .4));
-      if (mode === 'lens') return clamp((p - .1) / .8);
-      return mode === 'orbit' ? clamp(p * 1.1 - .05) : clamp((p - .42) / .38); // яйца ложатся, когда блок уже в центре экрана
+      const r = box.getBoundingClientRect(), h = innerHeight;
+      const p = clamp((h - r.top) / (h + r.height)); // 0 — ролик снизу за экраном, .5 — по центру, 1 — ушёл вверх
+      return clamp((p - .18) / .34); // яйца ложатся к моменту, когда картинка в центре экрана
     }, sec);
   });
 })();
