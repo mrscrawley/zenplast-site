@@ -549,17 +549,17 @@ p{margin:0}
 .cta-final h2{font-size:clamp(44px,calc(var(--u)*7.2),112px);line-height:.98;font-weight:var(--dw);max-width:12em}
 .cta-final .sec-lead{max-width:30em}
 .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:2svh}
-.foot{position:relative;overflow:hidden;padding:7svh var(--pad) 3svh;background:linear-gradient(180deg,var(--blue-soft) 0%,var(--ice) 100%)}
-.foot-row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;font-size:15px;color:var(--ink-2)}
-.foot-row nav{display:flex;flex-wrap:wrap;gap:28px}
+.foot{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:6vw;padding:10svh var(--pad) 4svh;background:linear-gradient(180deg,var(--blue-soft) 0%,var(--ice) 100%)}
+.foot-mark{width:clamp(220px,34vw,560px);line-height:0}
+.foot-mark svg{width:100%;height:auto;display:block;overflow:visible}
+.foot-side{display:flex;flex-direction:column;justify-content:flex-end;gap:5svh;min-width:0}
+.foot-row{display:flex;flex-direction:column;align-items:flex-end;gap:16px;font-size:15px;color:var(--ink-2);text-align:right}
+.foot-row nav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:28px}
 .foot-row a{text-decoration:none;color:var(--ink)}
 .foot-row a:hover{color:var(--blue)}
 .foot-row p{margin:0}
-.foot-mark{display:flex;justify-content:space-between;margin:6svh 0 1svh;font-family:var(--display);font-weight:600;font-size:clamp(64px,15.4vw,300px);line-height:.8;letter-spacing:-.04em;overflow:hidden;padding-bottom:.04em}
-.foot-mark span{display:inline-block;background:linear-gradient(180deg,var(--blue) 0%,rgba(1,78,158,.18) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
-.foot-mark .sp{width:.18em}
-.foot-copy{display:flex;justify-content:space-between;gap:16px;margin:2svh 0 0;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-@media (max-width:820px){.foot-row{flex-direction:column}.foot-row nav{gap:18px}.foot{padding-bottom:calc(3svh + 70px)}}
+.foot-copy{display:flex;justify-content:flex-end;gap:28px;margin:0;font:500 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+@media (max-width:820px){.foot{grid-template-columns:1fr;gap:5svh;padding-bottom:calc(3svh + 70px)}.foot-mark{width:min(70vw,320px)}.foot-row,.foot-copy{align-items:flex-start;justify-content:flex-start;text-align:left}.foot-row nav{justify-content:flex-start;gap:18px}.foot-copy{flex-direction:column;gap:6px}}
 
 /* AVIF-обёртки не участвуют в раскладке */
 .orbit picture,.q-lens picture{display:contents}

@@ -223,7 +223,12 @@
   }
 
   /* ---------- футер: буквы логотипа поднимаются по очереди ---------- */
-  if (!reduce) gsap.from('.foot-mark span:not(.sp)', { yPercent: 105, duration: 1.1, ease: 'power4.out', stagger: .05, scrollTrigger: { trigger: '.foot-mark', start: 'top 95%' } });
+  if (!reduce) {
+    const tl = gsap.timeline({ scrollTrigger: { trigger: '.foot-mark', start: 'top 92%' } });
+    tl.from('.foot-mark .lg-sq', { scale: .6, opacity: 0, transformOrigin: '0% 0%', duration: .9, ease: 'power3.out' })
+      .from('.foot-mark .lg-zp', { opacity: 0, x: -40, duration: .7, ease: 'power3.out' }, '-=.45')
+      .from('.foot-mark .lg-tx', { opacity: 0, y: 60, duration: 1, ease: 'power4.out' }, '-=.5');
+  }
 
   addEventListener('load', () => ScrollTrigger.refresh());
 })();
