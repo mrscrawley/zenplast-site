@@ -199,10 +199,15 @@
     gsap.utils.toArray('.orbit img').forEach((im, k) => {
       gsap.fromTo(im, { y: 90, rotate: (k - 1) * 6, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, ease: 'power3.out', duration: 1.2, delay: k * .08,
         scrollTrigger: { trigger: '.orbits', start: 'top 80%' } });
-      const box = im.parentElement;
-      box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        gsap.to(im, { rotateY: x * 16, rotateX: -y * 12, scale: 1.04, duration: .6, ease: 'power3.out' }); });
-      box.addEventListener('pointerleave', () => gsap.to(im, { rotateY: 0, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));
+      // <picture> с display:contents не имеет размеров — меряем плитку .orbit
+      const box = im.closest('.orbit');
+      // в покое тара чуть парит, каждая в своём ритме
+      gsap.to(box, { y: -10, duration: 2.6 + k * .45, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: k * .3 });
+      if (matchMedia('(hover:hover)').matches) {
+        box.addEventListener('pointermove', e => { const r = box.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+          gsap.to(im, { rotationY: x * 26, rotationX: -y * 20, x: x * 18, scale: 1.07, duration: .6, ease: 'power3.out', overwrite: 'auto' }); });
+        box.addEventListener('pointerleave', () => gsap.to(im, { rotationY: 0, rotationX: 0, x: 0, scale: 1, duration: 1.1, ease: 'elastic.out(1,.55)', overwrite: 'auto' }));
+      }
     });
     // яйца: упаковки разъезжаются и вращаются по прокрутке
     gsap.utils.toArray('.eggs .cut').forEach((c, k) => gsap.fromTo(c, { rotate: [-14, 10, -6][k], x: [-60, 80, 40][k] }, { rotate: [4, -6, 8][k], x: 0, ease: 'none',
