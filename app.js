@@ -250,7 +250,7 @@
       .from('.foot-mark .lg-tx', { opacity: 0, y: 60, duration: 1, ease: 'power4.out' }, '-=.5');
   }
 
-  /* ---------- гранулы в невесомости: каждая парит в своём ритме, за курсором расходятся по глубине ---------- */
+  /* ---------- гранулы в невесомости: каждая парит в своём ритме, на курсор не реагируют ---------- */
   if (!reduce) {
     const grs = gsap.utils.toArray('.q-gr');
     grs.forEach((g, i) => {
@@ -259,14 +259,6 @@
       gsap.to(g, { x: `+=${big ? 4 : 6 + i}`, duration: 4.1 + i * .6, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -i * 1.1 });
       gsap.fromTo(g, { rotation: big ? -3 : -6 - i }, { rotation: big ? 3 : 6 + i, duration: 5 + i * .7, ease: 'sine.inOut', yoyo: true, repeat: -1, delay: -i * .4 });
     });
-    const lens = document.querySelector('.q-lens');
-    if (lens && matchMedia('(hover:hover)').matches) {
-      const movers = grs.map((g, i) => { const im = g.querySelector('img'), depth = g.dataset.k === '1' ? 8 : 18 + i * 4;
-        return { depth, x: gsap.quickTo(im, 'x', { duration: .9, ease: 'power3.out' }), y: gsap.quickTo(im, 'y', { duration: .9, ease: 'power3.out' }) }; });
-      lens.addEventListener('pointermove', e => { const r = lens.getBoundingClientRect(), nx = (e.clientX - r.left) / r.width - .5, ny = (e.clientY - r.top) / r.height - .5;
-        movers.forEach(m => { m.x(nx * m.depth * 2); m.y(ny * m.depth * 2); }); });
-      lens.addEventListener('pointerleave', () => movers.forEach(m => { m.x(0); m.y(0); }));
-    }
   }
 
   /* ---------- пилюли «Качества»: на телефоне раскрываются по нажатию ---------- */
