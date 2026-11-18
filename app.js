@@ -235,5 +235,12 @@
       .from('.foot-mark .lg-tx', { opacity: 0, y: 60, duration: 1, ease: 'power4.out' }, '-=.5');
   }
 
+  /* ---------- пилюли «Качества»: на телефоне раскрываются по нажатию ---------- */
+  document.querySelectorAll('.q-tag').forEach(t => t.addEventListener('click', () => {
+    const open = !t.classList.contains('is-open');
+    document.querySelectorAll('.q-tag.is-open').forEach(x => { x.classList.remove('is-open'); x.setAttribute('aria-expanded', 'false'); });
+    if (open) { t.classList.add('is-open'); t.setAttribute('aria-expanded', 'true'); }
+  }));
+
   addEventListener('load', () => ScrollTrigger.refresh());
 })();

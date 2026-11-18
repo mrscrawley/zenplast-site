@@ -467,7 +467,7 @@ p{margin:0}
 .quality{position:relative;overflow:hidden}
 .q-lens{position:relative;height:min(62svh,560px);margin:0 auto 6svh;display:grid;place-items:center}
 .q-lens-img{width:min(54svh,480px);aspect-ratio:1;border-radius:50%;background:url(media/granules.jpg) 62% 50%/cover;-webkit-mask:radial-gradient(circle,#000 54%,transparent 71%);mask:radial-gradient(circle,#000 54%,transparent 71%)}
-.q-tag{position:absolute;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-2);background:var(--glass);padding:8px 14px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap}
+.q-tag{position:absolute;z-index:2;display:flex;flex-direction:column;align-items:flex-start;text-align:left;border:0;cursor:pointer;font:500 12px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--blue-2);background:var(--glass);padding:8px 14px;border-radius:20px;box-shadow:inset 0 0 0 1px var(--line);white-space:nowrap;transition:background .35s,box-shadow .35s,padding .45s cubic-bezier(.2,.7,.2,1)}
 .q-tag::before{content:"";position:absolute;width:44px;height:1px;background:var(--blue);top:50%}
 .q-tag.t1{left:12%;top:24%}.q-tag.t1::before{left:100%}
 .q-tag.t2{right:16%;top:44%}.q-tag.t2::before{right:100%}
@@ -585,3 +585,15 @@ p{margin:0}
   .ch-lead{font-size:14px;line-height:1.45}
   .ch .eyebrow{font-size:11px}
 }
+
+/* --- пилюли «Качества»: при наведении раскрываются в справку --- */
+.q-tag::after{content:"+";margin-left:8px;font-weight:400;opacity:.6}
+.q-tag .q-tag-t{display:inline}
+.q-tag{flex-direction:row;flex-wrap:wrap;max-width:300px}
+.q-tip{flex-basis:100%;display:block;max-height:0;opacity:0;overflow:hidden;white-space:normal;font:400 14px/1.45 var(--body);letter-spacing:0;text-transform:none;color:var(--ink);transition:max-height .5s cubic-bezier(.2,.7,.2,1),opacity .3s,margin .45s}
+.q-tag:hover,.q-tag:focus-visible,.q-tag.is-open{background:rgba(255,255,255,.94);box-shadow:inset 0 0 0 1px rgba(1,78,158,.25),0 18px 40px -24px rgba(1,58,119,.35);padding:12px 16px;z-index:3}
+.q-tag:hover .q-tip,.q-tag:focus-visible .q-tip,.q-tag.is-open .q-tip{max-height:120px;opacity:1;margin-top:8px;width:240px}
+.q-tag:hover::after,.q-tag.is-open::after{content:"−"}
+.q-tag:focus{outline:none}
+.q-tag:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+@media (max-width:820px){.q-tip{font-size:13px}.q-tag.is-open .q-tip{width:200px}}
