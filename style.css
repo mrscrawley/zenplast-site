@@ -43,7 +43,7 @@ p{margin:0}
 
 /* ШАПКА */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;gap:28px;padding:14px var(--pad);transition:background .4s,backdrop-filter .4s,box-shadow .4s,padding .4s}
-.hdr.is-glass{background:rgba(213,229,242,.96);box-shadow:0 1px 0 var(--line);padding-block:8px}
+.hdr.is-glass{background:var(--bg);box-shadow:0 1px 0 var(--line);padding-block:8px}
 .brand{display:flex;align-items:center;text-decoration:none;flex:none}
 .brand img{height:46px;width:auto;transition:height .4s}
 .hdr.is-glass .brand img{height:40px}
@@ -549,7 +549,7 @@ p{margin:0}
 .cta-final h2{font-size:clamp(44px,calc(var(--u)*7.2),112px);line-height:.98;font-weight:var(--dw);max-width:12em}
 .cta-final .sec-lead{max-width:30em}
 .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:2svh}
-.foot{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:6vw;padding:10svh var(--pad) 4svh;background:linear-gradient(180deg,var(--blue-soft) 0%,var(--ice) 100%)}
+.foot{display:grid;grid-template-columns:auto 1fr;align-items:end;gap:6vw;padding:10svh var(--pad) 4svh;background:linear-gradient(180deg,var(--bg-2) 0%,var(--ice) 100%)}
 .foot-mark{width:clamp(220px,34vw,560px);line-height:0}
 .foot-mark svg{width:100%;height:auto;display:block;overflow:visible}
 .foot-side{display:flex;flex-direction:column;justify-content:flex-end;gap:5svh;min-width:0}
