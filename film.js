@@ -4,7 +4,7 @@
   const ZP = window.ZP || {};
   // источники: на телефоне и узких экранах — лёгкие версии роликов
   const small = matchMedia('(max-width: 820px), (max-aspect-ratio: 11/10)').matches;
-  document.querySelectorAll('video[data-src]').forEach(v => { v.src = (small && v.dataset.srcM) || v.dataset.src; v.preload = v.closest('.story') ? 'auto' : 'metadata'; });
+  document.querySelectorAll('video[data-src]').forEach(v => { if (v.id === 'storyfilmrev') return; v.src = (small && v.dataset.srcM) || v.dataset.src; v.preload = v.closest('.story') ? 'auto' : 'metadata'; });
   const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
 
   function scrubber(video, getP, watchEl) {
@@ -39,6 +39,11 @@
     const K = 7; let dur = 0, seg = 0, curK = 0, tgtK = 0, busy = false, gen = 0;
     [film, rev].forEach(v => { if (!v) return; v.muted = true; v.playsInline = true; const w = () => { const p = v.play(); if (p) p.then(() => v.pause()).catch(() => {}); }; w(); addEventListener('touchstart', w, { once: true, passive: true }); });
     const meta = () => { dur = film.duration || 0; seg = dur / K; };
+    // обратная копия (для шага назад) грузится позже: сначала основной фильм, потом она
+    let revLoaded = false;
+    const loadRev = () => { if (revLoaded || !rev) return; revLoaded = true; rev.src = (small && rev.dataset.srcM) || rev.dataset.src; rev.preload = 'auto'; rev.load(); };
+    film.addEventListener('canplaythrough', () => setTimeout(loadRev, 1500), { once: true });
+    setTimeout(loadRev, 8000);
     film.addEventListener('loadedmetadata', meta); if (film.readyState >= 1) meta();
     const seek = (v, t) => new Promise(r => { if (Math.abs(v.currentTime - t) < .01) return r(); const done = () => { clearTimeout(to); r(); }; const to = setTimeout(done, 1500); v.addEventListener('seeked', done, { once: true }); v.currentTime = t; });
     // ждём кадр-цель, но не дольше лимита: если видео не пошло, переход завершится мгновенно
@@ -49,7 +54,7 @@
         const k = tgtK, rate = 1.6;
         // дальний прыжок: встаём на соседний с целью кадр и проигрываем только последний переход
         if (Math.abs(k - curK) > 1) { const pre = k > curK ? k - 1 : k + 1; await seek(film, pre * seg); curK = pre; }
-        if (k > curK || !rev) {
+        if (k > curK || !rev || rev.readyState < 2) {
           if (k < curK) { await seek(film, k * seg); curK = k; break; }
           film.playbackRate = rate; story.classList.remove('is-rev');
           film.play().catch(() => {});

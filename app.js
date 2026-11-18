@@ -102,7 +102,6 @@
   const storyEl = document.querySelector('.story');
   if (storyEl) {
     const chs = [...storyEl.querySelectorAll('.ch')], navs = [...storyEl.querySelectorAll('.story-nav button')];
-    const fbs = [...storyEl.querySelectorAll('.story-fallback img')];
     // главы привязаны к ключевым кадрам фильма (film.js): гранулы, сырьё, поток, плёнка, формование, IML, ящики, вся линия
     const bounds = [0, .08, .17, .29, .43, .69, .83, .95, 1.01];
     const navAt = [0, .12, .22, .36, .5, .76, .9, 1];
@@ -118,7 +117,6 @@
       ZP.revealLines && ZP.revealLines(chs[i], prev ? .32 : .15);
       navs.forEach((b, k) => b.classList.toggle('is-on', k === i));
       ZP.filmGo && ZP.filmGo(i);
-      fbs.forEach(im => im.classList.toggle('is-on', +im.dataset.ch === i));
       if (i === 1 && counter && !counted) { counted = true; cnt.v = 0; gsap.to(cnt, { v: 700, duration: reduce ? 0 : 2, ease: 'power3.out', onUpdate: () => counter.textContent = Math.round(cnt.v) }); }
     }
     gsap.set(chs, { autoAlpha: 0 }); setCh(0);
@@ -202,14 +200,6 @@
   /* ---------- ЗАХОД 3: нижние главы ---------- */
   if (!reduce) {
     // тара клиентов: выплывают с поворотом, по прокрутке слегка вращаются, за курсором наклоняются
-    gsap.utils.toArray('.cases-fallback img').forEach((im, k) => {
-      gsap.fromTo(im, { rotateY: (k - 1) * -28, rotateX: 10, z: -260, y: 80 }, { rotateY: (k - 1) * 6, rotateX: 0, z: 0, y: 0, ease: 'none',
-        scrollTrigger: { trigger: '.cases-row', start: 'top bottom', end: 'center 45%', scrub: .8 } });
-      const fig = im;
-      fig.addEventListener('pointermove', e => { const r = fig.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
-        gsap.to(im, { rotateY: x * 18, rotateX: -y * 14, scale: 1.04, duration: .6, ease: 'power3.out' }); });
-      fig.addEventListener('pointerleave', () => gsap.to(im, { rotateY: (k - 1) * 6, rotateX: 0, scale: 1, duration: .8, ease: 'power3.out' }));
-    });
     // тара на полке: выплывает по прокрутке, за курсором слегка наклоняется
     gsap.utils.toArray('.orbit img').forEach((im, k) => {
       gsap.fromTo(im, { y: 90, rotate: (k - 1) * 6, opacity: 0 }, { y: 0, rotate: 0, opacity: 1, ease: 'power3.out', duration: 1.2, delay: k * .08,
