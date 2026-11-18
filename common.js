@@ -112,11 +112,21 @@
       gsap.ticker.add(t => ZP.lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
     } else { const raf = t => { ZP.lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf); }
   }
+  // плавная прокрутка, которая работает и на телефоне (анимированный scrollTo у Lenis на тач-устройствах игнорируется)
+  let scrollTw = null;
+  ZP.scrollTo = (y, o = {}) => {
+    y = Math.max(0, Math.min(y, document.documentElement.scrollHeight - innerHeight));
+    const set = v => ZP.lenis ? ZP.lenis.scrollTo(v, { immediate: true, force: true }) : scrollTo(0, v);
+    if (scrollTw) scrollTw.kill();
+    if (o.immediate || ZP.reduce || !window.gsap) { set(y); return; }
+    const s = { v: scrollY };
+    scrollTw = gsap.to(s, { v: y, duration: o.duration ?? Math.min(1.4, .6 + Math.abs(y - scrollY) / 4000), ease: o.ease || 'power3.inOut', onUpdate: () => set(s.v) });
+  };
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href^="#"]'); if (!a) return;
     const id = a.getAttribute('href'); const el = id.length > 1 && document.querySelector(id); if (!el) return;
     e.preventDefault();
-    if (ZP.lenis) ZP.lenis.scrollTo(el, { offset: id === '#top' ? 0 : -70 }); else el.scrollIntoView({ behavior: ZP.reduce ? 'auto' : 'smooth' });
+    ZP.scrollTo(el.getBoundingClientRect().top + scrollY + (id === '#top' ? 0 : -70));
   });
 
   // --- каталог: поиск позиции

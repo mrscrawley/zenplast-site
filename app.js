@@ -58,7 +58,7 @@
     }
     hasGsap && requestAnimationFrame(() => ScrollTrigger.refresh());
   }
-  const toTop = () => { const r = document.getElementById('range'); if (r && r.getBoundingClientRect().top < -40) { const y = r.getBoundingClientRect().top + scrollY - 20; ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' }); } };
+  const toTop = () => { const r = document.getElementById('range'); if (r && r.getBoundingClientRect().top < -40) { const y = r.getBoundingClientRect().top + scrollY - 20; ZP.scrollTo(y); } };
   function openGroup(id, sub = 'all') { curG = id; curS = sub; query = ''; if (q) q.value = ''; renderTabs(); renderGrid(); }
   if (tabs) {
     tabs.addEventListener('click', e => { const b = e.target.closest('[data-g]'); if (b) { openGroup(b.dataset.g); } });
@@ -127,7 +127,7 @@
       onUpdate: self => { const p = self.progress; ZP.storyP = p; let i = 0; while (i < chs.length - 1 && p >= bounds[i + 1]) i++; setCh(i); } });
     ZP.storyP = 0;
     // внутри истории один жест = одна глава; инерция трекпада гасится, пока идёт переход
-    const goCh = k => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { duration: 1, easing: t => 1 - Math.pow(1 - t, 3) }) : scrollTo({ top: y, behavior: 'smooth' }); };
+    const goCh = k => { const y = st.start + (st.end - st.start) * navAt[k]; ZP.scrollTo(y, { duration: .9, ease: 'power3.out' }); };
     // ссылки меню на главы истории (#iml, #path…) ведут ровно на свою главу
     const CH = { '#top': 0, '#about': 1, '#path': 2, '#film': 3, '#iml': 5, '#crates': 6 };
     document.addEventListener('click', e => {
@@ -138,11 +138,11 @@
       // сразу на главу: без прокрутки и без проигрывания фильма
       const k = CH[hash], y = st.start + (st.end - st.start) * navAt[k];
       ZP.filmJump && ZP.filmJump(k);
-      ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y);
+      ZP.scrollTo(y, { immediate: true });
       lockUntil = performance.now() + 400; history.replaceState(null, '', hash);
       ZP.closeMenu && ZP.closeMenu();
     }, true);
-    if (location.hash in CH) { const k = CH[location.hash]; requestAnimationFrame(() => setTimeout(() => { ZP.filmJump && ZP.filmJump(k); const y = st.start + (st.end - st.start) * navAt[k]; ZP.lenis ? ZP.lenis.scrollTo(y, { immediate: true }) : scrollTo(0, y); }, 60)); }
+    if (location.hash in CH) { const k = CH[location.hash]; requestAnimationFrame(() => setTimeout(() => { ZP.filmJump && ZP.filmJump(k); const y = st.start + (st.end - st.start) * navAt[k]; ZP.scrollTo(y, { immediate: true }); }, 60)); }
     let lockUntil = 0, lastWheel = 0, lastAbs = 0;
     const inStory = () => scrollY >= st.start - 4 && scrollY <= st.end + 4;
     const step = dir => {
@@ -182,7 +182,7 @@
     }
     navs.forEach((b, k) => b.addEventListener('click', () => {
       const y = st.start + (st.end - st.start) * navAt[k];
-      ZP.lenis ? ZP.lenis.scrollTo(y) : scrollTo({ top: y, behavior: 'smooth' });
+      ZP.scrollTo(y);
     }));
   }
 
